@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>События и смены - TRP RP</title>
-    <link rel="stylesheet" href="../css/events-styles.css">
-    <link rel="icon" type="image/png" href="../images/avatar.png">
+    <title>Запуск троллейбусов - TRP RP</title>
+    <link rel="stylesheet" href="../../css/launches-styles.css">
+    <link rel="icon" type="image/png" href="../../images/avatar.png">
 </head>
 <body>
 
+    <!-- ============ НАВИГАЦИЯ ============ -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="logo-section">
-                <img src="../images/avatar.png" alt="Avatar" class="navbar-avatar">
+                <img src="../../images/avatar.png" alt="Avatar" class="navbar-avatar">
                 <div class="logo">TRP RP</div>
             </div>
             <button class="menu-toggle" id="menu-toggle">
@@ -22,37 +23,37 @@
                 <li class="menu-back-item">
                     <button class="menu-back-btn" id="menu-back-btn">&#8592; Назад</button>
                 </li>
-                <li class="nav-item"><a href="../" class="nav-link">Главная</a></li>
-                <li class="nav-item"><a href="../team/" class="nav-link">Команда проекта</a></li>
-                <li class="nav-item"><a href="../events/" class="nav-link active">События и смены</a></li>
+                <li class="nav-item"><a href="../../" class="nav-link">Главная</a></li>
+                <li class="nav-item"><a href="../../team/" class="nav-link">Команда проекта</a></li>
+                <li class="nav-item"><a href="../../events/" class="nav-link">События и смены</a></li>
 
                 <li class="nav-item has-dropdown">
                     <button class="dropdown-toggle">Документация <span class="dropdown-arrow">▾</span></button>
                     <ul class="dropdown-menu">
-                        <li><a href="../documentation/charter/" class="dropdown-link">Устав проекта</a></li>
+                        <li><a href="../charter/" class="dropdown-link active">Устав проекта</a></li>
                         <li class="dropdown-submenu">
                             <a href="#" class="dropdown-link submenu-toggle">Для сотрудников <span class="submenu-arrow">▸</span></a>
                             <ul class="dropdown-submenu-list">
-                                <li><a href="../documentation/employees/routes/" class="dropdown-link">Маршруты</a></li>
-                                <li><a href="../documentation/employees/radio-regulations/" class="dropdown-link">Регламент радиообмена</a></li>
-                                <li><a href="../documentation/employees/dtc-instructions/" class="dropdown-link">Инструкция ДТУ и ДТД</a></li>
-                                <li><a href="../documentation/employees/dfs-instructions/" class="dropdown-link">Инструкция ДКС и ДТД</a></li>
-                                <li><a href="../documentation/employees/drivers-instructions/" class="dropdown-link">Инструкция водителей</a></li>
+                                <li><a href="../employees/radio/" class="dropdown-link">Маршруты</a></li>
+                                <li><a href="../employees/radio-regulations/" class="dropdown-link">Регламент радиообмена</a></li>
+                                <li><a href="../employees/dtc-instructions/" class="dropdown-link">Инструкция ДТУ и ДТД</a></li>
+                                <li><a href="../employees/dfs-instructions/" class="dropdown-link">Инструкция ДКС и ДТД</a></li>
+                                <li><a href="../employees/drivers-instructions/" class="dropdown-link">Инструкция водителей</a></li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
                             <a href="#" class="dropdown-link submenu-toggle">Для отделов <span class="submenu-arrow">▸</span></a>
                             <ul class="dropdown-submenu-list">
-                                <li><a href="../documentation/departments/directors-instructions/" class="dropdown-link">Директор ГТОП/ТПОХ</a></li>
-                                <li><a href="../documentation/departments/hrs-instructions/" class="dropdown-link">КОУП</a></li>
-                                <li><a href="../documentation/departments/fad-instructions/" class="dropdown-link">ФАО</a></li>
-                                <li><a href="../documentation/departments/tsd-instructions/" class="dropdown-link">ОБД</a></li>
-                                <li><a href="../documentation/departments/tc-instructions/" class="dropdown-link">УбЦ</a></li>
+                                <li><a href="../departments/directors-instructions/" class="dropdown-link">Директор ГТОП/ТПОХ</a></li>
+                                <li><a href="../departments/hrs-instructions/" class="dropdown-link">КОУП</a></li>
+                                <li><a href="../departments/fad-instructions/" class="dropdown-link">ФАО</a></li>
+                                <li><a href="../departments/tsd-instructions/" class="dropdown-link">ОБД</a></li>
+                                <li><a href="../departments/tc-instructions/" class="dropdown-link">УбЦ</a></li>
                             </ul>
                         </li>
-                        <li><a href="../documentation/lectures/" class="dropdown-link">Лекции</a></li>
-                        <li><a href="../documentation/launches/" class="dropdown-link">Запуск троллейбусов</a></li>
-                        <li><a href="../documentation/schemes/" class="dropdown-link">Схемы депо и маршрутов</a></li>
+                        <li><a href="../lectures/" class="dropdown-link">Лекции</a></li>
+                        <li><a href="../launches/" class="dropdown-link">Запуск троллейбусов</a></li>
+                        <li><a href="../schemes/" class="dropdown-link">Схемы депо и маршрутов</a></li>
                     </ul>
                 </li>
 
@@ -89,7 +90,7 @@
                             </ul>
                         </li>
                         <li><a href="#" class="dropdown-link">Подать апелляцию</a></li>
-                        <li><a href="#register" class="dropdown-link">Регистрация на смену</a></li>
+                        <li><a href="../events/#register" class="dropdown-link">Регистрация на смену</a></li>
                         <li><a href="#" class="dropdown-link">Прочие анкеты</a></li>
                     </ul>
                 </li>
@@ -142,38 +143,53 @@
         </div>
     </nav>
 
-    <section class="hero-events">
-        <div class="hero-events-content">
-            <h1>Календарь событий и регистрация на смены</h1>
+    <!-- ============ ГЕРОЙ ============ -->
+    <section class="hero-launches">
+        <div class="hero-launches-content">
+            <h1>Учебное пособие по эксплуатации и техническому обслуживанию троллейбусов</h1>
         </div>
     </section>
 
-    <section class="events-section" id="calendar">
+    <!-- ============ ВИДЕО-СЕКЦИЯ ============ -->
+    <section class="launches-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Календарь событий</h2>
-            </div>
-            <div class="calendar-card">
-                <div class="calendar-wrapper">
-                    <iframe src="https://calendar.google.com/calendar/embed?src=076bdb2384704f5fab61a29feb5c742ef51e49c9fed15851bca5b72533bc1463%40group.calendar.google.com&ctz=Europe%2FMoscow&hl=ru" style="border:0" width="100%" height="650" frameborder="0" scrolling="no"></iframe>
+
+            <!-- Блок 1 -->
+            <div class="launch-block">
+                <h2 class="launch-title">ЗиУ-9, ЗиУ-9 СМЕ, ЗиУ-10</h2>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/7x-E1cUB6yc" 
+                            title="YouTube video player" 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section class="events-section" id="register">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Регистрация на смену</h2>
-            </div>
-            <div class="form-card">
-                <div class="form-wrapper">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScBpoXNG__jCMfsKac4pwVhavJf9g5dLgrCTvnE3oLodSZZmA/viewform?embedded=true" width="100%" height="2271" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+            <!-- Блок 2 -->
+            <div class="launch-block">
+                <h2 class="launch-title">ЗиУ-9 Тех. помощь</h2>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/GAQkwrA1hBw" 
+                            title="YouTube video player" 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
+    <!-- ============ КОНТАКТЫ ============ -->
     <section class="contacts-section" id="social">
         <div class="container">
             <h2>Контакты проекта "TRP RP"</h2>
@@ -203,6 +219,6 @@
         <p>&copy; 2026 TRP RP. Все права защищены.</p>
     </footer>
 
-    <script src="../js/events-script.js"></script>
+    <script src="../../js/launches-script.js"></script>
 </body>
 </html>

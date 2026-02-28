@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Схемы депо и маршрутов - TRP RP</title>
+    <link rel="stylesheet" href="../../css/schemes-styles.css">
+    <link rel="icon" type="image/png" href="../../images/avatar.png">
+</head>
+<body>
+
+    <!-- ============ НАВИГАЦИЯ ============ -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-section">
+                <img src="../../images/avatar.png" alt="Avatar" class="navbar-avatar">
+                <div class="logo">TRP RP</div>
+            </div>
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="menu-back-item">
+                    <button class="menu-back-btn" id="menu-back-btn">&#8592; Назад</button>
+                </li>
+                <li class="nav-item"><a href="../../" class="nav-link">Главная</a></li>
+                <li class="nav-item"><a href="../../team/" class="nav-link">Команда проекта</a></li>
+                <li class="nav-item"><a href="../../events/" class="nav-link">События и смены</a></li>
+
+                <li class="nav-item has-dropdown">
+                    <button class="dropdown-toggle">Документация <span class="dropdown-arrow">▾</span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="../charter/" class="dropdown-link">Устав проекта</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-link submenu-toggle">Для сотрудников <span class="submenu-arrow">▸</span></a>
+                            <ul class="dropdown-submenu-list">
+                                <li><a href="#" class="dropdown-link">Маршруты</a></li>
+                                <li><a href="#" class="dropdown-link">Регламент радиообмена</a></li>
+                                <li><a href="#" class="dropdown-link">Инструкция ДТУ и ДТД</a></li>
+                                <li><a href="#" class="dropdown-link">Инструкция ДКС и ДТД</a></li>
+                                <li><a href="#" class="dropdown-link">Инструкция водителей</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-link submenu-toggle">Для отделов <span class="submenu-arrow">▸</span></a>
+                            <ul class="dropdown-submenu-list">
+                                <li><a href="#" class="dropdown-link">Директор ГТОП/ТПОХ</a></li>
+                                <li><a href="#" class="dropdown-link">КОУП</a></li>
+                                <li><a href="#" class="dropdown-link">ФАО</a></li>
+                                <li><a href="#" class="dropdown-link">ОБД</a></li>
+                                <li><a href="#" class="dropdown-link">УбЦ</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" class="dropdown-link">Лекции</a></li>
+                        <li><a href="#" class="dropdown-link">Запуск троллейбусов</a></li>
+                        <li><a href="#" class="dropdown-link active">Схемы депо и маршрутов</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-dropdown">
+                    <button class="dropdown-toggle">Документация <span class="dropdown-arrow">▾</span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="../charter/" class="dropdown-link active">Устав проекта</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-link submenu-toggle">Для сотрудников <span class="submenu-arrow">▸</span></a>
+                            <ul class="dropdown-submenu-list">
+                                <li><a href="../employees/radio/" class="dropdown-link">Маршруты</a></li>
+                                <li><a href="../employees/radio-regulations/" class="dropdown-link">Регламент радиообмена</a></li>
+                                <li><a href="../employees/dtc-instructions/" class="dropdown-link">Инструкция ДТУ и ДТД</a></li>
+                                <li><a href="../employees/dfs-instructions/" class="dropdown-link">Инструкция ДКС и ДТД</a></li>
+                                <li><a href="../employees/drivers-instructions/" class="dropdown-link">Инструкция водителей</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-link submenu-toggle">Для отделов <span class="submenu-arrow">▸</span></a>
+                            <ul class="dropdown-submenu-list">
+                                <li><a href="../departments/directors-instructions/" class="dropdown-link">Директор ГТОП/ТПОХ</a></li>
+                                <li><a href="../departments/hrs-instructions/" class="dropdown-link">КОУП</a></li>
+                                <li><a href="../departments/fad-instructions/" class="dropdown-link">ФАО</a></li>
+                                <li><a href="../departments/tsd-instructions/" class="dropdown-link">ОБД</a></li>
+                                <li><a href="../departments/tc-instructions/" class="dropdown-link">УбЦ</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../lectures/" class="dropdown-link">Лекции</a></li>
+                        <li><a href="../launches/" class="dropdown-link">Запуск троллейбусов</a></li>
+                        <li><a href="../schemes/" class="dropdown-link">Схемы депо и маршрутов</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-dropdown">
+                    <button class="dropdown-toggle">Прочее <span class="dropdown-arrow">▾</span></button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-link submenu-toggle">Редакторы и генераторы <span class="submenu-arrow">▸</span></a>
+                            <ul class="dropdown-submenu-list">
+                                <li><a href="#" class="dropdown-link">Генератор спавна машин</a></li>
+                                <li><a href="#" class="dropdown-link">Создание окрасок</a></li>
+                                <li><a href="#" class="dropdown-link">Редактор маршрутов</a></li>
+                                <li><a href="#" class="dropdown-link">Информатор</a></li>
+                                <li><a href="#" class="dropdown-link">Расписание</a></li>
+                                <li><a href="#" class="dropdown-link">Трибуна TDW</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" class="dropdown-link">Правила проекта "TRP RP"</a></li>
+                        <li><a href="#" class="dropdown-link">ЧАВО - Частые вопросы</a></li>
+                        <li><a href="#" class="dropdown-link">Официальная документация</a></li>
+                        <li><a href="#" class="dropdown-link">Обновления сайта</a></li>
+                        <li><a href="#" class="dropdown-link">База данных</a></li>
+                        <li><a href="#" class="dropdown-link">Список автотранспорта</a></li>
+                        <li><a href="#" class="dropdown-link">Команды</a></li>
+                        <li><a href="#" class="dropdown-link">Идентификатор работника</a></li>
+                        <li><a href="#" class="dropdown-link">Административный сайт</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-dropdown">
+                    <button class="dropdown-toggle">Социальные сети <span class="dropdown-arrow">▾</span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://discord.gg/gbjxtVF6bA" target="_blank" class="dropdown-link">Discord</a></li>
+                        <li><a href="#" class="dropdown-link">TeamSpeak</a></li>
+                        <li><a href="#" class="dropdown-link">YouTube</a></li>
+                        <li><a href="#" class="dropdown-link">TikTok</a></li>
+                        <li><a href="#" class="dropdown-link">Telegram</a></li>
+                        <li><a href="#" class="dropdown-link">VK</a></li>
+                    </ul>
+                </li>
+
+                <li class="language-selector">
+                    <button id="lang-btn" class="lang-btn">EN</button>
+                </li>
+                <li class="theme-selector">
+                    <button id="theme-btn" class="theme-btn" title="Toggle dark mode">🌙</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============ ГЕРОЙ ============ -->
+    <section class="hero-schemes">
+        <div class="hero-schemes-content">
+            <h1>Схемы троллейбусных парков и маршрутов</h1>
+        </div>
+    </section>
+
+    <!-- ============ СХЕМЫ ============ -->
+    <section class="schemes-section">
+        <div class="container">
+
+            <!-- Блок 1 -->
+            <div class="scheme-block">
+                <h2 class="scheme-title">Схема Троллейбусного Парка Главного Острова (оригинальное &amp; проект "TRP RP")</h2>
+                <div class="scheme-card">
+                    <!--
+                        КАРТИНКА 1
+                        Положи файл по пути: images/schemes/park-main-island.png
+                    -->
+                    <img
+                        src="../../images/park-main-island.png"
+                        alt="Схема Троллейбусного Парка Главного Острова"
+                        class="scheme-img"
+                    >
+                </div>
+            </div>
+
+            <!-- Блок 3 -->
+            <div class="scheme-block">
+                <h2 class="scheme-title">Схема Троллейбусного Парка острова Хардбасс (оригинальное)</h2>
+                <div class="scheme-card">
+                    <!--
+                        КАРТИНКА 3
+                        Положи файл по пути: images/schemes/park-hardbass-original.png
+                    -->
+                    <img
+                        src="../../images/park-hardbass-original.png"
+                        alt="Схема Троллейбусного Парка острова Хардбасс (оригинальное)"
+                        class="scheme-img"
+                    >
+                </div>
+            </div>
+
+            <!-- Блок 4 -->
+            <div class="scheme-block">
+                <h2 class="scheme-title">Схема Троллейбусного Парка острова Хардбасс (проект TRP RP)</h2>
+                <div class="scheme-card">
+                    <!--
+                        КАРТИНКА 4
+                        Положи файл по пути: images/schemes/park-hardbass-trprp.png
+                    -->
+                    <img
+                        src="../../images/park-hardbass-trprp.png"
+                        alt="Схема Троллейбусного Парка острова Хардбасс (проект TRP RP)"
+                        class="scheme-img"
+                    >
+                </div>
+            </div>
+
+            <!-- Блок 2 -->
+            <div class="scheme-block">
+                <h2 class="scheme-title">Карта маршрутов (оригинальная + проект TRP RP)</h2>
+                <div class="scheme-card">
+                    <!--
+                        КАРТИНКА 2
+                        Положи файл по пути: images/schemes/routes-map.png
+                    -->
+                    <img
+                        src="../../images/routes-map.png"
+                        alt="Карта маршрутов"
+                        class="scheme-img"
+                    >
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============ КОНТАКТЫ ============ -->
+    <section class="contacts-section" id="social">
+        <div class="container">
+            <h2>Контакты проекта "TRP RP"</h2>
+            <div class="contact-buttons">
+                <a href="https://discord.gg/gbjxtVF6bA" target="_blank" class="contact-btn">Discord</a>
+                <a href="#" class="contact-btn">TeamSpeak</a>
+                <a href="#" class="contact-btn">YouTube</a>
+                <a href="#" class="contact-btn">TikTok</a>
+                <a href="#" class="contact-btn">Telegram</a>
+                <a href="#" class="contact-btn">ВКонтакте</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="docs-section" id="docs">
+        <div class="container">
+            <h2>Юридическая документация проекта "TRP RP"</h2>
+            <div class="docs-buttons">
+                <a href="#" class="doc-btn">Политика конфиденциальности</a>
+                <a href="#" class="doc-btn">Пользовательское соглашение</a>
+            </div>
+            <p class="disclaimer">Проект "TRP RP" не является юридическим лицом и не предоставляет никаких услуг!</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 TRP RP. Все права защищены.</p>
+    </footer>
+
+    <script src="../../js/schemes-script.js"></script>
+</body>
+</html>
