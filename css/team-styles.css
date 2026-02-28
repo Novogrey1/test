@@ -589,9 +589,10 @@ body.dark-mode .team-section.alt {
     }
 
     .nav-menu {
-        top: 60px;
+        top: 0;
         gap: 0.5rem;
         font-size: 0.8rem;
+        padding-top: 70px;
     }
 
     .hero-team {

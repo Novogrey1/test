@@ -278,11 +278,6 @@ const observer = new IntersectionObserver((entries) => {
 // ИНИЦИАЛИЗАЦИЯ
 // ============================================
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        initThemeSystem();
-        initLanguageSystem();
-
 // ============================================
 // MOBILE MENU TOGGLE
 // ============================================
@@ -294,8 +289,11 @@ function initMobileMenu() {
 
     // Toggle menu when hamburger is clicked
     if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            menuToggle.classList.toggle('active');
+        // Remove old listeners by cloning
+        const newToggle = menuToggle.cloneNode(true);
+        menuToggle.parentNode.replaceChild(newToggle, menuToggle);
+        newToggle.addEventListener('click', function() {
+            newToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.classList.toggle('menu-open');
         });
@@ -304,8 +302,9 @@ function initMobileMenu() {
     // Close menu when a link is clicked
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (menuToggle && navMenu) {
-                menuToggle.classList.remove('active');
+            const toggle = document.getElementById('menu-toggle');
+            if (toggle && navMenu) {
+                toggle.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.classList.remove('menu-open');
             }
@@ -314,10 +313,11 @@ function initMobileMenu() {
 
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
-        if (navMenu && menuToggle && 
+        const toggle = document.getElementById('menu-toggle');
+        if (navMenu && toggle && 
             !navMenu.contains(event.target) && 
-            !menuToggle.contains(event.target)) {
-            menuToggle.classList.remove('active');
+            !toggle.contains(event.target)) {
+            toggle.classList.remove('active');
             navMenu.classList.remove('active');
             document.body.classList.remove('menu-open');
         }
@@ -326,14 +326,20 @@ function initMobileMenu() {
     // Close menu on window resize if screen is large enough
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
-            if (menuToggle && navMenu) {
-                menuToggle.classList.remove('active');
+            const toggle = document.getElementById('menu-toggle');
+            if (toggle && navMenu) {
+                toggle.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.classList.remove('menu-open');
             }
         }
     });
 }
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initThemeSystem();
+        initLanguageSystem();
 
         // Анимация карточек (после инициализации языка)
         document.querySelectorAll('.team-card').forEach((card, index) => {
