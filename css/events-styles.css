@@ -55,7 +55,7 @@ body {
     padding: 1rem 0;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     box-shadow: none;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -448,16 +448,18 @@ body.dark-mode .form-wrapper iframe {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 0;
+        height: 100vh;
         flex-direction: column;
         background-color: var(--primary-color);
         width: 100%;
         text-align: center;
-        transition: 0.3s;
+        transition: left 0.3s ease;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         gap: 0;
-        padding: 2rem 0;
+        padding: 80px 2rem 2rem 2rem;
         z-index: 999;
+        overflow-y: auto;
     }
 
     .nav-menu.active {

@@ -148,6 +148,7 @@ function setLanguage(lang) {
 
     reinitializeEventListeners();
     reinitializeTheme();
+    initMobileMenu();
 }
 
 function updateLangButton(lang) {
@@ -184,6 +185,8 @@ function reinitializeEventListeners() {
             }
         });
     });
+    
+    initMobileMenu();
 }
 
 function reinitializeTheme() {
@@ -195,6 +198,8 @@ function reinitializeTheme() {
         themeBtn.removeEventListener('click', handleThemeClick);
         themeBtn.addEventListener('click', handleThemeClick);
     }
+    
+    initMobileMenu();
 }
 
 // ============================================

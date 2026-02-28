@@ -352,6 +352,9 @@ function reinitializeEventListeners() {
             }
         });
     });
+    
+    // Переинициализируем мобильное меню
+    initMobileMenu();
 }
 
 // Переинициализируем тему после смены языка
