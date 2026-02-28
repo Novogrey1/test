@@ -500,9 +500,14 @@ body.dark-mode .team-section.alt {
         left: -100%;
         top: 0;
         height: 100vh;
-        flex-direction: column;
-        background-color: var(--primary-color);
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        background-image: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('../images/background-teams.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
         text-align: center;
         transition: left 0.3s ease;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
@@ -588,7 +593,6 @@ body.dark-mode .team-section.alt {
     }
 
     .nav-menu {
-        top: 60px;
         gap: 0.5rem;
         font-size: 0.8rem;
     }
