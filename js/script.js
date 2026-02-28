@@ -4,7 +4,6 @@
 
 const translations = {
   "ru": {
-    "Назад": "Назад",
     "Главная": "Главная",
     "Команда проекта": "Команда проекта",
     "События и смены": "События и смены",
@@ -43,10 +42,10 @@ const translations = {
     "Политика конфиденциальности": "Политика конфиденциальности",
     "Пользовательское соглашение": "Пользовательское соглашение",
     "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!": "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!",
-    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. Все права защищены."
+    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. Все права защищены.",
+    "← Назад": "← Назад"
   },
   "en": {
-    "Назад": "Back",
     "Главная": "Home",
     "Команда проекта": "Project Team",
     "События и смены": "Events and Shifts",
@@ -85,7 +84,8 @@ const translations = {
     "Политика конфиденциальности": "Privacy Policy",
     "Пользовательское соглашение": "Terms of Use",
     "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!": "The \"TRP RP\" project is not a legal entity and does not provide any services!",
-    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. All rights reserved."
+    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. All rights reserved.",
+    "← Назад": "← Back"
   }
 };
 
@@ -406,11 +406,8 @@ function initMobileMenu() {
 
     // Toggle menu when hamburger is clicked
     if (menuToggle) {
-        // Remove old listeners by cloning
-        const newToggle = menuToggle.cloneNode(true);
-        menuToggle.parentNode.replaceChild(newToggle, menuToggle);
-        newToggle.addEventListener('click', function() {
-            newToggle.classList.toggle('active');
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.classList.toggle('menu-open');
         });
@@ -419,9 +416,8 @@ function initMobileMenu() {
     // Close menu when a link is clicked
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            const toggle = document.getElementById('menu-toggle');
-            if (toggle && navMenu) {
-                toggle.classList.remove('active');
+            if (menuToggle && navMenu) {
+                menuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.classList.remove('menu-open');
             }
@@ -430,11 +426,10 @@ function initMobileMenu() {
 
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
-        const toggle = document.getElementById('menu-toggle');
-        if (navMenu && toggle && 
+        if (navMenu && menuToggle && 
             !navMenu.contains(event.target) && 
-            !toggle.contains(event.target)) {
-            toggle.classList.remove('active');
+            !menuToggle.contains(event.target)) {
+            menuToggle.classList.remove('active');
             navMenu.classList.remove('active');
             document.body.classList.remove('menu-open');
         }
@@ -443,9 +438,8 @@ function initMobileMenu() {
     // Close menu on window resize if screen is large enough
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
-            const toggle = document.getElementById('menu-toggle');
-            if (toggle && navMenu) {
-                toggle.classList.remove('active');
+            if (menuToggle && navMenu) {
+                menuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.classList.remove('menu-open');
             }
@@ -475,4 +469,3 @@ if (document.readyState === 'loading') {
     initLanguageSystem();
     initMobileMenu();
 }
-
