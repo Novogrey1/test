@@ -375,7 +375,7 @@ function initMobileMenu() {
 // NAVBAR — прозрачная, темнеет при скролле
 // ============================================
 
-window.addEventListener('scroll', () => {
+function updateNavbar() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
     if (window.scrollY > 50) {
@@ -383,7 +383,12 @@ window.addEventListener('scroll', () => {
     } else {
         navbar.classList.remove('scrolled');
     }
-});
+}
+
+window.addEventListener('scroll', updateNavbar);
+// Вызов сразу при загрузке (если страница открылась не в верху)
+document.addEventListener('DOMContentLoaded', updateNavbar);
+updateNavbar();
 
 // ============================================
 // ИНИЦИАЛИЗАЦИЯ
@@ -410,15 +415,19 @@ console.log('%c🎮 Добро пожаловать на сайт TRP RP!', 'col
 // ============================================
 
 function initDropdowns() {
-    const isMobile = () => window.innerWidth <= 768;
+    // Истинный указатель (мышь/трекпад) — не тачскрин
+    const hasPointer = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    // ── TOP-LEVEL DROPDOWNS ──
+    // ── TOP-LEVEL ──
     document.querySelectorAll('.nav-item.has-dropdown').forEach(function(item) {
+        const toggle = item.querySelector(':scope > .dropdown-toggle');
+        if (!toggle) return;
+
         let hideTimer = null;
 
         const openItem = () => {
             clearTimeout(hideTimer);
-            // Close siblings
+            // закрыть соседние
             item.parentNode.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(sib) {
                 if (sib !== item) {
                     sib.classList.remove('open');
@@ -428,48 +437,46 @@ function initDropdowns() {
             item.classList.add('open');
         };
 
-        const scheduleClose = () => {
+        const closeItem = (delay) => {
+            clearTimeout(hideTimer);
             hideTimer = setTimeout(() => {
                 item.classList.remove('open');
                 item.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-            }, 600);
+            }, delay);
         };
 
-        // Desktop: hover behaviour
+        // Мышь — hover с задержкой 600мс на закрытие
         item.addEventListener('mouseenter', function() {
-            if (!isMobile()) openItem();
+            if (hasPointer()) openItem();
         });
         item.addEventListener('mouseleave', function() {
-            if (!isMobile()) scheduleClose();
+            if (hasPointer()) closeItem(600);
         });
 
-        // Click on toggle (works on both desktop and mobile)
-        const toggle = item.querySelector(':scope > .dropdown-toggle');
-        if (toggle) {
-            const newToggle = toggle.cloneNode(true);
-            toggle.parentNode.replaceChild(newToggle, toggle);
-            newToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                if (isMobile()) {
-                    // Mobile: toggle open/close
-                    const wasOpen = item.classList.contains('open');
-                    item.parentNode.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(sib) {
-                        sib.classList.remove('open');
-                        sib.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-                    });
-                    if (!wasOpen) item.classList.add('open');
-                }
-                // Desktop click also works as toggle (optional)
-                else {
-                    item.classList.contains('open') ? scheduleClose() : openItem();
-                }
-            });
-        }
+        // Клик — только для тач/планшет (и как фолбэк для мыши)
+        const newToggle = toggle.cloneNode(true);
+        toggle.parentNode.replaceChild(newToggle, toggle);
+
+        newToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!hasPointer()) {
+                // тач: простой toggle
+                const wasOpen = item.classList.contains('open');
+                item.parentNode.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(sib) {
+                    sib.classList.remove('open');
+                    sib.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
+                });
+                if (!wasOpen) item.classList.add('open');
+            }
+        });
     });
 
     // ── SUBMENUS ──
     document.querySelectorAll('.dropdown-submenu').forEach(function(sub) {
+        const link = sub.querySelector(':scope > .dropdown-link');
+        if (!link) return;
+
         let hideTimer = null;
 
         const openSub = () => {
@@ -480,74 +487,17 @@ function initDropdowns() {
             sub.classList.add('open');
         };
 
-        const scheduleClose = () => {
-            hideTimer = setTimeout(() => sub.classList.remove('open'), 600);
+        const closeSub = (delay) => {
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(() => sub.classList.remove('open'), delay);
         };
 
         sub.addEventListener('mouseenter', function() {
-            if (!isMobile()) openSub();
+            if (hasPointer()) openSub();
         });
         sub.addEventListener('mouseleave', function() {
-            if (!isMobile()) scheduleClose();
+            if (hasPointer()) closeSub(600);
         });
-
-        const link = sub.querySelector(':scope > .dropdown-link');
-        if (link) {
-            const newLink = link.cloneNode(true);
-            link.parentNode.replaceChild(newLink, link);
-            newLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                if (isMobile()) {
-                    const wasOpen = sub.classList.contains('open');
-                    sub.parentNode.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-                    if (!wasOpen) sub.classList.add('open');
-                }
-            });
-        }
-    });
-
-    // Close all on outside click
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.nav-item.has-dropdown')) {
-            document.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(item) {
-                item.classList.remove('open');
-                item.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-            });
-        }
-    });
-    // Top-level dropdowns (click/tap to open on mobile; CSS hover on desktop)
-    document.querySelectorAll('.nav-item.has-dropdown').forEach(function(item) {
-        const toggle = item.querySelector(':scope > .dropdown-toggle');
-        if (!toggle) return;
-
-        // Clone to remove old listeners
-        const newToggle = toggle.cloneNode(true);
-        toggle.parentNode.replaceChild(newToggle, toggle);
-
-        newToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            // Close siblings
-            const siblings = item.parentNode.querySelectorAll('.nav-item.has-dropdown.open');
-            siblings.forEach(function(sib) {
-                if (sib !== item) {
-                    sib.classList.remove('open');
-                    sib.querySelectorAll('.dropdown-submenu.open').forEach(function(sub) {
-                        sub.classList.remove('open');
-                    });
-                }
-            });
-
-            item.classList.toggle('open');
-        });
-    });
-
-    // Submenus
-    document.querySelectorAll('.dropdown-submenu').forEach(function(sub) {
-        const link = sub.querySelector(':scope > .dropdown-link');
-        if (!link) return;
 
         const newLink = link.cloneNode(true);
         link.parentNode.replaceChild(newLink, link);
@@ -555,24 +505,20 @@ function initDropdowns() {
         newLink.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-
-            const siblings = sub.parentNode.querySelectorAll('.dropdown-submenu.open');
-            siblings.forEach(function(s) {
-                if (s !== sub) s.classList.remove('open');
-            });
-
-            sub.classList.toggle('open');
+            if (!hasPointer()) {
+                const wasOpen = sub.classList.contains('open');
+                sub.parentNode.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
+                if (!wasOpen) sub.classList.add('open');
+            }
         });
     });
 
-    // Close all dropdowns when clicking outside
+    // Закрыть всё при клике вне меню
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.nav-item.has-dropdown')) {
             document.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(item) {
                 item.classList.remove('open');
-                item.querySelectorAll('.dropdown-submenu.open').forEach(function(sub) {
-                    sub.classList.remove('open');
-                });
+                item.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
             });
         }
     });

@@ -14,30 +14,13 @@ const translations = {
     "TRP RP": "TRP RP",
 
     // Герой
-    "Команда проекта TRP RP": "Команда проекта TRP RP",
+    "Календарь событий и регистрация на смены": "Календарь событий и регистрация на смены",
 
-    // Секция Администрация
-    "Администрация": "Администрация",
-    "Владелец проекта": "Владелец проекта",
-    "Главный разработчик": "Главный разработчик",
-    "Редактор проекта": "Редактор проекта",
-    "Начальник Городского Троллейбусного Управления": "Начальник Городского Троллейбусного Управления",
-
-    // Секция Руководство отделов
-    "Руководство отделов": "Руководство отделов",
-    "Главный Бухгалтер": "Главный Бухгалтер",
-    "Финансового Аналитического Отдела": "Финансового Аналитического Отдела",
-
-    // Секция Почётные лица
-    "Почётные лица": "Почётные лица",
-    "Экс-Заместитель Начальника": "Экс-Заместитель Начальника",
-    "Городского Троллейбусного Управления": "Городского Троллейбусного Управления",
-
-    // Секция Водитель месяца
-    "Победители мероприятия \"Водитель месяца\"": "Победители мероприятия \"Водитель месяца\"",
-    "Первое место": "Первое место",
-    "Второе место": "Второе место",
-    "Третье место": "Третье место",
+    // Секции
+    "Календарь событий": "Календарь событий",
+    "Регистрация на смену": "Регистрация на смену",
+    "Следите за расписанием мероприятий и смен проекта TRP RP в реальном времени.": "Следите за расписанием мероприятий и смен проекта TRP RP в реальном времени.",
+    "Заполните заявку для участия в смене или её отмены. Заявки обрабатываются в течение 5 рабочих дней.": "Заполните заявку для участия в смене или её отмены. Заявки обрабатываются в течение 5 рабочих дней.",
 
     // Контакты и документация
     "Контакты проекта \"TRP RP\"": "Контакты проекта \"TRP RP\"",
@@ -115,30 +98,13 @@ const translations = {
     "TRP RP": "TRP RP",
 
     // Герой
-    "Команда проекта TRP RP": "TRP RP Project Team",
+    "Календарь событий и регистрация на смены": "Event Calendar and Shift Registration",
 
-    // Секция Администрация
-    "Администрация": "Administration",
-    "Владелец проекта": "Project Owner",
-    "Главный разработчик": "Lead Developer",
-    "Редактор проекта": "Project Editor",
-    "Начальник Городского Троллейбусного Управления": "Head of the City Trolleybus Administration",
-
-    // Секция Руководство отделов
-    "Руководство отделов": "Department Management",
-    "Главный Бухгалтер": "Chief Accountant",
-    "Финансового Аналитического Отдела": "Financial Analytics Department",
-
-    // Секция Почётные лица
-    "Почётные лица": "Honorary Members",
-    "Экс-Заместитель Начальника": "Ex-Deputy Head",
-    "Городского Троллейбусного Управления": "City Trolleybus Administration",
-
-    // Секция Водитель месяца
-    "Победители мероприятия \"Водитель месяца\"": "\"Driver of the Month\" Event Winners",
-    "Первое место": "First Place",
-    "Второе место": "Second Place",
-    "Третье место": "Third Place",
+    // Секции
+    "Календарь событий": "Event Calendar",
+    "Регистрация на смену": "Shift Registration",
+    "Следите за расписанием мероприятий и смен проекта TRP RP в реальном времени.": "Follow the schedule of TRP RP project events and shifts in real time.",
+    "Заполните заявку для участия в смене или её отмены. Заявки обрабатываются в течение 5 рабочих дней.": "Fill out the application to participate in a shift or cancel it. Applications are processed within 5 business days.",
 
     // Контакты и документация
     "Контакты проекта \"TRP RP\"": "TRP RP Project Contacts",
@@ -263,21 +229,17 @@ function setLanguage(lang) {
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
 
-    // Восстанавливаем исходный HTML
     document.body.innerHTML = originalHTML;
 
-    // Переводим все текстовые узлы
     function translateNode(node) {
-        if (node.nodeType === 3) { // TEXT_NODE
+        if (node.nodeType === 3) {
             let text = node.textContent.trim();
-            if (text && text.length > 0 && translations[lang] && translations[lang][text]) {
+            if (text && translations[lang] && translations[lang][text]) {
                 node.textContent = node.textContent.replace(text, translations[lang][text]);
             }
-        } else if (node.nodeType === 1) { // ELEMENT_NODE
-            if (node.tagName !== 'SCRIPT') {
-                for (let i = 0; i < node.childNodes.length; i++) {
-                    translateNode(node.childNodes[i]);
-                }
+        } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT') {
+            for (let i = 0; i < node.childNodes.length; i++) {
+                translateNode(node.childNodes[i]);
             }
         }
     }
@@ -304,8 +266,7 @@ function setupLanguageButton() {
         const newLangBtn = langBtn.cloneNode(true);
         langBtn.parentNode.replaceChild(newLangBtn, langBtn);
 
-        const freshLangBtn = document.getElementById('lang-btn');
-        freshLangBtn.addEventListener('click', function () {
+        document.getElementById('lang-btn').addEventListener('click', function () {
             const currentLang = localStorage.getItem('language') || 'ru';
             const newLang = currentLang === 'ru' ? 'en' : 'ru';
             setLanguage(newLang);
@@ -346,42 +307,6 @@ function reinitializeTheme() {
 }
 
 // ============================================
-// NAVBAR — прозрачная, темнеет при скролле
-// ============================================
-
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-
-// ============================================
-// АНИМАЦИЯ КАРТОЧЕК ПРИ ПОЯВЛЕНИИ
-// ============================================
-
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// ============================================
-// ИНИЦИАЛИЗАЦИЯ
-// ============================================
-
-// ============================================
 // MOBILE MENU TOGGLE
 // ============================================
 
@@ -405,11 +330,8 @@ function initMobileMenu() {
 
     // Toggle menu when hamburger is clicked
     if (menuToggle) {
-        // Remove old listeners by cloning
-        const newToggle = menuToggle.cloneNode(true);
-        menuToggle.parentNode.replaceChild(newToggle, menuToggle);
-        newToggle.addEventListener('click', function() {
-            newToggle.classList.toggle('active');
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.classList.toggle('menu-open');
         });
@@ -418,9 +340,8 @@ function initMobileMenu() {
     // Close menu when a link is clicked
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            const toggle = document.getElementById('menu-toggle');
-            if (toggle && navMenu) {
-                toggle.classList.remove('active');
+            if (menuToggle && navMenu) {
+                menuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.classList.remove('menu-open');
             }
@@ -429,11 +350,10 @@ function initMobileMenu() {
 
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
-        const toggle = document.getElementById('menu-toggle');
-        if (navMenu && toggle && 
+        if (navMenu && menuToggle && 
             !navMenu.contains(event.target) && 
-            !toggle.contains(event.target)) {
-            toggle.classList.remove('active');
+            !menuToggle.contains(event.target)) {
+            menuToggle.classList.remove('active');
             navMenu.classList.remove('active');
             document.body.classList.remove('menu-open');
         }
@@ -442,9 +362,8 @@ function initMobileMenu() {
     // Close menu on window resize if screen is large enough
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
-            const toggle = document.getElementById('menu-toggle');
-            if (toggle && navMenu) {
-                toggle.classList.remove('active');
+            if (menuToggle && navMenu) {
+                menuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.classList.remove('menu-open');
             }
@@ -452,167 +371,63 @@ function initMobileMenu() {
     });
 }
 
+// ============================================
+// NAVBAR — прозрачная, темнеет при скролле
+// ============================================
+
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// ============================================
+// ИНИЦИАЛИЗАЦИЯ
+// ============================================
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         initThemeSystem();
         initLanguageSystem();
+        initMobileMenu();
         initDropdowns();
-
-        // Анимация карточек (после инициализации языка)
-        document.querySelectorAll('.team-card').forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.animationDelay = `${index * 0.1}s`;
-            observer.observe(card);
-        });
-
-        // Добавляем CSS анимацию
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeInUp {
-                from { opacity: 0; transform: translateY(30px); }
-                to   { opacity: 1; transform: translateY(0); }
-            }
-        `;
-        document.head.appendChild(style);
     });
 } else {
     initThemeSystem();
     initLanguageSystem();
     initMobileMenu();
     initDropdowns();
-
-    document.querySelectorAll('.team-card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.animationDelay = `${index * 0.1}s`;
-        observer.observe(card);
-    });
-
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-    `;
-    document.head.appendChild(style);
 }
 
+console.log('%c🎮 Добро пожаловать на сайт TRP RP!', 'color: #4a90e2; font-size: 16px; font-weight: bold;');
+
 // ============================================
-// CONSOLE WELCOME MESSAGE
+// NAVBAR — прозрачная, темнеет при скролле
 // ============================================
 
-console.log('%c🎮 Добро пожаловать на сайт TRP RP!', 'color: #4a90e2; font-size: 16px; font-weight: bold;');
+function updateNavbar() {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+}
+
+window.addEventListener('scroll', updateNavbar, { passive: true });
+window.addEventListener('DOMContentLoaded', updateNavbar);
+updateNavbar();
+
 // ============================================
 // DROPDOWN МЕНЮ
 // ============================================
 
 function initDropdowns() {
-    const isMobile = () => window.innerWidth <= 768;
-
-    // ── TOP-LEVEL DROPDOWNS ──
-    document.querySelectorAll('.nav-item.has-dropdown').forEach(function(item) {
-        let hideTimer = null;
-
-        const openItem = () => {
-            clearTimeout(hideTimer);
-            // Close siblings
-            item.parentNode.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(sib) {
-                if (sib !== item) {
-                    sib.classList.remove('open');
-                    sib.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-                }
-            });
-            item.classList.add('open');
-        };
-
-        const scheduleClose = () => {
-            hideTimer = setTimeout(() => {
-                item.classList.remove('open');
-                item.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-            }, 600);
-        };
-
-        // Desktop: hover behaviour
-        item.addEventListener('mouseenter', function() {
-            if (!isMobile()) openItem();
-        });
-        item.addEventListener('mouseleave', function() {
-            if (!isMobile()) scheduleClose();
-        });
-
-        // Click on toggle (works on both desktop and mobile)
-        const toggle = item.querySelector(':scope > .dropdown-toggle');
-        if (toggle) {
-            const newToggle = toggle.cloneNode(true);
-            toggle.parentNode.replaceChild(newToggle, toggle);
-            newToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                if (isMobile()) {
-                    // Mobile: toggle open/close
-                    const wasOpen = item.classList.contains('open');
-                    item.parentNode.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(sib) {
-                        sib.classList.remove('open');
-                        sib.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-                    });
-                    if (!wasOpen) item.classList.add('open');
-                }
-                // Desktop click also works as toggle (optional)
-                else {
-                    item.classList.contains('open') ? scheduleClose() : openItem();
-                }
-            });
-        }
-    });
-
-    // ── SUBMENUS ──
-    document.querySelectorAll('.dropdown-submenu').forEach(function(sub) {
-        let hideTimer = null;
-
-        const openSub = () => {
-            clearTimeout(hideTimer);
-            sub.parentNode.querySelectorAll('.dropdown-submenu.open').forEach(s => {
-                if (s !== sub) s.classList.remove('open');
-            });
-            sub.classList.add('open');
-        };
-
-        const scheduleClose = () => {
-            hideTimer = setTimeout(() => sub.classList.remove('open'), 600);
-        };
-
-        sub.addEventListener('mouseenter', function() {
-            if (!isMobile()) openSub();
-        });
-        sub.addEventListener('mouseleave', function() {
-            if (!isMobile()) scheduleClose();
-        });
-
-        const link = sub.querySelector(':scope > .dropdown-link');
-        if (link) {
-            const newLink = link.cloneNode(true);
-            link.parentNode.replaceChild(newLink, link);
-            newLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                if (isMobile()) {
-                    const wasOpen = sub.classList.contains('open');
-                    sub.parentNode.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-                    if (!wasOpen) sub.classList.add('open');
-                }
-            });
-        }
-    });
-
-    // Close all on outside click
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.nav-item.has-dropdown')) {
-            document.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(item) {
-                item.classList.remove('open');
-                item.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-            });
-        }
-    });
     // Top-level dropdowns (click/tap to open on mobile; CSS hover on desktop)
     document.querySelectorAll('.nav-item.has-dropdown').forEach(function(item) {
         const toggle = item.querySelector(':scope > .dropdown-toggle');

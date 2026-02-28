@@ -1,3 +1,7 @@
+body {
+    overflow-x: clip;
+}
+
 /* Глобальные стили */
 * {
     margin: 0;
@@ -691,6 +695,7 @@ body.menu-open {
     transition: opacity 0.18s ease, visibility 0s linear 0.35s;
 }
 
+.nav-item:hover > .dropdown-menu,
 .nav-item.open > .dropdown-menu {
     visibility: visible;
     opacity: 1;
@@ -754,6 +759,7 @@ body.menu-open {
     transition: opacity 0.18s ease, visibility 0s linear 0.35s;
 }
 
+.dropdown-submenu:hover > .dropdown-submenu-list,
 .dropdown-submenu.open > .dropdown-submenu-list {
     visibility: visible;
     opacity: 1;
@@ -784,12 +790,13 @@ body.menu-open {
         width: 100%;
     }
 
+    .nav-item:hover > .dropdown-menu {
+        display: none;
+    }
+
     .nav-item.open > .dropdown-menu {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity 0.18s ease, visibility 0s linear 0s;
-}
+        display: block;
+    }
 
     .dropdown-link {
         padding: 8px 20px;
@@ -811,11 +818,12 @@ body.menu-open {
         display: none;
     }
 
+    .dropdown-submenu:hover > .dropdown-submenu-list {
+        display: none;
+    }
+
     .dropdown-submenu.open > .dropdown-submenu-list {
-        visibility: visible;
-        opacity: 1;
-        pointer-events: auto;
-        transition: opacity 0.18s ease, visibility 0s linear 0s;
+        display: block;
     }
 
     .dropdown-submenu > .dropdown-link {
