@@ -128,7 +128,8 @@ body {
     border: none;
     cursor: pointer;
     gap: 5px;
-    z-index: 1002;
+    z-index: 1001;
+    position: relative;
 }
 
 .menu-toggle span {
@@ -616,25 +617,16 @@ body.dark-mode .hero {
         left: -100%;
         top: 0;
         height: 100vh;
-        width: 100%;
-        display: flex;
         flex-direction: column;
-        background-image: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('../images/background-light.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+        background-color: var(--primary-color);
+        width: 100%;
         text-align: center;
         transition: left 0.3s ease;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         gap: 0;
         padding: 80px 2rem 2rem 2rem;
-        z-index: 999;
+        z-index: 1100;
         overflow-y: auto;
-    }
-    
-    body.dark-mode .nav-menu {
-        background-image: linear-gradient(rgba(15, 15, 15, 0.8), rgba(15, 15, 15, 0.8)), url('../images/background.png');
     }
 
     .nav-menu.active {
@@ -656,6 +648,11 @@ body.dark-mode .hero {
         justify-content: center;
         padding: 1rem 0;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-menu {
+        gap: 1rem;
+        font-size: 0.85rem;
     }
 
     .logo {
@@ -866,4 +863,9 @@ body.dark-mode .hero {
         padding: 1rem 0;
         font-size: 0.85rem;
     }
+}
+
+/* Предотвратить прокрутку при открытом меню */
+body.menu-open {
+    overflow: hidden;
 }

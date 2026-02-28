@@ -297,6 +297,7 @@ function initMobileMenu() {
         menuToggle.addEventListener('click', function() {
             menuToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
         });
     }
 
@@ -306,6 +307,7 @@ function initMobileMenu() {
             if (menuToggle && navMenu) {
                 menuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
             }
         });
     });
@@ -317,6 +319,7 @@ function initMobileMenu() {
             !menuToggle.contains(event.target)) {
             menuToggle.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
         }
     });
 
@@ -326,6 +329,7 @@ function initMobileMenu() {
             if (menuToggle && navMenu) {
                 menuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
             }
         }
     });
