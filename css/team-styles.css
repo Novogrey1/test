@@ -669,3 +669,182 @@ body.menu-open {
         margin-bottom: 0.5rem;
     }
 }
+/* ============================================
+   DROPDOWN НАВИГАЦИЯ
+   ============================================ */
+.nav-item {
+    position: relative;
+    list-style: none;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    transition: color 0.3s ease;
+    padding: 0;
+    font-family: inherit;
+}
+
+.dropdown-toggle:hover,
+.nav-item.open > .dropdown-toggle {
+    color: var(--accent-color);
+}
+
+.dropdown-arrow {
+    font-size: 0.6rem;
+    transition: transform 0.25s ease;
+    display: inline-block;
+    line-height: 1;
+}
+
+.nav-item.open > .dropdown-toggle .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    background-color: var(--primary-color);
+    min-width: 230px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 3000;
+    padding: 6px 0;
+    list-style: none;
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+.nav-item:hover > .dropdown-menu,
+.nav-item.open > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 9px 18px;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 0.88rem;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dropdown-link:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* --- Submenu (вложенный список) --- */
+.dropdown-submenu {
+    position: relative;
+}
+
+.submenu-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.submenu-arrow {
+    font-size: 0.6rem;
+    margin-left: 8px;
+    transition: transform 0.25s ease;
+}
+
+.dropdown-submenu.open > .dropdown-link .submenu-arrow {
+    transform: rotate(90deg);
+}
+
+.dropdown-submenu-list {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -6px;
+    background-color: var(--primary-color);
+    min-width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 3001;
+    padding: 6px 0;
+    list-style: none;
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+.dropdown-submenu:hover > .dropdown-submenu-list,
+.dropdown-submenu.open > .dropdown-submenu-list {
+    display: block;
+}
+
+/* ============================================
+   DROPDOWN — МОБИЛЬНЫЙ
+   ============================================ */
+@media (max-width: 768px) {
+    .dropdown-toggle {
+        font-size: 0.95rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.07);
+        border-radius: 6px;
+        margin: 4px 0 0 0;
+        padding: 4px 0;
+        display: none;
+        min-width: unset;
+        width: 100%;
+    }
+
+    .nav-item:hover > .dropdown-menu {
+        display: none;
+    }
+
+    .nav-item.open > .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-link {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+        white-space: normal;
+        text-align: left;
+    }
+
+    .dropdown-submenu-list {
+        position: static;
+        box-shadow: none;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.06);
+        border-radius: 4px;
+        margin: 2px 0 2px 12px;
+        padding: 2px 0;
+        min-width: unset;
+        width: calc(100% - 12px);
+        display: none;
+    }
+
+    .dropdown-submenu:hover > .dropdown-submenu-list {
+        display: none;
+    }
+
+    .dropdown-submenu.open > .dropdown-submenu-list {
+        display: block;
+    }
+
+    .dropdown-submenu > .dropdown-link {
+        font-weight: 600;
+    }
+}

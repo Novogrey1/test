@@ -51,7 +51,58 @@ const translations = {
     "Политика конфиденциальности": "Политика конфиденциальности",
     "Пользовательское соглашение": "Пользовательское соглашение",
     "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!": "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!",
-    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. Все права защищены."
+    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. Все права защищены.",
+    "← Назад": "← Назад",
+    "Устав проекта": "Устав проекта",
+    "Для сотрудников": "Для сотрудников",
+    "Маршруты": "Маршруты",
+    "Регламент радиообмена": "Регламент радиообмена",
+    "Инструкция ДТУ и ДТД": "Инструкция ДТУ и ДТД",
+    "Инструкция ДКС и ДТД": "Инструкция ДКС и ДТД",
+    "Инструкция водителей": "Инструкция водителей",
+    "Для отделов": "Для отделов",
+    "Директор ГТОП/ТПОХ": "Директор ГТОП/ТПОХ",
+    "КОУП": "КОУП",
+    "ФАО": "ФАО",
+    "ОБД": "ОБД",
+    "УбЦ": "УбЦ",
+    "Лекции": "Лекции",
+    "Запуск троллейбусов": "Запуск троллейбусов",
+    "Схемы депо и маршрутов": "Схемы депо и маршрутов",
+    "Анкеты": "Анкеты",
+    "Заявления": "Заявления",
+    "Экзамен": "Экзамен",
+    "Отпуск & Больничный": "Отпуск & Больничный",
+    "Увольнение & Восстановление": "Увольнение & Восстановление",
+    "Регистрация & Замена троллейбуса": "Регистрация & Замена троллейбуса",
+    "Ремонт троллейбусов": "Ремонт троллейбусов",
+    "Персонал": "Персонал",
+    "ЗНГТУ": "ЗНГТУ",
+    "ДТПГО & ДТПоХ": "ДТПГО & ДТПоХ",
+    "ДТУ": "ДТУ",
+    "ДКС": "ДКС",
+    "Тесты": "Тесты",
+    "Теоретический экзамен": "Теоретический экзамен",
+    "Подать апелляцию": "Подать апелляцию",
+    "Регистрация на смену": "Регистрация на смену",
+    "Прочие анкеты": "Прочие анкеты",
+    "Редакторы и генераторы": "Редакторы и генераторы",
+    "Генератор спавна машин": "Генератор спавна машин",
+    "Создание окрасок": "Создание окрасок",
+    "Редактор маршрутов": "Редактор маршрутов",
+    "Информатор": "Информатор",
+    "Расписание": "Расписание",
+    "Трибуна TDW": "Трибуна TDW",
+    "Правила проекта \"TRP RP\"": "Правила проекта \"TRP RP\"",
+    "ЧАВО - Частые вопросы": "ЧАВО - Частые вопросы",
+    "Официальная документация": "Официальная документация",
+    "Обновления сайта": "Обновления сайта",
+    "База данных": "База данных",
+    "Список автотранспорта": "Список автотранспорта",
+    "Команды": "Команды",
+    "Идентификатор работника": "Идентификатор работника",
+    "Административный сайт": "Административный сайт",
+    "VK": "VK"
   },
   "en": {
     // Навигация
@@ -101,7 +152,58 @@ const translations = {
     "Политика конфиденциальности": "Privacy Policy",
     "Пользовательское соглашение": "Terms of Use",
     "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!": "The \"TRP RP\" project is not a legal entity and does not provide any services!",
-    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. All rights reserved."
+    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. All rights reserved.",
+    "← Назад": "← Back",
+    "Устав проекта": "Project Charter",
+    "Для сотрудников": "For Employees",
+    "Маршруты": "Routes",
+    "Регламент радиообмена": "Radio Communication Regulations",
+    "Инструкция ДТУ и ДТД": "DTU and DTD Instructions",
+    "Инструкция ДКС и ДТД": "DKS and DTD Instructions",
+    "Инструкция водителей": "Driver Instructions",
+    "Для отделов": "For Departments",
+    "Директор ГТОП/ТПОХ": "Director GTOP/TPOH",
+    "КОУП": "KOUP",
+    "ФАО": "FAO",
+    "ОБД": "OBD",
+    "УбЦ": "UbTs",
+    "Лекции": "Lectures",
+    "Запуск троллейбусов": "Trolleybus Launch",
+    "Схемы депо и маршрутов": "Depot and Route Schemes",
+    "Анкеты": "Forms",
+    "Заявления": "Applications",
+    "Экзамен": "Exam",
+    "Отпуск & Больничный": "Vacation & Sick Leave",
+    "Увольнение & Восстановление": "Dismissal & Reinstatement",
+    "Регистрация & Замена троллейбуса": "Registration & Trolleybus Replacement",
+    "Ремонт троллейбусов": "Trolleybus Repair",
+    "Персонал": "Personnel",
+    "ЗНГТУ": "ZNGTU",
+    "ДТПГО & ДТПоХ": "DTPGO & DTPokH",
+    "ДТУ": "DTU",
+    "ДКС": "DKS",
+    "Тесты": "Tests",
+    "Теоретический экзамен": "Theoretical Exam",
+    "Подать апелляцию": "Submit Appeal",
+    "Регистрация на смену": "Shift Registration",
+    "Прочие анкеты": "Other Forms",
+    "Редакторы и генераторы": "Editors and Generators",
+    "Генератор спавна машин": "Vehicle Spawn Generator",
+    "Создание окрасок": "Create Liveries",
+    "Редактор маршрутов": "Route Editor",
+    "Информатор": "Informer",
+    "Расписание": "Schedule",
+    "Трибуна TDW": "TDW Tribune",
+    "Правила проекта \"TRP RP\"": "TRP RP Project Rules",
+    "ЧАВО - Частые вопросы": "FAQ - Frequently Asked Questions",
+    "Официальная документация": "Official Documentation",
+    "Обновления сайта": "Website Updates",
+    "База данных": "Database",
+    "Список автотранспорта": "Vehicle List",
+    "Команды": "Commands",
+    "Идентификатор работника": "Employee ID",
+    "Административный сайт": "Admin Site",
+    "VK": "VK"
   }
 };
 
@@ -215,7 +317,6 @@ function setupLanguageButton() {
 function reinitializeEventListeners() {
     setupLanguageButton();
 
-    // Плавная прокрутка
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -226,6 +327,7 @@ function reinitializeEventListeners() {
         });
     });
     
+    initDropdowns();
     initMobileMenu();
 }
 
@@ -239,6 +341,7 @@ function reinitializeTheme() {
         themeBtn.addEventListener('click', handleThemeClick);
     }
     
+    initDropdowns();
     initMobileMenu();
 }
 
@@ -353,6 +456,7 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         initThemeSystem();
         initLanguageSystem();
+        initDropdowns();
 
         // Анимация карточек (после инициализации языка)
         document.querySelectorAll('.team-card').forEach((card, index) => {
@@ -375,6 +479,7 @@ if (document.readyState === 'loading') {
     initThemeSystem();
     initLanguageSystem();
     initMobileMenu();
+    initDropdowns();
 
     document.querySelectorAll('.team-card').forEach((card, index) => {
         card.style.opacity = '0';
@@ -397,3 +502,69 @@ if (document.readyState === 'loading') {
 // ============================================
 
 console.log('%c🎮 Добро пожаловать на сайт TRP RP!', 'color: #4a90e2; font-size: 16px; font-weight: bold;');
+// ============================================
+// DROPDOWN МЕНЮ
+// ============================================
+
+function initDropdowns() {
+    // Top-level dropdowns (click/tap to open on mobile; CSS hover on desktop)
+    document.querySelectorAll('.nav-item.has-dropdown').forEach(function(item) {
+        const toggle = item.querySelector(':scope > .dropdown-toggle');
+        if (!toggle) return;
+
+        // Clone to remove old listeners
+        const newToggle = toggle.cloneNode(true);
+        toggle.parentNode.replaceChild(newToggle, toggle);
+
+        newToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Close siblings
+            const siblings = item.parentNode.querySelectorAll('.nav-item.has-dropdown.open');
+            siblings.forEach(function(sib) {
+                if (sib !== item) {
+                    sib.classList.remove('open');
+                    sib.querySelectorAll('.dropdown-submenu.open').forEach(function(sub) {
+                        sub.classList.remove('open');
+                    });
+                }
+            });
+
+            item.classList.toggle('open');
+        });
+    });
+
+    // Submenus
+    document.querySelectorAll('.dropdown-submenu').forEach(function(sub) {
+        const link = sub.querySelector(':scope > .dropdown-link');
+        if (!link) return;
+
+        const newLink = link.cloneNode(true);
+        link.parentNode.replaceChild(newLink, link);
+
+        newLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const siblings = sub.parentNode.querySelectorAll('.dropdown-submenu.open');
+            siblings.forEach(function(s) {
+                if (s !== sub) s.classList.remove('open');
+            });
+
+            sub.classList.toggle('open');
+        });
+    });
+
+    // Close all dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-item.has-dropdown')) {
+            document.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(item) {
+                item.classList.remove('open');
+                item.querySelectorAll('.dropdown-submenu.open').forEach(function(sub) {
+                    sub.classList.remove('open');
+                });
+            });
+        }
+    });
+}
