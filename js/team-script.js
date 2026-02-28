@@ -287,6 +287,19 @@ function initMobileMenu() {
     const navMenu = document.getElementById('nav-menu');
     const navLinks = navMenu ? navMenu.querySelectorAll('.nav-link') : [];
 
+    // Close menu when back arrow is clicked
+    const backBtn = document.getElementById('menu-back-btn');
+    if (backBtn) {
+        backBtn.addEventListener('click', function() {
+            const toggle = document.getElementById('menu-toggle');
+            if (toggle && navMenu) {
+                toggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    }
+
     // Toggle menu when hamburger is clicked
     if (menuToggle) {
         // Remove old listeners by cloning

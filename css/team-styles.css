@@ -629,3 +629,39 @@ body.dark-mode .team-section.alt {
 body.menu-open {
     overflow: hidden;
 }
+
+/* ============================================
+   КНОПКА "НАЗАД" В МОБИЛЬНОМ МЕНЮ
+   ============================================ */
+.menu-back-item {
+    display: none;
+}
+
+.menu-back-btn {
+    background: transparent;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu-back-btn:hover {
+    opacity: 1;
+    transform: translateX(-4px);
+}
+
+@media (max-width: 768px) {
+    .menu-back-item {
+        display: flex;
+        justify-content: flex-start;
+        padding: 0.5rem 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+        margin-bottom: 0.5rem;
+    }
+}
