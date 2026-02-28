@@ -116,8 +116,9 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
-    flex-wrap: wrap;
+    gap: 1.1rem;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 
 /* Кнопка мобильного меню */
@@ -160,8 +161,9 @@ body {
     color: var(--secondary-color);
     text-decoration: none;
     transition: color 0.3s ease;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -184,7 +186,7 @@ body {
     background-color: transparent;
     color: var(--secondary-color);
     border: 1px solid var(--secondary-color);
-    padding: 8px 16px;
+    padding: 7px 12px;
     border-radius: 8px;
     font-size: 0.9rem;
     font-weight: bold;
@@ -204,7 +206,7 @@ body {
     background-color: transparent;
     color: var(--secondary-color);
     border: 1px solid var(--secondary-color);
-    padding: 8px 14px;
+    padding: 7px 10px;
     border-radius: 8px;
     font-size: 0.9rem;
     cursor: pointer;
@@ -927,7 +929,7 @@ body.menu-open {
     background: none;
     border: none;
     color: var(--secondary-color);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     transition: color 0.3s ease;
     padding: 0;
@@ -951,7 +953,10 @@ body.menu-open {
 }
 
 .dropdown-menu {
-    display: none;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
     position: absolute;
     top: calc(100% + 10px);
     left: 0;
@@ -963,11 +968,15 @@ body.menu-open {
     padding: 6px 0;
     list-style: none;
     border: 1px solid rgba(255,255,255,0.07);
+    /* появляется быстро, исчезает с задержкой 350ms */
+    transition: opacity 0.18s ease, visibility 0s linear 0.35s;
 }
 
-.nav-item:hover > .dropdown-menu,
 .nav-item.open > .dropdown-menu {
-    display: block;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.18s ease, visibility 0s linear 0s;
 }
 
 .dropdown-link {
@@ -1008,7 +1017,10 @@ body.menu-open {
 }
 
 .dropdown-submenu-list {
-    display: none;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
     position: absolute;
     left: 100%;
     top: -6px;
@@ -1020,11 +1032,14 @@ body.menu-open {
     padding: 6px 0;
     list-style: none;
     border: 1px solid rgba(255,255,255,0.07);
+    transition: opacity 0.18s ease, visibility 0s linear 0.35s;
 }
 
-.dropdown-submenu:hover > .dropdown-submenu-list,
 .dropdown-submenu.open > .dropdown-submenu-list {
-    display: block;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.18s ease, visibility 0s linear 0s;
 }
 
 /* ============================================
@@ -1050,13 +1065,12 @@ body.menu-open {
         width: 100%;
     }
 
-    .nav-item:hover > .dropdown-menu {
-        display: none;
-    }
-
     .nav-item.open > .dropdown-menu {
-        display: block;
-    }
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.18s ease, visibility 0s linear 0s;
+}
 
     .dropdown-link {
         padding: 8px 20px;
@@ -1078,13 +1092,12 @@ body.menu-open {
         display: none;
     }
 
-    .dropdown-submenu:hover > .dropdown-submenu-list {
-        display: none;
-    }
-
     .dropdown-submenu.open > .dropdown-submenu-list {
-        display: block;
-    }
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.18s ease, visibility 0s linear 0s;
+}
 
     .dropdown-submenu > .dropdown-link {
         font-weight: 600;

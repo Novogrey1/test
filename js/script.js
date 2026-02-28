@@ -558,6 +558,113 @@ if (document.readyState === 'loading') {
 // ============================================
 
 function initDropdowns() {
+    const isMobile = () => window.innerWidth <= 768;
+
+    // ── TOP-LEVEL DROPDOWNS ──
+    document.querySelectorAll('.nav-item.has-dropdown').forEach(function(item) {
+        let hideTimer = null;
+
+        const openItem = () => {
+            clearTimeout(hideTimer);
+            // Close siblings
+            item.parentNode.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(sib) {
+                if (sib !== item) {
+                    sib.classList.remove('open');
+                    sib.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
+                }
+            });
+            item.classList.add('open');
+        };
+
+        const scheduleClose = () => {
+            hideTimer = setTimeout(() => {
+                item.classList.remove('open');
+                item.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
+            }, 600);
+        };
+
+        // Desktop: hover behaviour
+        item.addEventListener('mouseenter', function() {
+            if (!isMobile()) openItem();
+        });
+        item.addEventListener('mouseleave', function() {
+            if (!isMobile()) scheduleClose();
+        });
+
+        // Click on toggle (works on both desktop and mobile)
+        const toggle = item.querySelector(':scope > .dropdown-toggle');
+        if (toggle) {
+            const newToggle = toggle.cloneNode(true);
+            toggle.parentNode.replaceChild(newToggle, toggle);
+            newToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (isMobile()) {
+                    // Mobile: toggle open/close
+                    const wasOpen = item.classList.contains('open');
+                    item.parentNode.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(sib) {
+                        sib.classList.remove('open');
+                        sib.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
+                    });
+                    if (!wasOpen) item.classList.add('open');
+                }
+                // Desktop click also works as toggle (optional)
+                else {
+                    item.classList.contains('open') ? scheduleClose() : openItem();
+                }
+            });
+        }
+    });
+
+    // ── SUBMENUS ──
+    document.querySelectorAll('.dropdown-submenu').forEach(function(sub) {
+        let hideTimer = null;
+
+        const openSub = () => {
+            clearTimeout(hideTimer);
+            sub.parentNode.querySelectorAll('.dropdown-submenu.open').forEach(s => {
+                if (s !== sub) s.classList.remove('open');
+            });
+            sub.classList.add('open');
+        };
+
+        const scheduleClose = () => {
+            hideTimer = setTimeout(() => sub.classList.remove('open'), 600);
+        };
+
+        sub.addEventListener('mouseenter', function() {
+            if (!isMobile()) openSub();
+        });
+        sub.addEventListener('mouseleave', function() {
+            if (!isMobile()) scheduleClose();
+        });
+
+        const link = sub.querySelector(':scope > .dropdown-link');
+        if (link) {
+            const newLink = link.cloneNode(true);
+            link.parentNode.replaceChild(newLink, link);
+            newLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (isMobile()) {
+                    const wasOpen = sub.classList.contains('open');
+                    sub.parentNode.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
+                    if (!wasOpen) sub.classList.add('open');
+                }
+            });
+        }
+    });
+
+    // Close all on outside click
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-item.has-dropdown')) {
+            document.querySelectorAll('.nav-item.has-dropdown.open').forEach(function(item) {
+                item.classList.remove('open');
+                item.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
+            });
+        }
+    });
+
     // Top-level dropdowns (click/tap to open on mobile; CSS hover on desktop)
     document.querySelectorAll('.nav-item.has-dropdown').forEach(function(item) {
         const toggle = item.querySelector(':scope > .dropdown-toggle');
