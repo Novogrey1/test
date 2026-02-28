@@ -339,7 +339,6 @@ body.dark-mode .charter-wrapper iframe {
     color: var(--secondary-color);
     padding: 3rem 0;
     text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .docs-section h2 {
