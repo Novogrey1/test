@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>События и смены - TRP RP</title>
+    <link rel="stylesheet" href="../css/events-styles.css">
+    <link rel="icon" type="image/png" href="../images/avatar.png">
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-section">
+                <img src="../images/avatar.png" alt="Avatar" class="navbar-avatar">
+                <div class="logo">TRP RP</div>
+            </div>
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="../" class="nav-link">Главная</a></li>
+                <li><a href="../team/" class="nav-link">Команда проекта</a></li>
+                <li><a href="./" class="nav-link active">События и смены</a></li>
+                <li><a href="#docs" class="nav-link">Документация</a></li>
+                <li><a href="#more" class="nav-link">Прочее</a></li>
+                <li><a href="#social" class="nav-link">Социальные сети</a></li>
+                <li class="language-selector">
+                    <button id="lang-btn" class="lang-btn">RU</button>
+                </li>
+                <li class="theme-selector">
+                    <button id="theme-btn" class="theme-btn" title="Toggle dark mode">🌙</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Герой-секция -->
+    <section class="hero-events">
+        <div class="hero-events-content">
+            <h1>Календарь событий и регистрация на смены</h1>
+        </div>
+    </section>
+
+    <!-- Календарь -->
+    <section class="events-section" id="calendar">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Календарь событий</h2>
+            </div>
+            <div class="calendar-card">
+                <div class="calendar-wrapper">
+                    <iframe src="https://calendar.google.com/calendar/embed?src=076bdb2384704f5fab61a29feb5c742ef51e49c9fed15851bca5b72533bc1463%40group.calendar.google.com&ctz=Europe%2FMoscow&hl=ru" style="border:0" width="100%" height="650" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Регистрация на смену -->
+    <section class="events-section" id="register">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Регистрация на смену</h2>
+            </div>
+            <div class="form-card">
+                <div class="form-wrapper">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScBpoXNG__jCMfsKac4pwVhavJf9g5dLgrCTvnE3oLodSZZmA/viewform?embedded=true" width="100%" height="2271" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contacts-section" id="social">
+        <div class="container">
+            <h2>Контакты проекта "TRP RP"</h2>
+            <div class="contact-buttons">
+                <a href="https://discord.gg/gbjxtVF6bA" target="_blank" class="contact-btn">Discord</a>
+                <a href="#" class="contact-btn">TeamSpeak</a>
+                <a href="#" class="contact-btn">YouTube</a>
+                <a href="#" class="contact-btn">TikTok</a>
+                <a href="#" class="contact-btn">Telegram</a>
+                <a href="#" class="contact-btn">ВКонтакте</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Документация -->
+    <section class="docs-section" id="docs">
+        <div class="container">
+            <h2>Юридическая документация проекта "TRP RP"</h2>
+            <div class="docs-buttons">
+                <a href="#" class="doc-btn">Политика конфиденциальности</a>
+                <a href="#" class="doc-btn">Пользовательское соглашение</a>
+            </div>
+            <p class="disclaimer">Проект "TRP RP" не является юридическим лицом и не предоставляет никаких услуг!</p>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <p>&copy; 2026 TRP RP. Все права защищены.</p>
+    </footer>
+
+    <script src="../js/events-script.js"></script>
+</body>
+</html>
