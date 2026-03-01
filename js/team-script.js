@@ -85,7 +85,38 @@ const translations = {
     "Команды": "Команды",
     "Идентификатор работника": "Идентификатор работника",
     "Административный сайт": "Административный сайт",
-    "VK": "VK"
+    "VK": "VK",
+    
+    // Команда проекта
+    "Команда проекта TRP RP": "Команда проекта TRP RP",
+    "Администрация": "Администрация",
+    "Dan12345632": "Dan12345632",
+    "Владелец проекта": "Владелец проекта",
+    "Начальник Городского Троллейбусного Управления": "Начальник Городского Троллейбусного Управления",
+    "Discord: herodrine_": "Discord: herodrine_",
+    "OlexandrPlay_YT": "OlexandrPlay_YT",
+    "Главный разработчик": "Главный разработчик",
+    "Discord: novogrey": "Discord: novogrey",
+    "Amir54615": "Amir54615",
+    "Редактор проекта": "Редактор проекта",
+    "Discord: kngames": "Discord: kngames",
+    "Руководство отделов": "Руководство отделов",
+    "somerandomukrainian": "somerandomukrainian",
+    "Главный Бухгалтер": "Главный Бухгалтер",
+    "Финансового Аналитического Отдела": "Финансового Аналитического Отдела",
+    "Discord: somerandomukrainian": "Discord: somerandomukrainian",
+    "Почётные лица": "Почётные лица",
+    "Loleks228": "Loleks228",
+    "Экс-Заместитель Начальника": "Экс-Заместитель Начальника",
+    "Городского Троллейбусного Управления": "Городского Троллейбусного Управления",
+    "Discord: lolekx228.official": "Discord: lolekx228.official",
+    "Победители мероприятия \"Водитель месяца\"": "Победители мероприятия \"Водитель месяца\"",
+    "koyghijj": "koyghijj",
+    "Первое место": "Первое место",
+    "RomaAndGAMES097": "RomaAndGAMES097",
+    "Второе место": "Второе место",
+    "ser_retyery": "ser_retyery",
+    "Третье место": "Третье место"
   },
   "en": {
     // Навигация
@@ -169,7 +200,38 @@ const translations = {
     "Команды": "Commands",
     "Идентификатор работника": "Employee ID",
     "Административный сайт": "Admin Site",
-    "VK": "VK"
+    "VK": "VK",
+    
+    // Команда проекта
+    "Команда проекта TRP RP": "TRP RP Project Team",
+    "Администрация": "Administration",
+    "Dan12345632": "Dan12345632",
+    "Владелец проекта": "Project Owner",
+    "Начальник Городского Троллейбусного Управления": "Chief of the City Trolleybus Department",
+    "Discord: herodrine_": "Discord: herodrine_",
+    "OlexandrPlay_YT": "OlexandrPlay_YT",
+    "Главный разработчик": "Lead Developer",
+    "Discord: novogrey": "Discord: novogrey",
+    "Amir54615": "Amir54615",
+    "Редактор проекта": "Project Editor",
+    "Discord: kngames": "Discord: kngames",
+    "Руководство отделов": "Department Leadership",
+    "somerandomukrainian": "somerandomukrainian",
+    "Главный Бухгалтер": "Chief Accountant",
+    "Финансового Аналитического Отдела": "Financial Analytical Department",
+    "Discord: somerandomukrainian": "Discord: somerandomukrainian",
+    "Почётные лица": "Honorary Members",
+    "Loleks228": "Loleks228",
+    "Экс-Заместитель Начальника": "Ex-Deputy Chief",
+    "Городского Троллейбусного Управления": "of the City Trolleybus Department",
+    "Discord: lolekx228.official": "Discord: lolekx228.official",
+    "Победители мероприятия \"Водитель месяца\"": "Winners of the \"Driver of the Month\" Event",
+    "koyghijj": "koyghijj",
+    "Первое место": "First Place",
+    "RomaAndGAMES097": "RomaAndGAMES097",
+    "Второе место": "Second Place",
+    "ser_retyery": "ser_retyery",
+    "Третье место": "Third Place"
   }
 };
 
@@ -233,20 +295,35 @@ function setLanguage(lang) {
 
     function translateNode(node) {
         if (node.nodeType === 3) {
-            let text = node.textContent.trim();
-            if (text && translations[lang] && translations[lang][text]) {
-                node.textContent = node.textContent.replace(text, translations[lang][text]);
+            // Текстовый узел
+            const originalText = node.textContent;
+            const trimmedText = originalText.trim();
+            
+            // Проверяем есть ли перевод для этого текста
+            if (trimmedText && translations[lang] && translations[lang][trimmedText]) {
+                // Заменяем на переведенный текст, сохраняя пробелы вокруг
+                const leadingSpace = originalText.match(/^\s*/)[0];
+                const trailingSpace = originalText.match(/\s*$/)[0];
+                node.textContent = leadingSpace + translations[lang][trimmedText] + trailingSpace;
             }
-        } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT') {
-            for (let i = 0; i < node.childNodes.length; i++) {
-                translateNode(node.childNodes[i]);
-            }
+        } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+            // Элемент - переводим все дочерние узлы
+            const childNodesCopy = Array.from(node.childNodes);
+            childNodesCopy.forEach(childNode => {
+                if (node.contains(childNode)) {
+                    translateNode(childNode);
+                }
+            });
         }
     }
 
-    for (let i = 0; i < document.body.childNodes.length; i++) {
-        translateNode(document.body.childNodes[i]);
-    }
+    // Переводим весь body
+    const bodyChildrenCopy = Array.from(document.body.childNodes);
+    bodyChildrenCopy.forEach(child => {
+        if (document.body.contains(child)) {
+            translateNode(child);
+        }
+    });
 
     reinitializeEventListeners();
     reinitializeTheme();
