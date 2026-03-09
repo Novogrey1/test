@@ -74,7 +74,7 @@ html, body {
 }
 
 .navbar-container {
-    max-width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
@@ -86,7 +86,6 @@ html, body {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: 0;
 }
 
 .menu-toggle {
@@ -136,7 +135,6 @@ html, body {
     font-weight: bold;
     color: var(--secondary-color);
     text-decoration: none;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .nav-menu {
@@ -152,7 +150,6 @@ html, body {
     text-decoration: none;
     transition: color 0.3s ease;
     font-size: 0.9rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     white-space: nowrap;
 }
 
@@ -161,18 +158,7 @@ html, body {
     color: var(--accent-color);
 }
 
-.dropdown-link:hover,
-.dropdown-link.active {
-    background-color: var(--accent-color);
-    color: #fff;
-}
-
-.language-selector {
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
+.language-selector,
 .theme-selector {
     list-style: none;
     display: flex;
@@ -188,7 +174,8 @@ html, body {
     font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .lang-btn:hover {
@@ -205,8 +192,8 @@ html, body {
     border-radius: 8px;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.3s ease, transform 0.2s ease;
-    margin-left: 0.5rem;
+    transition: all 0.3s ease;
+    margin-left: 0.2rem;
     font-weight: bold;
 }
 
@@ -220,26 +207,26 @@ html, body {
    КОНТАКТЫ
    ============================================ */
 .contacts-section {
-    padding: 1.5rem 0;
+    padding: 3rem 0;
     background-color: var(--primary-color);
     text-align: center;
 }
 
 .contacts-section h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: var(--secondary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .contact-buttons {
     display: flex;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
 .contact-btn {
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     border: 2px solid var(--secondary-color);
     background: transparent;
     color: var(--secondary-color);
@@ -247,7 +234,6 @@ html, body {
     border-radius: 5px;
     transition: all 0.3s ease;
     cursor: pointer;
-    font-size: 0.9rem;
 }
 
 .contact-btn:hover {
@@ -261,25 +247,25 @@ html, body {
 .docs-section {
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    padding: 1.5rem 0;
+    padding: 3rem 0;
     text-align: center;
 }
 
 .docs-section h2 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
 }
 
 .docs-buttons {
     display: flex;
-    gap: 0.75rem;
+    gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
 }
 
 .doc-btn {
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     border: 2px solid var(--secondary-color);
     background: transparent;
     color: var(--secondary-color);
@@ -287,7 +273,6 @@ html, body {
     border-radius: 5px;
     transition: all 0.3s ease;
     cursor: pointer;
-    font-size: 0.9rem;
 }
 
 .doc-btn:hover {
@@ -296,9 +281,9 @@ html, body {
 }
 
 .disclaimer {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--text-light);
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 /* ============================================
@@ -308,9 +293,8 @@ html, body {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     text-align: center;
-    padding: 1rem 0;
+    padding: 2rem 0;
     border-top: 1px solid var(--border-color);
-    font-size: 0.85rem;
 }
 
 /* ============================================
@@ -324,16 +308,16 @@ html, body {
 .dropdown-toggle {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
     cursor: pointer;
     background: none;
     border: none;
     color: var(--secondary-color);
     font-size: 0.9rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     transition: color 0.3s ease;
     padding: 0;
     font-family: inherit;
+    white-space: nowrap;
 }
 
 .dropdown-toggle:hover,
@@ -765,6 +749,11 @@ body.menu-open {
         width: 35px;
     }
 
+    .nav-menu {
+        gap: 1rem;
+        font-size: 0.85rem;
+    }
+
     .menu-back-item {
         display: flex;
         justify-content: center;
@@ -884,7 +873,6 @@ body.menu-open {
 
     .logo-section {
         gap: 8px;
-        margin-left: 0;
     }
 
     .logo {
