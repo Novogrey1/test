@@ -43,7 +43,6 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
     transition: background-color 0.3s ease, color 0.3s ease;
-    padding-top: 64px;
 }
 
 html, body {
@@ -84,10 +83,8 @@ html, body {
 .navbar {
     background-color: var(--primary-color);
     padding: 1rem 0;
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     transition: background-color 0.3s ease;
@@ -108,7 +105,6 @@ html, body {
     gap: 10px;
 }
 
-/* Кнопка мобильного меню */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -132,17 +128,9 @@ html, body {
     transition: all 0.3s ease;
 }
 
-.menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(10px, 10px);
-}
-
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(10px, -10px);
-}
+.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(10px, 10px); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(10px, -10px); }
 
 .navbar-avatar {
     width: 40px;
@@ -810,95 +798,19 @@ body.dark-mode .lv-textarea:focus {
         padding: 1rem;
     }
 
-    .contact-buttons,
-    .docs-buttons {
-        flex-direction: column;
-        align-items: center;
+    .contacts-section h2,
+    .docs-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
     }
 
-    .contact-btn,
-    .doc-btn {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .container {
-        padding: 0 15px;
-    }
-
-    .dropdown-toggle {
-        font-size: 0.95rem;
-        width: 100%;
-        justify-content: center;
-    }
-
-    .dropdown-menu {
-        position: static;
-        box-shadow: none;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.07);
-        border-radius: 6px;
-        margin: 4px 0 0 0;
-        padding: 4px 0;
-        display: none;
-        min-width: unset;
-        width: 100%;
-        visibility: visible;
-        opacity: 1;
-        pointer-events: auto;
-        transition: none;
-    }
-
-    .nav-item:hover > .dropdown-menu {
-        display: none;
-    }
-
-    .nav-item.open > .dropdown-menu {
-        display: block;
-    }
-
-    .dropdown-link {
-        padding: 8px 20px;
-        font-size: 0.85rem;
-        white-space: normal;
-        text-align: left;
-    }
-
-    .dropdown-submenu-list {
-        position: static;
-        box-shadow: none;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.06);
-        border-radius: 4px;
-        margin: 2px 0 2px 12px;
-        padding: 2px 0;
-        min-width: unset;
-        width: calc(100% - 12px);
-        display: none;
-        visibility: visible;
-        opacity: 1;
-        pointer-events: auto;
-        transition: none;
-    }
-
-    .dropdown-submenu:hover > .dropdown-submenu-list {
-        display: none;
-    }
-
-    .dropdown-submenu.open > .dropdown-submenu-list {
-        display: block;
-    }
-
-    .dropdown-submenu > .dropdown-link {
-        font-weight: 600;
+    .disclaimer {
+        font-size: 0.8rem;
+        padding: 0 10px;
     }
 }
 
 @media (max-width: 480px) {
-    body {
-        padding-top: 54px;
-    }
-
     .navbar {
         padding: 0.5rem 0;
     }
@@ -1024,7 +936,6 @@ body.dark-mode .lv-textarea:focus {
     margin-top: 1rem;
 }
 
-
 /* ============================================
    ПОДВАЛ
    ============================================ */
@@ -1035,6 +946,7 @@ body.dark-mode .lv-textarea:focus {
     padding: 2rem 0;
     border-top: 1px solid var(--border-color);
 }
+
 /* Предотвратить прокрутку при открытом меню */
 body.menu-open {
     overflow: hidden;
@@ -1064,6 +976,16 @@ body.menu-open {
 .menu-back-btn:hover {
     opacity: 1;
     transform: translateX(-4px);
+}
+
+@media (max-width: 768px) {
+    .menu-back-item {
+        display: flex;
+        justify-content: center;
+        padding: 0.5rem 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+        margin-bottom: 0.5rem;
+    }
 }
 
 /* ============================================
@@ -1127,5 +1049,61 @@ body.menu-open {
 
     .dropdown-submenu > .dropdown-link {
         font-weight: 600;
+    }
+}
+
+/* ============================================
+   СТРАНИЦА БАЗЫ ДАННЫХ
+   ============================================ */
+.database-hero {
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 20px 2rem;
+}
+
+.database-hero h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--heading-color);
+    transition: color 0.3s;
+}
+
+.database-frame-wrap {
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.3s;
+}
+
+.database-frame-wrap iframe {
+    display: block;
+    width: 100%;
+    height: calc(100vh - 64px);
+    min-height: 600px;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .database-hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .database-frame-wrap iframe {
+        height: 70vh;
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .database-hero {
+        padding: 1.5rem 12px 1.5rem;
+    }
+
+    .database-frame-wrap iframe {
+        height: 65vh;
+        min-height: 350px;
     }
 }
