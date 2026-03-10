@@ -529,7 +529,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1021.png",
+                img: "../../images/tbus/1021.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -549,7 +549,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1022.png",
+                img: "../../images/tbus/1022.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -569,7 +569,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1023.png",
+                img: "../../images/tbus/1023.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -589,7 +589,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1035.png",
+                img: "../../images/tbus/1035.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -609,7 +609,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1036.png",
+                img: "../../images/tbus/1036.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -629,7 +629,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1037.png",
+                img: "../../images/tbus/1037.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -649,7 +649,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1038.png",
+                img: "../../images/tbus/1038.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -669,7 +669,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1039.png",
+                img: "../../images/tbus/1039.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -689,7 +689,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1040.png",
+                img: "../../images/tbus/1040.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -709,7 +709,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1060.png",
+                img: "../../images/tbus/1060.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -729,7 +729,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1061.png",
+                img: "../../images/tbus/1061.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -749,7 +749,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1062.png",
+                img: "../../images/tbus/1062.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -769,7 +769,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1063.png",
+                img: "../../images/tbus/1063.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -789,7 +789,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1064.png",
+                img: "../../images/tbus/1064.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -809,7 +809,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1001.png",
+                img: "../../images/tbus/1001.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -829,7 +829,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1070.png",
+                img: "../../images/tbus/1070.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -849,7 +849,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1071.png",
+                img: "../../images/tbus/1071.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -869,7 +869,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1072.png",
+                img: "../../images/tbus/1072.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -889,7 +889,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1073.png",
+                img: "../../images/tbus/1073.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -909,7 +909,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1085.png",
+                img: "../../images/tbus/1085.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -929,7 +929,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1086.png",
+                img: "../../images/tbus/1086.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -949,7 +949,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1087.png",
+                img: "../../images/tbus/1087.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -969,7 +969,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1088.png",
+                img: "../../images/tbus/1088.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -989,7 +989,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1089.png",
+                img: "../../images/tbus/1089.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1009,7 +1009,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1090.png",
+                img: "../../images/tbus/1090.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1029,7 +1029,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1091.png",
+                img: "../../images/tbus/1091.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1049,7 +1049,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1092.png",
+                img: "../../images/tbus/1092.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1069,7 +1069,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1100.png",
+                img: "../../images/tbus/1100.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1089,7 +1089,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1101.png",
+                img: "../../images/tbus/1101.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1109,7 +1109,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1120.png",
+                img: "../../images/tbus/1120.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1129,7 +1129,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1121.png",
+                img: "../../images/tbus/1121.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1149,7 +1149,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1122.png",
+                img: "../../images/tbus/1122.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1169,7 +1169,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1123.png",
+                img: "../../images/tbus/1123.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1189,7 +1189,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1135.png",
+                img: "../../images/tbus/1135.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1209,7 +1209,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1136.png",
+                img: "../../images/tbus/1136.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1229,7 +1229,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1137.png",
+                img: "../../images/tbus/1137.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1249,7 +1249,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1138.png",
+                img: "../../images/tbus/1138.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1269,7 +1269,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1139.png",
+                img: "../../images/tbus/1139.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1289,7 +1289,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1200.png",
+                img: "../../images/tbus/1200.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1309,7 +1309,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1201.png",
+                img: "../../images/tbus/1201.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1329,7 +1329,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1202.png",
+                img: "../../images/tbus/1202.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1349,7 +1349,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1002.png",
+                img: "../../images/tbus/1002.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1369,7 +1369,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1207.png",
+                img: "../../images/tbus/1207.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1389,7 +1389,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1208.png",
+                img: "../../images/tbus/1208.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1409,7 +1409,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1012.png",
+                img: "../../images/tbus/1012.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1429,7 +1429,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1013.png",
+                img: "../../images/tbus/1013.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1449,7 +1449,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1005.png",
+                img: "../../images/tbus/1005.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
@@ -1469,7 +1469,7 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../../images/tbus/1006.png",
+                img: "../../images/tbus/1006.jpg",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
