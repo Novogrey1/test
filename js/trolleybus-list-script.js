@@ -509,7 +509,27 @@ const TBUS_STATIC = {
         assignment_en: "Passenger",
         photos: [
             {
-                img: "../images/tbus/1020_1.jpg",
+                img: "../../images/tbus/1020.jpg",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1021": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1021.png",
                 depot_ru: "Троллейбусный парк Главного Острова",
                 depot_en: "Main Island Trolleybus Park",
                 date: "25 марта 2025г., вторник",
