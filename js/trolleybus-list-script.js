@@ -540,6 +540,946 @@ const TBUS_STATIC = {
         ]
     },
 
+    "1022": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1022.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1023": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1023.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1035": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1035.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1036": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1036.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1037": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1037.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1038": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1038.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1039": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1039.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1040": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1040.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1060": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1060.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1061": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1061.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1062": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1062.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1063": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1063.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1064": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1064.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1001": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1001.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1070": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1070.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1071": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1071.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1072": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1072.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1073": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1073.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1085": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1085.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1086": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1086.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1087": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1087.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1088": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1088.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1089": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1089.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1090": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1090.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1091": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1091.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1092": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1092.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1100": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1100.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1101": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1101.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1120": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1120.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1121": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1121.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1122": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1122.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1123": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1123.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1135": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1135.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1136": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1136.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1137": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1137.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1138": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1138.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1139": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1139.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1200": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1200.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1201": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1201.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1202": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1202.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1002": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1002.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1207": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1207.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1208": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1208.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1012": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1012.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1013": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1013.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1005": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1005.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "1006": {
+        depot_ru: "Главный Троллейбусный Парк",
+        depot_en: "Main Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/1006.png",
+                depot_ru: "Троллейбусный парк Главного Острова",
+                depot_en: "Main Island Trolleybus Park",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
     // ── ШАБЛОН — копируй этот блок для каждого нового троллейбуса ───────────
     // "XXXX": {
     //     depot_ru: "Главный Троллейбусный Парк",
