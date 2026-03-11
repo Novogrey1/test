@@ -1,0 +1,20 @@
+name: Auto Merge PR #23
+
+on:
+  schedule:
+    - cron: "30 13 11 3 *"  # Запуск 11 марта в 13:11 UTC (UTC+2 нужно корректировать)
+  workflow_dispatch:  # чтобы можно было запустить вручную
+
+jobs:
+  merge-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Auto merge PR #23
+        uses: pascalgn/automerge-action@v0.15.4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: 23
+          merge-method: merge
