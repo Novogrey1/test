@@ -215,7 +215,7 @@ function setupLanguageButton() {
     }
 }
 
-function reinitializeEventListeners() { setupLanguageButton(); initDropdowns(); initMobileMenu(); }
+function reinitializeEventListeners() { setupLanguageButton(); initDropdowns(); initMobileMenu(); initModal(); }
 
 function reinitializeTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
