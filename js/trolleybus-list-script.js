@@ -805,8 +805,8 @@ const TBUS_STATIC = {
         depot_en: "Main Trolleybus Depot",
         built: "1991",
         arrived: "25.03.2025",
-        assignment_ru: "Пассажирский",
-        assignment_en: "Passenger",
+        assignment_ru: "Учебный",
+        assignment_en: "Training",
         photos: [
             {
                 img: "../../images/tbus/1001.jpg",
@@ -1345,8 +1345,8 @@ const TBUS_STATIC = {
         depot_en: "Main Trolleybus Depot",
         built: "1991",
         arrived: "25.03.2025",
-        assignment_ru: "Пассажирский",
-        assignment_en: "Passenger",
+        assignment_ru: "Учебный",
+        assignment_en: "Training",
         photos: [
             {
                 img: "../../images/tbus/1002.jpg",
@@ -1483,8 +1483,8 @@ const TBUS_STATIC = {
     // Хардбасс депо
 
     "2030": {
-        depot_ru: "Главный Троллейбусный Парк",
-        depot_en: "Main Trolleybus Depot",
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
         built: "1991",
         arrived: "25.03.2025",
         assignment_ru: "Пассажирский",
@@ -1492,8 +1492,8 @@ const TBUS_STATIC = {
         photos: [
             {
                 img: "../../images/tbus/2030.jpg",
-                depot_ru: "Троллейбусный парк Главного Острова",
-                depot_en: "Main Island Trolleybus Park",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
                 date: "25 марта 2025г., вторник",
                 author: "Lolekx",
                 authorUrl: null,
@@ -1502,6 +1502,1365 @@ const TBUS_STATIC = {
         ]
     },
 
+    "2031": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2031.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2000": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Учебный",
+        assignment_en: "Training",
+        photos: [
+            {
+                img: "../../images/tbus/2000.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2033": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2033.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2034": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2034.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2035": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2035.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2036": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2036.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2037": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2037.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2039": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2039.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2040": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2040.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2041": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2041.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2042": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2042.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2043": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2043.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2044": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2044.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2045": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2045.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2001": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Учебный",
+        assignment_en: "Training",
+        photos: [
+            {
+                img: "../../images/tbus/2001.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2062": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2062.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2063": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2063.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2064": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2064.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2065": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2065.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2066": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2066.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2002": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Учебный",
+        assignment_en: "Training",
+        photos: [
+            {
+                img: "../../images/tbus/2002.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2068": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2068.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2069": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2069.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2085": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2085.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2086": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2086.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2087": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2087.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2003": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Учебный",
+        assignment_en: "Training",
+        photos: [
+            {
+                img: "../../images/tbus/2003.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2089": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2089.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2090": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2090.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2004": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Учебный",
+        assignment_en: "Training",
+        photos: [
+            {
+                img: "../../images/tbus/2004.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2092": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2092.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2093": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2093.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2094": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2094.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2110": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2110.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2111": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2111.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2112": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2112.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2113": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2113.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2114": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2114.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2130": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2130.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2131": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2131.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2132": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2132.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2133": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2133.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2134": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2134.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2150": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2150.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2151": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2151.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2152": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2152.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2153": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2153.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2154": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2154.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2155": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2155.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2156": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2156.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2200": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2200.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2201": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2201.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2202": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2202.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2005": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Учебный",
+        assignment_en: "Training",
+        photos: [
+            {
+                img: "../../images/tbus/2005.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2204": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2204.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2225": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2225.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2206": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2206.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2207": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2207.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2208": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2208.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2209": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2209.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2210": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2210.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2211": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2211.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2010": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2010.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2011": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2011.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2012": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2012.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2013": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2013.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2020": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2020.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
+
+    "2021": {
+        depot_ru: "Троллейбусный парк острова Хардбасс",
+        depot_en: "Hardbass Island Trolleybus Depot",
+        built: "1991",
+        arrived: "25.03.2025",
+        assignment_ru: "Пассажирский",
+        assignment_en: "Passenger",
+        photos: [
+            {
+                img: "../../images/tbus/2021.jpg",
+                depot_ru: "Троллейбусный парк острова Хардбасс",
+                depot_en: "Hardbass Island Trolleybus Depot",
+                date: "25 марта 2025г., вторник",
+                author: "Lolekx",
+                authorUrl: null,
+                event: "Март 2025 – Поступил в депо"
+            }
+        ]
+    },
 
     // ── ШАБЛОН — копируй этот блок для каждого нового троллейбуса ───────────
     // "XXXX": {
