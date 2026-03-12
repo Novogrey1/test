@@ -247,24 +247,27 @@ document.addEventListener('DOMContentLoaded', function() {
 // THEME TOGGLE - DARK MODE
 // ============================================
 
-const themeBtn = document.getElementById('theme-btn');
-if (themeBtn) {
-  // Load saved theme preference
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  if (savedTheme === 'dark') {
+// Применяем тему сразу, чтобы не было мигания при загрузке
+(function() {
+  if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-mode');
-    themeBtn.textContent = '🌙';
-  } else {
-    themeBtn.textContent = '☀️';
   }
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
+  const themeBtn = document.getElementById('theme-btn');
+  if (!themeBtn) return;
+
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
   themeBtn.addEventListener('click', function() {
     document.body.classList.toggle('dark-mode');
     const isDarkMode = document.body.classList.contains('dark-mode');
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-    themeBtn.textContent = isDarkMode ? '🌙' : '☀️';
+    themeBtn.textContent = isDarkMode ? '☀️' : '🌙';
   });
-}
+});
 
 // ============================================
 // MOBILE MENU TOGGLE
