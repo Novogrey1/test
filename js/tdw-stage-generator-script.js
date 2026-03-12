@@ -187,11 +187,11 @@ function updateGeneratorForm(lang) {
   if (!formWrapper) return;
   
   // Русская версия
-  let iframeSrc = "https://script.google.com/macros/s/AKfycbyefXuUpL1kmuztpsZbUfLlNCtbTGJ5fNYDGugwnJWAO3C2OD-QQPzmat6LcUA2dICw/exec";
+  let iframeSrc = "https://script.google.com/macros/s/AKfycbziM6wRBs4yZq1l-CnDXYe5CCsifsC9IUcXr8xXBbSEdEEzUuKSnXyqjxgHXAlg6Zsq/exec";
   
   // Английская версия
   if (lang === 'en') {
-    iframeSrc = "https://script.google.com/macros/s/AKfycbwPzU1WQES-4xS-vd5yJeorogdHZgosRM77ifwg4Cy1zK90cWt43kBzUWJfYVJIwySe/exec";
+    iframeSrc = "https://script.google.com/macros/s/AKfycbwBn5kK3vo4syWZdPLoLOZg1x1bRvOhdG3SVte2-6z9brtP__gnLwKckLg9sdP2imY3/exec";
   }
   
   formWrapper.innerHTML = `<iframe src="${iframeSrc}" frameborder="0" marginheight="0" marginwidth="0"></iframe>`;
