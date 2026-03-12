@@ -259,9 +259,7 @@ html, body {
     min-height: 100%;
 }
 
-body.dark-mode .form-wrapper iframe {
-    filter: invert(0.88) hue-rotate(180deg) brightness(1.05);
-}
+
 
 .contacts-section {
     padding: 3rem 0;
