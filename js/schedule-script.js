@@ -196,11 +196,11 @@ const translations = {
 // ============================================
 
 function getCurrentLanguage() {
-  return localStorage.getItem('selectedLanguage') || 'ru';
+  return localStorage.getItem('language') || 'ru';
 }
 
 function setLanguage(lang) {
-  localStorage.setItem('selectedLanguage', lang);
+  localStorage.setItem('language', lang);
   location.reload();
 }
 
