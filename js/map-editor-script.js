@@ -6,7 +6,6 @@ const translations = {
   "ru": {
     "Главная": "Главная",
     "Логические схемы": "Логические схемы",
-    "Конфигуратор опубликованной карты": "Конфигуратор опубликованной карты",
     "Команда проекта": "Команда проекта",
     "События и смены": "События и смены",
     "Документация": "Документация",
@@ -106,7 +105,6 @@ const translations = {
   "en": {
     "Главная": "Home",
     "Логические схемы": "Logical Circuits",
-    "Конфигуратор опубликованной карты": "Published Map Configurator",
     "Команда проекта": "Project Team",
     "События и смены": "Events and Shifts",
     "Документация": "Documentation",
@@ -215,7 +213,9 @@ function getCurrentLanguage() {
 
 function setLanguage(lang) {
   localStorage.setItem('selectedLanguage', lang);
-  location.reload();
+  translatePage();
+  const langBtn = document.getElementById('lang-btn');
+  if (langBtn) langBtn.textContent = lang === 'ru' ? 'EN' : 'RU';
 }
 
 function translatePage() {
@@ -268,8 +268,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (langBtn) {
     langBtn.textContent = currentLang === 'ru' ? 'EN' : 'RU';
     langBtn.addEventListener('click', function () {
-      const current = getCurrentLanguage();
-      setLanguage(current === 'ru' ? 'en' : 'ru');
+      const newLang = getCurrentLanguage() === 'ru' ? 'en' : 'ru';
+      setLanguage(newLang);
     });
   }
 });
