@@ -50,10 +50,11 @@ const translations = {
     "Логические схемы": "Логические схемы",
     "Создание окрасок": "Создание окрасок",
     "Редактор маршрутов": "Редактор маршрутов",
+    "Редактор карт": "Редактор карт",
+    "Конфигуратор опубликованной карты": "Конфигуратор опубликованной карты",
     "Информатор": "Информатор",
     "Расписание": "Расписание",
     "Трибуна TDW": "Трибуна TDW",
-    "Конфигуратор опубликованной карты": "Конфигуратор опубликованной карты",
     "Правила проекта \"TRP RP\"": "Правила проекта \"TRP RP\"",
     "ЧАВО - Частые вопросы": "ЧАВО - Частые вопросы",
     "Официальная документация": "Официальная документация",
@@ -123,10 +124,11 @@ const translations = {
     "Логические схемы": "Logical Circuits",
     "Создание окрасок": "Create Liveries",
     "Редактор маршрутов": "Route Editor",
+    "Редактор карт": "Map Editor",
+    "Конфигуратор опубликованной карты": "Published Map Configurator",
     "Информатор": "Informer",
     "Расписание": "Schedule",
     "Трибуна TDW": "TDW Tribune",
-    "Конфигуратор опубликованной карты": "Published Map Configurator",
     "Правила проекта \"TRP RP\"": "TRP RP Project Rules",
     "ЧАВО - Частые вопросы": "FAQ - Frequently Asked Questions",
     "Официальная документация": "Official Documentation",
@@ -158,8 +160,12 @@ let originalHTML = null;
 // ============================================
 
 function initThemeSystem() {
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  applyTheme(savedTheme);
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === null) {
+    applyTheme('dark');
+  } else {
+    applyTheme(savedTheme);
+  }
   const themeBtn = document.getElementById('theme-btn');
   if (themeBtn) {
     themeBtn.addEventListener('click', handleThemeClick);
@@ -179,7 +185,7 @@ function applyTheme(theme) {
 }
 
 function handleThemeClick() {
-  const currentTheme = localStorage.getItem('theme') || 'dark';
+  const currentTheme = localStorage.getItem('theme') || 'light';
   applyTheme(currentTheme === 'light' ? 'dark' : 'light');
 }
 
