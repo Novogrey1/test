@@ -315,7 +315,92 @@ document.querySelectorAll('.contact-btn, .btn').forEach(btn => {
 // Анимация при загрузке страницы
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
+
+    // Анимация появления элементов навбара
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.classList.add('nav-animate');
+    }
+
+    // Анимация hero-контента
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        heroContent.classList.add('animate');
+    }
+
+    // Запускаем scroll reveal после небольшой задержки
+    setTimeout(initScrollReveal, 100);
 });
+
+// ============================================
+// SCROLL REVEAL — появление секций при прокрутке
+// ============================================
+
+function initScrollReveal() {
+    // Назначаем классы reveal элементам контентных секций
+    document.querySelectorAll('.content-section').forEach(section => {
+        const row = section.querySelector('.content-row');
+        const textContent = section.querySelector('.text-content');
+        const imageContent = section.querySelector('.image-content');
+
+        if (!textContent || !imageContent) return;
+
+        const isReverse = row && row.classList.contains('reverse');
+
+        // Сбрасываем старые классы (нужно при смене языка)
+        textContent.classList.remove('reveal', 'reveal-left', 'reveal-right');
+        imageContent.classList.remove('reveal', 'reveal-left', 'reveal-right');
+
+        if (isReverse) {
+            // При reverse: текст справа, картинка слева
+            textContent.classList.add('reveal-right');
+            imageContent.classList.add('reveal-left');
+        } else {
+            // Обычный: текст слева, картинка справа
+            textContent.classList.add('reveal-left');
+            imageContent.classList.add('reveal-right');
+        }
+    });
+
+    // Заголовки и кнопки нижних секций
+    document.querySelectorAll(
+        '.contacts-section h2, .docs-section h2, ' +
+        '.contact-buttons, .docs-buttons, .disclaimer, .footer'
+    ).forEach(el => {
+        el.classList.remove('reveal');
+        el.classList.add('reveal');
+    });
+
+    // Кнопки контактов — добавляем reveal для каждой отдельно (для stagger из CSS)
+    document.querySelectorAll('.contact-buttons .contact-btn, .docs-buttons .doc-btn').forEach(btn => {
+        btn.classList.remove('reveal');
+        btn.classList.add('reveal');
+    });
+
+    // Создаём observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    // Наблюдаем за всеми reveal-элементами
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+        // Если элемент уже виден при загрузке — показываем сразу с небольшой задержкой
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+            setTimeout(() => el.classList.add('visible'), 80);
+        } else {
+            observer.observe(el);
+        }
+    });
+}
 
 // Функция для обработки мобильного меню (если нужно)
 function handleMobileMenu() {
@@ -364,10 +449,18 @@ function initLanguageSystem() {
 function setLanguage(lang) {
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
-    
+
+    // Анимация кнопки языка
+    const langBtnAnim = document.getElementById('lang-btn');
+    if (langBtnAnim) {
+        langBtnAnim.classList.remove('flipping');
+        void langBtnAnim.offsetWidth;
+        langBtnAnim.classList.add('flipping');
+    }
+
     // Восстанавливаем исходный HTML
     document.body.innerHTML = originalHTML;
-    
+
     // Переводим все текстовые узлы
     function translateNode(node) {
         if (node.nodeType === 3) { // TEXT_NODE
@@ -383,14 +476,15 @@ function setLanguage(lang) {
             }
         }
     }
-    
-    // Начинаем перевод
+
     for (let i = 0; i < document.body.childNodes.length; i++) {
         translateNode(document.body.childNodes[i]);
     }
-    
+
     reinitializeEventListeners();
     reinitializeTheme();
+    initScrollReveal();
+    document.body.classList.add('loaded');
 }
 
 // Функция обновления кнопки языка
@@ -457,6 +551,15 @@ function reinitializeTheme() {
 
 // Обработчик кнопки темы
 function handleThemeClick() {
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) {
+        themeBtn.classList.remove('spinning');
+        void themeBtn.offsetWidth; // force reflow to restart animation
+        themeBtn.classList.add('spinning');
+        themeBtn.addEventListener('animationend', () => {
+            themeBtn.classList.remove('spinning');
+        }, { once: true });
+    }
     const currentTheme = localStorage.getItem('theme') || 'light';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     applyTheme(newTheme);

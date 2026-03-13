@@ -269,6 +269,13 @@ function applyTheme(theme) {
 }
 
 function handleThemeClick() {
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) {
+        themeBtn.classList.remove('spinning');
+        void themeBtn.offsetWidth;
+        themeBtn.classList.add('spinning');
+        themeBtn.addEventListener('animationend', () => themeBtn.classList.remove('spinning'), { once: true });
+    }
     const currentTheme = localStorage.getItem('theme') || 'light';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     applyTheme(newTheme);
@@ -294,6 +301,13 @@ function initLanguageSystem() {
 function setLanguage(lang) {
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
+
+    const langBtnAnim = document.getElementById('lang-btn');
+    if (langBtnAnim) {
+        langBtnAnim.classList.remove('flipping');
+        void langBtnAnim.offsetWidth;
+        langBtnAnim.classList.add('flipping');
+    }
 
     document.body.innerHTML = originalHTML;
 
@@ -332,6 +346,13 @@ function setLanguage(lang) {
     reinitializeEventListeners();
     reinitializeTheme();
     initMobileMenu();
+    document.body.classList.add('loaded');
+    // Ждём рендер перед проверкой позиций элементов
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+        initScrollReveal();
+        const heroContent = document.querySelector('.hero-team-content');
+        if (heroContent) heroContent.classList.add('animate');
+    }));
 }
 
 function updateLangButton(lang) {
@@ -469,6 +490,66 @@ window.addEventListener('scroll', () => {
 // ============================================
 // ИНИЦИАЛИЗАЦИЯ
 // ============================================
+
+
+// ============================================
+// ЗАГРУЗКА СТРАНИЦЫ И SCROLL REVEAL
+// ============================================
+
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+
+    const navbar = document.querySelector('.navbar');
+    if (navbar) navbar.classList.add('nav-animate');
+
+    const heroContent = document.querySelector('.hero-team-content');
+    if (heroContent) {
+        setTimeout(() => heroContent.classList.add('animate'), 50);
+    }
+
+    setTimeout(initScrollReveal, 100);
+});
+
+function initScrollReveal() {
+    // Section titles
+    document.querySelectorAll('.section-title, .contacts-section h2, .docs-section h2, .disclaimer, .footer').forEach(el => {
+        el.classList.remove('reveal');
+        el.classList.add('reveal');
+    });
+
+    // Team cards — with stagger per section
+    document.querySelectorAll('.team-grid').forEach(grid => {
+        grid.querySelectorAll('.team-card').forEach((card, i) => {
+            card.style.transitionDelay = (i * 0.1) + 's';
+        });
+    });
+
+    // Contact/doc buttons
+    document.querySelectorAll('.contact-buttons .contact-btn, .docs-buttons .doc-btn').forEach((btn, i) => {
+        btn.classList.remove('reveal');
+        btn.classList.add('reveal');
+        btn.style.transitionDelay = (i * 0.07) + 's';
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.reveal, .team-card').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        // rect.top === 0 может означать что layout ещё не готов — показываем сразу
+        if (rect.top < window.innerHeight || rect.top === 0) {
+            setTimeout(() => el.classList.add('visible'), 80);
+        } else {
+            observer.observe(el);
+        }
+    });
+}
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
