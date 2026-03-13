@@ -268,7 +268,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (langBtn) {
     langBtn.textContent = currentLang === 'ru' ? 'EN' : 'RU';
     langBtn.addEventListener('click', function () {
-      setLanguage(currentLang === 'ru' ? 'en' : 'ru');
+      const current = getCurrentLanguage();
+      setLanguage(current === 'ru' ? 'en' : 'ru');
     });
   }
 });
