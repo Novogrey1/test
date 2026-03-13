@@ -1,5 +1,9 @@
+html {
+    overflow-x: hidden;
+}
+
 body {
-    overflow-x: clip;
+    overflow-x: hidden;
 }
 
 /* Глобальные стили */
@@ -64,8 +68,11 @@ html, body {
 .navbar {
     background-color: var(--primary-color);
     padding: 1rem 0;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     transition: background-color 0.3s ease;
@@ -207,6 +214,7 @@ html, body {
    ============================================ */
 .generator-section {
     padding: 0;
+    padding-top: 72px; /* fixed navbar height */
     background-color: var(--bg-secondary);
     transition: background-color 0.3s ease;
     display: flex;
@@ -704,4 +712,173 @@ body.menu-open {
     .generator-section {
         min-height: calc(100vh - 60px - 50px);
     }
+}
+/* ============================================
+   ERROR BANNER (403 / LOCAL MODE SWITCH)
+   ============================================ */
+
+.error-banner-outer {
+    background-color: transparent;
+    padding: 10px 20px 0;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+.error-banner {
+    background-color: #161616;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    color: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+}
+
+.error-banner-body {
+    overflow: hidden;
+    max-height: 200px;
+    opacity: 1;
+    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+    padding: 14px 20px 10px;
+}
+
+.error-banner.collapsed .error-banner-body {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.error-banner-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+}
+
+.error-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+}
+
+.error-banner-icon {
+    font-size: 0.95rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.error-banner-title {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: #fbbf24;
+    white-space: nowrap;
+}
+
+.error-banner--local .error-banner-title {
+    color: #34d399;
+}
+
+.error-banner-desc {
+    font-size: 0.82rem;
+    color: #9ca3af;
+    flex: 1;
+    min-width: 200px;
+    line-height: 1.5;
+    white-space: normal;
+}
+
+.error-banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.error-banner-btn {
+    padding: 6px 16px;
+    border-radius: 7px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    font-family: inherit;
+}
+
+.error-banner-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.error-banner-btn--switch {
+    background: #fbbf24;
+    color: #111;
+}
+
+.error-banner-btn--switch:hover {
+    background: #fcd34d;
+}
+
+.error-banner-btn--back {
+    background: rgba(255,255,255,0.08);
+    color: #d1d5db;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.error-banner-btn--back:hover {
+    background: rgba(255,255,255,0.14);
+    color: #fff;
+}
+
+.error-banner-toggle-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 2px 0 5px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.error-banner-chevron-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.25);
+    transition: color 0.2s ease, background 0.2s ease;
+    line-height: 1;
+    border-radius: 0 0 12px 12px;
+}
+
+.error-banner-chevron-btn:hover {
+    color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.04);
+}
+
+.error-banner-chevron {
+    font-size: 0.55rem;
+    display: inline-block;
+    transition: transform 0.35s ease;
+    line-height: 1;
+}
+
+.error-banner.collapsed .error-banner-chevron {
+    transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+    .error-banner-outer { top: 57px; }
+}
+
+@media (max-width: 480px) {
+    .error-banner-outer { top: 50px; }
 }
