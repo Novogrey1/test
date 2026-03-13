@@ -1,10 +1,13 @@
 // ============================================
-// LANGUAGE SYSTEM - TRANSLATION OBJECT
+// LANGUAGE SYSTEM
 // ============================================
 
 const translations = {
   "ru": {
+    // Main menu
     "Главная": "Главная",
+    "Логические схемы": "Логические схемы",
+    "Конфигуратор опубликованной карты": "Конфигуратор опубликованной карты",
     "Команда проекта": "Команда проекта",
     "События и смены": "События и смены",
     "Документация": "Документация",
@@ -13,6 +16,8 @@ const translations = {
     "Социальные сети": "Социальные сети",
     "TRP RP": "TRP RP",
     "← Назад": "← Назад",
+    
+    // Documentation submenu
     "Устав проекта": "Устав проекта",
     "Для сотрудников": "Для сотрудников",
     "Маршруты": "Маршруты",
@@ -29,6 +34,8 @@ const translations = {
     "Лекции": "Лекции",
     "Запуск троллейбусов": "Запуск троллейбусов",
     "Схемы депо и маршрутов": "Схемы депо и маршрутов",
+    
+    // Applications submenu
     "Заявления": "Заявления",
     "Экзамен": "Экзамен",
     "Отпуск & Больничный": "Отпуск & Больничный",
@@ -40,22 +47,21 @@ const translations = {
     "ДТПГО & ДТПоХ": "ДТПГО & ДТПоХ",
     "ДТУ": "ДТУ",
     "ДКС": "ДКС",
-    "Тесты": "Тесты",
-    "Теоретический экзамен": "Теоретический экзамен",
     "Подать апелляцию": "Подать апелляцию",
     "Регистрация на смену": "Регистрация на смену",
     "Прочие анкеты": "Прочие анкеты",
+    "Тесты": "Тесты",
+    "Теоретический экзамен": "Теоретический экзамен",
+    
+    // Other submenu
     "Редакторы и генераторы": "Редакторы и генераторы",
     "Генератор спавна машин": "Генератор спавна машин",
-    "Логические схемы": "Логические схемы",
     "Создание окрасок": "Создание окрасок",
     "Редактор маршрутов": "Редактор маршрутов",
-    "Редактор карт": "Редактор карт",
-    "Конфигуратор опубликованной карты": "Конфигуратор опубликованной карты",
     "Информатор": "Информатор",
     "Расписание": "Расписание",
     "Трибуна TDW": "Трибуна TDW",
-    "Правила проекта \"TRP RP\"": "Правила проекта \"TRP RP\"",
+    "Правила проекта TRP RP": "Правила проекта \"TRP RP\"",
     "ЧАВО - Частые вопросы": "ЧАВО - Частые вопросы",
     "Официальная документация": "Официальная документация",
     "Обновления сайта": "Обновления сайта",
@@ -64,21 +70,28 @@ const translations = {
     "Команды": "Команды",
     "Идентификатор работника": "Идентификатор работника",
     "Административный сайт": "Административный сайт",
+    
+    // Social media
     "Discord": "Discord",
     "TeamSpeak": "TeamSpeak",
     "YouTube": "YouTube",
     "TikTok": "TikTok",
     "Telegram": "Telegram",
     "ВКонтакте": "ВКонтакте",
-    "Контакты проекта \"TRP RP\"": "Контакты проекта \"TRP RP\"",
-    "Юридическая документация проекта \"TRP RP\"": "Юридическая документация проекта \"TRP RP\"",
+    
+    // Footer
+    "Контакты проекта &quot;TRP RP&quot;": "Контакты проекта \"TRP RP\"",
+    "Юридическая документация проекта &quot;TRP RP&quot;": "Юридическая документация проекта \"TRP RP\"",
     "Политика конфиденциальности": "Политика конфиденциальности",
     "Пользовательское соглашение": "Пользовательское соглашение",
-    "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!": "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!",
+    "Проект &quot;TRP RP&quot; не является юридическим лицом и не предоставляет никаких услуг!": "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!",
     "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. Все права защищены."
   },
   "en": {
+    // Main menu
     "Главная": "Home",
+    "Логические схемы": "Logical Circuits",
+    "Конфигуратор опубликованной карты": "Published Map Configurator",
     "Команда проекта": "Project Team",
     "События и смены": "Events and Shifts",
     "Документация": "Documentation",
@@ -87,49 +100,52 @@ const translations = {
     "Социальные сети": "Social Media",
     "TRP RP": "TRP RP",
     "← Назад": "← Back",
+    
+    // Documentation submenu
     "Устав проекта": "Project Charter",
     "Для сотрудников": "For Employees",
     "Маршруты": "Routes",
-    "Регламент радиообмена": "Radio Communication Regulations",
+    "Регламент радиообмена": "Radio Regulations",
     "Инструкция ДТУ и ДТД": "DTU and DTD Instructions",
     "Инструкция ДКС и ДТД": "DKS and DTD Instructions",
     "Инструкция водителей": "Driver Instructions",
     "Для отделов": "For Departments",
-    "Директор ГТОП/ТПОХ": "Director GTOP/TPOH",
-    "КОУП": "KOUP",
+    "Директор ГТОП/ТПОХ": "Director GTOP/TPOX",
+    "КОУП": "КOUP",
     "ФАО": "FAO",
     "ОБД": "OBD",
-    "УбЦ": "UbTs",
+    "УбЦ": "UbC",
     "Лекции": "Lectures",
     "Запуск троллейбусов": "Trolleybus Launch",
     "Схемы депо и маршрутов": "Depot and Route Schemes",
+    
+    // Applications submenu
     "Заявления": "Applications",
     "Экзамен": "Exam",
     "Отпуск & Больничный": "Vacation & Sick Leave",
-    "Увольнение & Восстановление": "Dismissal & Reinstatement",
+    "Увольнение & Восстановление": "Resignation & Reinstatement",
     "Регистрация & Замена троллейбуса": "Registration & Trolleybus Replacement",
     "Ремонт троллейбусов": "Trolleybus Repair",
     "Персонал": "Personnel",
     "ЗНГТУ": "ZNGTU",
-    "ДТПГО & ДТПоХ": "DTPGO & DTPokH",
+    "ДТПГО & ДТПоХ": "DTPGO & DTPoH",
     "ДТУ": "DTU",
     "ДКС": "DKS",
+    "Подать апелляцию": "Submit Appeal",
+    "Регистрация на смену": "Register for Shift",
+    "Прочие анкеты": "Other Forms",
     "Тесты": "Tests",
     "Теоретический экзамен": "Theoretical Exam",
-    "Подать апелляцию": "Submit Appeal",
-    "Регистрация на смену": "Shift Registration",
-    "Прочие анкеты": "Other Forms",
+    
+    // Other submenu
     "Редакторы и генераторы": "Editors and Generators",
     "Генератор спавна машин": "Vehicle Spawn Generator",
-    "Логические схемы": "Logical Circuits",
-    "Создание окрасок": "Create Liveries",
+    "Создание окрасок": "Livery Generator",
     "Редактор маршрутов": "Route Editor",
-    "Редактор карт": "Map Editor",
-    "Конфигуратор опубликованной карты": "Published Map Configurator",
-    "Информатор": "Informer",
+    "Информатор": "Announcement",
     "Расписание": "Schedule",
-    "Трибуна TDW": "TDW Tribune",
-    "Правила проекта \"TRP RP\"": "TRP RP Project Rules",
+    "Трибуна TDW": "TDW Stage",
+    "Правила проекта TRP RP": "TRP RP Project Rules",
     "ЧАВО - Частые вопросы": "FAQ - Frequently Asked Questions",
     "Официальная документация": "Official Documentation",
     "Обновления сайта": "Website Updates",
@@ -138,324 +154,224 @@ const translations = {
     "Команды": "Commands",
     "Идентификатор работника": "Employee ID",
     "Административный сайт": "Admin Site",
+    
+    // Social media
     "Discord": "Discord",
     "TeamSpeak": "TeamSpeak",
     "YouTube": "YouTube",
     "TikTok": "TikTok",
     "Telegram": "Telegram",
     "ВКонтакте": "VKontakte",
-    "Контакты проекта \"TRP RP\"": "TRP RP Project Contacts",
-    "Юридическая документация проекта \"TRP RP\"": "Legal Documentation of the TRP RP Project",
+    
+    // Footer
+    "Контакты проекта &quot;TRP RP&quot;": "TRP RP Project Contacts",
+    "Юридическая документация проекта &quot;TRP RP&quot;": "TRP RP Project Legal Documentation",
     "Политика конфиденциальности": "Privacy Policy",
-    "Пользовательское соглашение": "Terms of Use",
-    "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!": "The \"TRP RP\" project is not a legal entity and does not provide any services!",
+    "Пользовательское соглашение": "Terms of Service",
+    "Проект &quot;TRP RP&quot; не является юридическим лицом и не предоставляет никаких услуг!": "The TRP RP project is not a legal entity and does not provide any services!",
     "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. All rights reserved."
   }
 };
 
-let originalHTML = null;
-
 // ============================================
-// THEME SYSTEM
+// LANGUAGE MANAGEMENT
 // ============================================
 
-function initThemeSystem() {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === null) {
-    applyTheme('dark');
-  } else {
-    applyTheme(savedTheme);
-  }
-  const themeBtn = document.getElementById('theme-btn');
-  if (themeBtn) {
-    themeBtn.addEventListener('click', handleThemeClick);
-  }
-}
-
-function applyTheme(theme) {
-  localStorage.setItem('theme', theme);
-  const themeBtn = document.getElementById('theme-btn');
-  if (theme === 'dark') {
-    document.body.classList.add('dark-mode');
-    if (themeBtn) themeBtn.textContent = '☀️';
-  } else {
-    document.body.classList.remove('dark-mode');
-    if (themeBtn) themeBtn.textContent = '🌙';
-  }
-}
-
-function handleThemeClick() {
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  applyTheme(currentTheme === 'light' ? 'dark' : 'light');
-}
-
-// ============================================
-// LANGUAGE SYSTEM
-// ============================================
-
-function initLanguageSystem() {
-  if (!originalHTML) {
-    originalHTML = document.body.innerHTML;
-  }
-  const savedLanguage = localStorage.getItem('language') || 'ru';
-  setLanguage(savedLanguage);
-  updateLangButton(savedLanguage);
-  setupLanguageButton();
-  reinitializeEventListeners();
-  initThemeSystem();
+function getCurrentLanguage() {
+  return localStorage.getItem('selectedLanguage') || 'ru';
 }
 
 function setLanguage(lang) {
-  localStorage.setItem('language', lang);
-  document.documentElement.lang = lang;
-  document.body.innerHTML = originalHTML;
-
-  function translateNode(node) {
-    if (node.nodeType === 3) {
-      const text = node.textContent.trim();
-      if (text && translations[lang] && translations[lang][text]) {
-        node.textContent = node.textContent.replace(text, translations[lang][text]);
-      }
-    } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT') {
-      for (let i = 0; i < node.childNodes.length; i++) {
-        translateNode(node.childNodes[i]);
-      }
-    }
-  }
-
-  for (let i = 0; i < document.body.childNodes.length; i++) {
-    translateNode(document.body.childNodes[i]);
-  }
-
-  updateGeneratorForm(lang);
-  reinitializeEventListeners();
-  reinitializeTheme();
-  initMobileMenu();
+  localStorage.setItem('selectedLanguage', lang);
+  location.reload();
 }
-
-function updateLangButton(lang) {
-  const langBtn = document.getElementById('lang-btn');
-  if (langBtn) {
-    langBtn.textContent = lang === 'ru' ? 'EN' : 'RU';
-  }
-}
-
-function setupLanguageButton() {
-  const langBtn = document.getElementById('lang-btn');
-  if (langBtn) {
-    const newLangBtn = langBtn.cloneNode(true);
-    langBtn.parentNode.replaceChild(newLangBtn, langBtn);
-    document.getElementById('lang-btn').addEventListener('click', function () {
-      const currentLang = localStorage.getItem('language') || 'ru';
-      const newLang = currentLang === 'ru' ? 'en' : 'ru';
-      setLanguage(newLang);
-      updateLangButton(newLang);
-    });
-  }
-}
-
-function reinitializeEventListeners() {
-  setupLanguageButton();
-  initDropdowns();
-  initMobileMenu();
-}
-
-function reinitializeTheme() {
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  applyTheme(savedTheme);
-  const themeBtn = document.getElementById('theme-btn');
-  if (themeBtn) {
-    themeBtn.removeEventListener('click', handleThemeClick);
-    themeBtn.addEventListener('click', handleThemeClick);
-  }
-  initDropdowns();
-  initMobileMenu();
-}
-
-// ============================================
-// GENERATOR IFRAME
-// ============================================
 
 function updateGeneratorForm(lang) {
   const formWrapper = document.getElementById('form-wrapper');
   if (!formWrapper) return;
+  
+  // Русская версия
   let iframeSrc = "https://script.google.com/macros/s/AKfycbw0X0_uO0LEeQnf-hmN7i8OYK_AnDQhOy-7o4lP3cj5jIzWHFvKuqrPM9ytGhk4qf7f0w/exec";
+  
+  // Английская версия
   if (lang === 'en') {
     iframeSrc = "https://script.google.com/macros/s/AKfycby1ZpI8gGA1g0F19opmVWR1T6VRoYRnYVmmTUvW9ilKOQHLsTkZPQBymqS9qoGjkQkp/exec";
   }
+  
   formWrapper.innerHTML = `<iframe src="${iframeSrc}" frameborder="0" marginheight="0" marginwidth="0"></iframe>`;
 }
 
-// ============================================
-// MOBILE MENU
-// ============================================
-
-function initMobileMenu() {
-  const menuToggle = document.getElementById('menu-toggle');
-  const navMenu = document.getElementById('nav-menu');
-  const navLinks = navMenu ? navMenu.querySelectorAll('.nav-link') : [];
-
-  const backBtn = document.getElementById('menu-back-btn');
-  if (backBtn) {
-    backBtn.addEventListener('click', function () {
-      const toggle = document.getElementById('menu-toggle');
-      if (toggle && navMenu) {
-        toggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.classList.remove('menu-open');
+function translatePage() {
+  const currentLang = getCurrentLanguage();
+  const elements = document.querySelectorAll('[data-i18n]');
+  
+  elements.forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    if (translations[currentLang] && translations[currentLang][key]) {
+      // Replace only the first text node, preserving child elements like spans
+      const firstTextNode = Array.from(element.childNodes).find(node => node.nodeType === 3);
+      if (firstTextNode) {
+        firstTextNode.textContent = translations[currentLang][key];
+      } else {
+        // If no text node exists, add the text
+        element.insertBefore(document.createTextNode(translations[currentLang][key]), element.firstChild);
       }
+    }
+  });
+
+  // Обновить язык документа
+  document.documentElement.lang = currentLang;
+}
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  const currentLang = getCurrentLanguage();
+  
+  // Translate page text
+  translatePage();
+  
+  // Load generator form with correct language
+  updateGeneratorForm(currentLang);
+  
+  // Update language button
+  const langBtn = document.getElementById('lang-btn');
+  if (langBtn) {
+    langBtn.textContent = currentLang === 'ru' ? 'EN' : 'RU';
+    langBtn.addEventListener('click', function() {
+      const current = getCurrentLanguage();
+      const newLang = current === 'ru' ? 'en' : 'ru';
+      setLanguage(newLang);
     });
   }
+});
 
-  if (menuToggle) {
-    menuToggle.addEventListener('click', function () {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('active');
-      document.body.classList.toggle('menu-open');
-    });
+// ============================================
+// THEME TOGGLE - DARK MODE
+// ============================================
+
+const themeBtn = document.getElementById('theme-btn');
+if (themeBtn) {
+  // Load saved theme preference
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeBtn.textContent = '☀️';
   }
 
+  themeBtn.addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    themeBtn.textContent = isDarkMode ? '☀️' : '🌙';
+  });
+}
+
+// ============================================
+// MOBILE MENU TOGGLE
+// ============================================
+
+const menuToggle = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
+const menuBackBtn = document.getElementById('menu-back-btn');
+
+if (menuToggle && navMenu) {
+  menuToggle.addEventListener('click', function() {
+    menuToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+  });
+
+  // Close menu when a link is clicked
+  const navLinks = navMenu.querySelectorAll('a[href]');
   navLinks.forEach(link => {
-    link.addEventListener('click', function () {
-      if (menuToggle && navMenu) {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.classList.remove('menu-open');
-      }
+    link.addEventListener('click', function() {
+      menuToggle.classList.remove('active');
+      navMenu.classList.remove('active');
+      document.body.classList.remove('menu-open');
     });
   });
 
-  document.addEventListener('click', function (event) {
-    if (navMenu && menuToggle &&
-      !navMenu.contains(event.target) &&
-      !menuToggle.contains(event.target)) {
+  // Close menu when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!event.target.closest('.navbar')) {
       menuToggle.classList.remove('active');
       navMenu.classList.remove('active');
       document.body.classList.remove('menu-open');
     }
   });
+}
 
-  window.addEventListener('resize', function () {
-    if (window.innerWidth > 768) {
-      if (menuToggle && navMenu) {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.classList.remove('menu-open');
-      }
-    }
+if (menuBackBtn) {
+  menuBackBtn.addEventListener('click', function() {
+    history.back();
   });
 }
 
 // ============================================
-// DROPDOWN МЕНЮ
+// DROPDOWN MENU TOGGLE (DESKTOP & MOBILE)
 // ============================================
 
-function initDropdowns() {
-  const hasPointer = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-  document.querySelectorAll('.nav-item.has-dropdown').forEach(function (item) {
-    let hideTimer = null;
-
-    const openItem = () => {
-      clearTimeout(hideTimer);
-      item.parentNode.querySelectorAll('.nav-item.has-dropdown.open').forEach(function (sib) {
-        if (sib !== item) {
-          sib.classList.remove('open');
-          sib.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
+const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+dropdownToggles.forEach(toggle => {
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    const parentItem = this.closest('.nav-item');
+    if (parentItem) {
+      // Close other open dropdowns at same level
+      const siblings = parentItem.parentNode.querySelectorAll('.nav-item.has-dropdown.open');
+      siblings.forEach(sibling => {
+        if (sibling !== parentItem) {
+          sibling.classList.remove('open');
         }
       });
-      item.classList.add('open');
-    };
+      // Toggle current dropdown
+      parentItem.classList.toggle('open');
+    }
+  });
+});
 
-    const closeItem = (delay) => {
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(() => {
-        item.classList.remove('open');
-        item.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-      }, delay);
-    };
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.navbar')) {
+    const openItems = document.querySelectorAll('.nav-item.has-dropdown.open');
+    openItems.forEach(item => {
+      item.classList.remove('open');
+    });
+  }
+});
 
-    item.addEventListener('mouseenter', function () { if (hasPointer()) openItem(); });
-    item.addEventListener('mouseleave', function () { if (hasPointer()) closeItem(600); });
-
-    const toggle = item.querySelector(':scope > .dropdown-toggle');
-    if (toggle) {
-      const newToggle = toggle.cloneNode(true);
-      toggle.parentNode.replaceChild(newToggle, toggle);
-      newToggle.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (!hasPointer()) {
-          const wasOpen = item.classList.contains('open');
-          item.parentNode.querySelectorAll('.nav-item.has-dropdown.open').forEach(function (sib) {
-            sib.classList.remove('open');
-            sib.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-          });
-          if (!wasOpen) item.classList.add('open');
+// Submenu toggle for mobile
+const submenuToggles = document.querySelectorAll('.submenu-toggle');
+submenuToggles.forEach(toggle => {
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    const parentSubmenu = this.closest('.dropdown-submenu');
+    if (parentSubmenu) {
+      // Close other open submenus at same level
+      const siblings = parentSubmenu.parentNode.querySelectorAll('.dropdown-submenu.open');
+      siblings.forEach(sibling => {
+        if (sibling !== parentSubmenu) {
+          sibling.classList.remove('open');
         }
       });
+      // Toggle current submenu
+      parentSubmenu.classList.toggle('open');
     }
   });
-
-  document.querySelectorAll('.dropdown-submenu').forEach(function (sub) {
-    let hideTimer = null;
-
-    const openSub = () => {
-      clearTimeout(hideTimer);
-      sub.parentNode.querySelectorAll('.dropdown-submenu.open').forEach(s => {
-        if (s !== sub) s.classList.remove('open');
-      });
-      sub.classList.add('open');
-    };
-
-    const closeSub = (delay) => {
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(() => sub.classList.remove('open'), delay);
-    };
-
-    sub.addEventListener('mouseenter', function () { if (hasPointer()) openSub(); });
-    sub.addEventListener('mouseleave', function () { if (hasPointer()) closeSub(600); });
-
-    const link = sub.querySelector(':scope > .dropdown-link');
-    if (link) {
-      const newLink = link.cloneNode(true);
-      link.parentNode.replaceChild(newLink, link);
-      newLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (!hasPointer()) {
-          const wasOpen = sub.classList.contains('open');
-          sub.parentNode.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-          if (!wasOpen) sub.classList.add('open');
-        }
-      });
-    }
-  });
-
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('.nav-item.has-dropdown')) {
-      document.querySelectorAll('.nav-item.has-dropdown.open').forEach(function (item) {
-        item.classList.remove('open');
-        item.querySelectorAll('.dropdown-submenu.open').forEach(s => s.classList.remove('open'));
-      });
-    }
-  });
-}
+});
 
 // ============================================
-// ИНИЦИАЛИЗАЦИЯ
+// RESPONSIVE BEHAVIOR
 // ============================================
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    initThemeSystem();
-    initLanguageSystem();
-    initMobileMenu();
-    initDropdowns();
-  });
-} else {
-  initThemeSystem();
-  initLanguageSystem();
-  initMobileMenu();
-  initDropdowns();
-}
+window.addEventListener('resize', function() {
+  // Reset menu visibility on desktop
+  if (window.innerWidth > 768) {
+    menuToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.classList.remove('menu-open');
+  }
+});
