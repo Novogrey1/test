@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Логические схемы - TRP RP</title>
-    <link rel="stylesheet" href="../../../css/circuit-styles.css">
+    <title>Редактор карт - TRP RP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../../css/map-editor-styles.css">
     <link rel="icon" type="image/png" href="../../../images/avatar.png">
 </head>
 <body>
@@ -27,11 +28,11 @@
                 <li class="nav-item"><a href="../../../events/" class="nav-link" data-i18n="События и смены">События и смены</a></li>
 
                 <li class="nav-item has-dropdown">
-                    <button class="dropdown-toggle" data-i18n="Документация">Документация <span class="dropdown-arrow">▾</span></button>
+                    <button class="dropdown-toggle" data-i18n="Документация">Документация <span class="dropdown-arrow">&#9662;</span></button>
                     <ul class="dropdown-menu">
                         <li><a href="#" class="dropdown-link" data-i18n="Устав проекта">Устав проекта</a></li>
                         <li class="dropdown-submenu">
-                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Для сотрудников">Для сотрудников <span class="submenu-arrow">▸</span></a>
+                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Для сотрудников">Для сотрудников <span class="submenu-arrow">&#9658;</span></a>
                             <ul class="dropdown-submenu-list">
                                 <li><a href="../../../documentation/employees/routes/" class="dropdown-link" data-i18n="Маршруты">Маршруты</a></li>
                                 <li><a href="../../../documentation/employees/radio-regulations/" class="dropdown-link" data-i18n="Регламент радиообмена">Регламент радиообмена</a></li>
@@ -41,7 +42,7 @@
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
-                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Для отделов">Для отделов <span class="submenu-arrow">▸</span></a>
+                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Для отделов">Для отделов <span class="submenu-arrow">&#9658;</span></a>
                             <ul class="dropdown-submenu-list">
                                 <li><a href="../../../documentation/departments/directors-instructions/" class="dropdown-link" data-i18n="Директор ГТОП/ТПОХ">Директор ГТОП/ТПОХ</a></li>
                                 <li><a href="../../../documentation/departments/hrs-instructions/" class="dropdown-link" data-i18n="КОУП">КОУП</a></li>
@@ -57,10 +58,10 @@
                 </li>
 
                 <li class="nav-item has-dropdown">
-                    <button class="dropdown-toggle" data-i18n="Анкеты">Анкеты <span class="dropdown-arrow">▾</span></button>
+                    <button class="dropdown-toggle" data-i18n="Анкеты">Анкеты <span class="dropdown-arrow">&#9662;</span></button>
                     <ul class="dropdown-menu">
                         <li class="dropdown-submenu">
-                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Заявления">Заявления <span class="submenu-arrow">▸</span></a>
+                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Заявления">Заявления <span class="submenu-arrow">&#9658;</span></a>
                             <ul class="dropdown-submenu-list">
                                 <li><a href="../../../forms/applications/exam/" class="dropdown-link" data-i18n="Экзамен">Экзамен</a></li>
                                 <li><a href="../../../forms/applications/vacation_&_sick/" class="dropdown-link" data-i18n="Отпуск & Больничный">Отпуск &amp; Больничный</a></li>
@@ -70,7 +71,7 @@
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
-                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Персонал">Персонал <span class="submenu-arrow">▸</span></a>
+                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Персонал">Персонал <span class="submenu-arrow">&#9658;</span></a>
                             <ul class="dropdown-submenu-list">
                                 <li><a href="../../../forms/personnel/dhuta/" class="dropdown-link" data-i18n="ЗНГТУ">ЗНГТУ</a></li>
                                 <li><a href="../../../forms/personnel/dtdmi_&_dtdhi/" class="dropdown-link" data-i18n="ДТПГО & ДТПоХ">ДТПГО &amp; ДТПоХ</a></li>
@@ -83,7 +84,7 @@
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
-                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Тесты">Тесты <span class="submenu-arrow">▸</span></a>
+                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Тесты">Тесты <span class="submenu-arrow">&#9658;</span></a>
                             <ul class="dropdown-submenu-list">
                                 <li><a href="../../../forms/tests/" class="dropdown-link" data-i18n="Теоретический экзамен">Теоретический экзамен</a></li>
                             </ul>
@@ -95,19 +96,19 @@
                 </li>
 
                 <li class="nav-item has-dropdown">
-                    <button class="dropdown-toggle" data-i18n="Прочее">Прочее <span class="dropdown-arrow">▾</span></button>
+                    <button class="dropdown-toggle" data-i18n="Прочее">Прочее <span class="dropdown-arrow">&#9662;</span></button>
                     <ul class="dropdown-menu">
                         <li class="dropdown-submenu">
-                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Редакторы и генераторы">Редакторы и генераторы <span class="submenu-arrow">▸</span></a>
+                            <a href="#" class="dropdown-link submenu-toggle" data-i18n="Редакторы и генераторы">Редакторы и генераторы <span class="submenu-arrow">&#9658;</span></a>
                             <ul class="dropdown-submenu-list">
                                 <li><a href="../vehicle_spawn_generator/" class="dropdown-link" data-i18n="Генератор спавна машин">Генератор спавна машин</a></li>
-                                <li><a href="../logic_circuits/" class="dropdown-link active" data-i18n="Логические схемы">Логические схемы</a></li>
+                                <li><a href="../logic_circuits/" class="dropdown-link" data-i18n="Логические схемы">Логические схемы</a></li>
                                 <li><a href="../livery_creating_generator/" class="dropdown-link" data-i18n="Создание окрасок">Создание окрасок</a></li>
                                 <li><a href="../route_editor/" class="dropdown-link" data-i18n="Редактор маршрутов">Редактор маршрутов</a></li>
                                 <li><a href="../announcement/" class="dropdown-link" data-i18n="Информатор">Информатор</a></li>
                                 <li><a href="../schedule/" class="dropdown-link" data-i18n="Расписание">Расписание</a></li>
                                 <li><a href="../tdw_stage_generator/" class="dropdown-link" data-i18n="Трибуна TDW">Трибуна TDW</a></li>
-                                <li><a href="../map_configurator/" class="dropdown-link" data-i18n="Конфигуратор опубликованной карты">Конфигуратор опубликованной карты</a></li>
+                                <li><a href="../map_configurator/" class="dropdown-link active" data-i18n="Конфигуратор опубликованной карты">Конфигуратор опубликованной карты</a></li>
                             </ul>
                         </li>
                         <li><a href="../../trp_rp_project_rules/" class="dropdown-link" data-i18n="Правила проекта TRP RP">Правила проекта "TRP RP"</a></li>
@@ -123,7 +124,7 @@
                 </li>
 
                 <li class="nav-item has-dropdown">
-                    <button class="dropdown-toggle" data-i18n="Социальные сети">Социальные сети <span class="dropdown-arrow">▾</span></button>
+                    <button class="dropdown-toggle" data-i18n="Социальные сети">Социальные сети <span class="dropdown-arrow">&#9662;</span></button>
                     <ul class="dropdown-menu">
                         <li><a href="https://discord.gg/gbjxtVF6bA" target="_blank" class="dropdown-link" data-i18n="Discord">Discord</a></li>
                         <li><a href="https://tmspk.gg/DwEYEBJz" target="_blank" class="dropdown-link" data-i18n="TeamSpeak">TeamSpeak</a></li>
@@ -138,19 +139,98 @@
                     <button id="lang-btn" class="lang-btn">EN</button>
                 </li>
                 <li class="theme-selector">
-                    <button id="theme-btn" class="theme-btn" title="Toggle dark mode">☀️</button>
+                    <button id="theme-btn" class="theme-btn" title="Toggle dark mode">🌙</button>
                 </li>
             </ul>
         </div>
     </nav>
 
     <section class="generator-section" id="generator">
-        <div class="generator-container">
-            <div class="form-card">
-                <div class="form-wrapper" id="form-wrapper">
-                    <!-- Фрейм будет загружен здесь JavaScript -->
+        <div class="map-editor-wrapper">
+
+            <h1 class="map-editor-title" data-i18n="Конфигуратор опубликованной карты">Конфигуратор опубликованной карты</h1>
+
+            <form id="map-form" autocomplete="off">
+
+                <div class="form-field">
+                    <label for="map-name" class="form-label" data-i18n="Название карты">
+                        Название карты <span class="required-star">*</span>
+                    </label>
+                    <input type="text" id="map-name" data-i18n-placeholder="placeholder-map-name" placeholder="Например: MyCustomMap" class="form-input">
+                    <p class="field-description" data-i18n-html="field-desc-name">
+                        Параметр <span class="hl">Name</span> — внутреннее уникальное имя карты в системе игры. Рекомендуется использовать только латинские буквы и цифры.
+                    </p>
+                    <span id="name-error" class="error-msg" data-i18n="Пожалуйста, введите название карты.">Пожалуйста, введите название карты.</span>
+                </div>
+
+                <div class="form-field">
+                    <label for="map-image" class="form-label" data-i18n="ID изображения (Image)">ID изображения (Image)</label>
+                    <input type="number" id="map-image" data-i18n-placeholder="placeholder-map-image" placeholder="Например: 140171272" class="form-input" min="1" step="1">
+                    <p class="field-description" data-i18n-html="field-desc-image">
+                        Параметр <span class="hl">Image</span> — числовой ID изображения-превью карты, загруженного в Roblox. Как получить ID:
+                        <br>1. Зайдите на <a href="https://create.roblox.com/" target="_blank" rel="noopener" class="roblox-link">create.roblox.com</a>
+                        <br>2. Откройте <span class="hl">Creations → Development Items → Decals / Images</span>
+                        <br>3. Загрузите нужное изображение и скопируйте числовой ID из карточки ассета или адресной строки
+                        <br><span class="warn">Поле необязательное</span> — если оставить пустым, изображение для карты задано не будет.
+                    </p>
+                    <span id="image-error" class="error-msg" data-i18n="ID изображения должен быть положительным числом.">ID изображения должен быть положительным числом.</span>
+                </div>
+
+                <div class="toggle-grid">
+                    <div class="toggle-card val-false" id="card-isEmpty">
+                        <label for="is-empty" class="form-label">IsEmpty</label>
+                        <select id="is-empty" class="form-select">
+                            <option value="false" selected data-i18n="false — нет">false — нет</option>
+                            <option value="true" data-i18n="true — да">true — да</option>
+                        </select>
+                        <p class="field-description" data-i18n-html="field-desc-isEmpty">
+                            Управляет загрузкой карты по умолчанию. Если <span class="hl">true</span> — стандартная карта <strong>не загружается</strong>. Значение <span class="warn">обязано совпадать</span> с <code>OnLaunchNotLoadDefaultMap</code> на сервере — несоответствие вызовет ошибку загрузки.
+                        </p>
+                    </div>
+                    <div class="toggle-card val-false" id="card-isEmptyRoutes">
+                        <label for="is-empty-routes" class="form-label">IsEmptyRoutesAndStops</label>
+                        <select id="is-empty-routes" class="form-select">
+                            <option value="false" selected data-i18n="false — нет">false — нет</option>
+                            <option value="true" data-i18n="true — да">true — да</option>
+                        </select>
+                        <p class="field-description" data-i18n-html="field-desc-isEmptyRoutes">
+                            Аналог параметра <code>OnLaunchNotLoadDefaultMapSpawnsAndRoutes</code>. Если <span class="hl">true</span> — маршруты и остановки по умолчанию <strong>не загружаются</strong>. Для полностью кастомных карт без стандартной разметки маршрутов.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" id="generate-map" class="btn btn-generate" data-i18n="Генерировать JSON">Генерировать JSON</button>
+                    <button type="button" id="clear-form" class="btn btn-clear" data-i18n="Очистить">Очистить</button>
+                </div>
+            </form>
+
+            <div class="output-section">
+                <div class="form-field">
+                    <h3 class="output-title" data-i18n="Результат:">Результат:</h3>
+                    <textarea id="output" class="form-textarea" data-i18n-placeholder="placeholder-output" placeholder="Сгенерированный JSON появится здесь..." readonly></textarea>
+                    <button type="button" id="copy-output" class="btn btn-copy" data-i18n="Копировать">Копировать</button>
+                </div>
+                <div class="form-field">
+                    <h3 class="output-title" data-i18n="Вставить JSON карты:">Вставить JSON карты:</h3>
+                    <textarea id="input-json" class="form-textarea form-textarea-small"
+                        placeholder='{"Name":"MapName","Image":12345,"IsEmpty":false,"IsEmptyRoutesAndStops":false}'></textarea>
+                    <button type="button" id="load-json" class="btn btn-copy" data-i18n="Загрузить">Загрузить</button>
                 </div>
             </div>
+
+            <div class="instruction-section">
+                <h3 class="instruction-title" data-i18n="Инструкция по использованию редактора карт">Инструкция по использованию редактора карт</h3>
+                <p class="instruction-text" data-i18n-html="instruction-intro">Принцип работы конфигуратора карт в <span class="instruction-bold">Ved's Trolleybus Place</span>. Внимательно ознакомьтесь с инструкцией во избежание недопонимания.</p>
+                <ul class="instruction-list">
+                    <li data-i18n-html="instruction-item-name"><span class="instruction-bold">Название карты (Name)</span> — уникальный внутренний идентификатор карты. Рекомендуется только латиница и цифры. <span class="required-text">(Обязательный параметр)</span></li>
+                    <li data-i18n-html="instruction-item-image"><span class="instruction-bold">ID изображения (Image)</span> — числовой ID превью-картинки из Roblox. Загрузите изображение на <a href="https://create.roblox.com/" target="_blank" rel="noopener" class="roblox-link">create.roblox.com</a>, затем найдите ассет в разделе «Creations → Development Items» и скопируйте ID из карточки.</li>
+                    <li data-i18n-html="instruction-item-isEmpty"><span class="instruction-bold">IsEmpty</span> — определяет, загружается ли стандартная карта при старте. При значении <code>true</code> стандартная карта не загружается. Должно совпадать с <code>OnLaunchNotLoadDefaultMap</code>.</li>
+                    <li data-i18n-html="instruction-item-isEmptyRoutes"><span class="instruction-bold">IsEmptyRoutesAndStops</span> — определяет, загружаются ли маршруты и остановки по умолчанию. Аналог настройки <code>OnLaunchNotLoadDefaultMapSpawnsAndRoutes</code>.</li>
+                </ul>
+                <p class="instruction-text instruction-note" data-i18n-html="instruction-note"><span class="instruction-bold">Примечание:</span> Для применения конфигурации вставьте сгенерированный JSON в TrPEditMapDetails.</p>
+            </div>
+
         </div>
     </section>
 
@@ -183,6 +263,7 @@
         <p data-i18n="© 2026 TRP RP. Все права защищены.">&copy; 2026 TRP RP. Все права защищены.</p>
     </footer>
 
-    <script src="../../../js/circuit-script.js"></script>
+    <div id="notification"></div>
+    <script src="../../../js/map-editor-script.js"></script>
 </body>
 </html>
