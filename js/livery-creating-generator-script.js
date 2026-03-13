@@ -400,7 +400,8 @@ document.addEventListener('DOMContentLoaded', function() {
   if (langBtn) {
     langBtn.textContent = currentLang === 'ru' ? 'EN' : 'RU';
     langBtn.addEventListener('click', function() {
-      const newLang = currentLang === 'ru' ? 'en' : 'ru';
+      const current = getCurrentLanguage();
+      const newLang = current === 'ru' ? 'en' : 'ru';
       setLanguage(newLang);
     });
   }
