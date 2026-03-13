@@ -16,7 +16,7 @@ const translations = {
     "Социальные сети": "Социальные сети",
     "TRP RP": "TRP RP",
     "← Назад": "← Назад",
-    
+
     // Documentation submenu
     "Устав проекта": "Устав проекта",
     "Для сотрудников": "Для сотрудников",
@@ -34,7 +34,7 @@ const translations = {
     "Лекции": "Лекции",
     "Запуск троллейбусов": "Запуск троллейбусов",
     "Схемы депо и маршрутов": "Схемы депо и маршрутов",
-    
+
     // Applications submenu
     "Заявления": "Заявления",
     "Экзамен": "Экзамен",
@@ -52,7 +52,7 @@ const translations = {
     "Прочие анкеты": "Прочие анкеты",
     "Тесты": "Тесты",
     "Теоретический экзамен": "Теоретический экзамен",
-    
+
     // Other submenu
     "Редакторы и генераторы": "Редакторы и генераторы",
     "Генератор спавна машин": "Генератор спавна машин",
@@ -70,7 +70,7 @@ const translations = {
     "Команды": "Команды",
     "Идентификатор работника": "Идентификатор работника",
     "Административный сайт": "Административный сайт",
-    
+
     // Social media
     "Discord": "Discord",
     "TeamSpeak": "TeamSpeak",
@@ -78,14 +78,87 @@ const translations = {
     "TikTok": "TikTok",
     "Telegram": "Telegram",
     "ВКонтакте": "ВКонтакте",
-    
+
     // Footer
     "Контакты проекта &quot;TRP RP&quot;": "Контакты проекта \"TRP RP\"",
     "Юридическая документация проекта &quot;TRP RP&quot;": "Юридическая документация проекта \"TRP RP\"",
     "Политика конфиденциальности": "Политика конфиденциальности",
     "Пользовательское соглашение": "Пользовательское соглашение",
     "Проект &quot;TRP RP&quot; не является юридическим лицом и не предоставляет никаких услуг!": "Проект \"TRP RP\" не является юридическим лицом и не предоставляет никаких услуг!",
-    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. Все права защищены."
+    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. Все права защищены.",
+
+    // 403 Banner
+    "banner-title": "Возникает ошибка 403?",
+    "banner-desc": "Если при загрузке генератора появляется ошибка 403 — воспользуйтесь локальной версией. Она работает прямо в браузере без подключения к серверу Google.",
+    "banner-btn-local": "🖥️ Переключиться на локальную версию",
+    "banner-btn-server": "🌐 Вернуться к серверной версии",
+    "banner-title-local": "✅ Локальная версия активна",
+
+    // Local generator UI
+    "lg-title": "🚍 Генератор кодов спавна транспорта",
+    "lg-number": "Бортовой номер",
+    "lg-number-ph": "Введите номер (1–9999)",
+    "lg-number-err": "Введите номер от 1 до 9999.",
+    "lg-vehicle": "Название транспорта",
+    "lg-side-ad": "Боковая реклама",
+    "lg-boards": "Электронные табло",
+    "lg-april": "Экраны 1 апреля",
+    "lg-tester": "Бонусы раннего тестера TrP",
+    "lg-custom": "Кастомный транспорт",
+    "lg-modern": "Современная морда (От 750 поинтов)",
+    "lg-livery": "Окраска",
+    "lg-livery-none": "Выберите окраску",
+    "lg-livery-na": "Окраски недоступны",
+    "lg-flagL": "Левый флаг",
+    "lg-flagR": "Правый флаг",
+    "lg-flag-choose": "Выберите флаг",
+    "lg-flag-na": "Флаги недоступны",
+    "lg-existing": "Вставить существующий код",
+    "lg-existing-ph": "Вставьте JSON-код сюда",
+    "lg-load-code": "Загрузить код",
+    "lg-generate": "Сгенерировать",
+    "lg-save": "Сохранить",
+    "lg-load": "Загруженные коды",
+    "lg-copy": "Копировать",
+    "lg-on": "Включена",
+    "lg-random": "Случайная",
+    "lg-off": "Выключена",
+    "lg-on2": "Включены",
+    "lg-random2": "Случайные",
+    "lg-off2": "Выключены",
+    "lg-on3": "Включён",
+    "lg-random3": "Случайный",
+    "lg-off3": "Выключен",
+    "lg-random4": "Случайные",
+    "lg-on4": "Включены",
+    "lg-off4": "Выключены",
+    // Save modal
+    "lg-save-title": "Сохранить код",
+    "lg-save-name-ph": "Введите название кода",
+    "lg-save-warning": "⚠️ Коды сохраняются в кэше браузера. Они не связаны с серверной версией и будут удалены при очистке кэша, данных сайта или в режиме инкогнито.",
+    "lg-save-btn": "Сохранить",
+    "lg-cancel": "Отмена",
+    // Load modal
+    "lg-load-title": "Сохранённые коды",
+    "lg-export": "Экспортировать",
+    "lg-import": "Импортировать",
+    "lg-close": "Закрыть",
+    "lg-no-saves": "Нет сохранённых кодов",
+    "lg-load-btn": "Загрузить",
+    "lg-delete-btn": "Удалить",
+    // Notifications
+    "lg-copied": "Код успешно скопирован!",
+    "lg-no-copy": "Нет кода для копирования!",
+    "lg-saved-ok": "Код успешно сохранён!",
+    "lg-loaded-ok": "Код успешно загружен!",
+    "lg-deleted-ok": "Код успешно удалён!",
+    "lg-exported-ok": "Коды экспортированы!",
+    "lg-imported-ok": "Коды импортированы!",
+    "lg-invalid-json": "Неверный JSON-код",
+    "lg-invalid-file": "Неверный JSON-файл",
+    "lg-no-name": "Введите название и сгенерируйте код!",
+    "lg-name-long": "Название не должно превышать 50 символов",
+    "lg-no-file": "Выберите JSON-файл"
   },
   "en": {
     // Main menu
@@ -100,7 +173,7 @@ const translations = {
     "Социальные сети": "Social Media",
     "TRP RP": "TRP RP",
     "← Назад": "← Back",
-    
+
     // Documentation submenu
     "Устав проекта": "Project Charter",
     "Для сотрудников": "For Employees",
@@ -118,7 +191,7 @@ const translations = {
     "Лекции": "Lectures",
     "Запуск троллейбусов": "Trolleybus Launch",
     "Схемы депо и маршрутов": "Depot and Route Schemes",
-    
+
     // Applications submenu
     "Заявления": "Applications",
     "Экзамен": "Exam",
@@ -136,7 +209,7 @@ const translations = {
     "Прочие анкеты": "Other Forms",
     "Тесты": "Tests",
     "Теоретический экзамен": "Theoretical Exam",
-    
+
     // Other submenu
     "Редакторы и генераторы": "Editors and Generators",
     "Генератор спавна машин": "Vehicle Spawn Generator",
@@ -154,7 +227,7 @@ const translations = {
     "Команды": "Commands",
     "Идентификатор работника": "Employee ID",
     "Административный сайт": "Admin Site",
-    
+
     // Social media
     "Discord": "Discord",
     "TeamSpeak": "TeamSpeak",
@@ -162,14 +235,87 @@ const translations = {
     "TikTok": "TikTok",
     "Telegram": "Telegram",
     "ВКонтакте": "VKontakte",
-    
+
     // Footer
     "Контакты проекта &quot;TRP RP&quot;": "TRP RP Project Contacts",
     "Юридическая документация проекта &quot;TRP RP&quot;": "TRP RP Project Legal Documentation",
     "Политика конфиденциальности": "Privacy Policy",
     "Пользовательское соглашение": "Terms of Service",
     "Проект &quot;TRP RP&quot; не является юридическим лицом и не предоставляет никаких услуг!": "The TRP RP project is not a legal entity and does not provide any services!",
-    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. All rights reserved."
+    "© 2026 TRP RP. Все права защищены.": "© 2026 TRP RP. All rights reserved.",
+
+    // 403 Banner
+    "banner-title": "Getting a 403 error?",
+    "banner-desc": "If the generator fails to load with a 403 error — use the local version. It runs directly in your browser without connecting to Google's servers.",
+    "banner-btn-local": "🖥️ Switch to local version",
+    "banner-btn-server": "🌐 Back to server version",
+    "banner-title-local": "✅ Local version is active",
+
+    // Local generator UI
+    "lg-title": "🚍 Vehicle Spawn Code Generator",
+    "lg-number": "Vehicle Number",
+    "lg-number-ph": "Enter number (1–9999)",
+    "lg-number-err": "Enter a number between 1 and 9999.",
+    "lg-vehicle": "Vehicle Name",
+    "lg-side-ad": "Side Advertisement",
+    "lg-boards": "Electronic Destination Boards",
+    "lg-april": "April Fools Screens",
+    "lg-tester": "TrP Early Tester Bonuses",
+    "lg-custom": "Custom Vehicle",
+    "lg-modern": "Modern Front (750+ points)",
+    "lg-livery": "Livery",
+    "lg-livery-none": "Select livery",
+    "lg-livery-na": "Liveries unavailable",
+    "lg-flagL": "Left Flag",
+    "lg-flagR": "Right Flag",
+    "lg-flag-choose": "Select flag",
+    "lg-flag-na": "Flags unavailable",
+    "lg-existing": "Load existing code",
+    "lg-existing-ph": "Paste JSON code here",
+    "lg-load-code": "Load code",
+    "lg-generate": "Generate",
+    "lg-save": "Save",
+    "lg-load": "Saved codes",
+    "lg-copy": "Copy",
+    "lg-on": "Enabled",
+    "lg-random": "Random",
+    "lg-off": "Disabled",
+    "lg-on2": "Enabled",
+    "lg-random2": "Random",
+    "lg-off2": "Disabled",
+    "lg-on3": "Enabled",
+    "lg-random3": "Random",
+    "lg-off3": "Disabled",
+    "lg-random4": "Random",
+    "lg-on4": "Enabled",
+    "lg-off4": "Disabled",
+    // Save modal
+    "lg-save-title": "Save Code",
+    "lg-save-name-ph": "Enter a name for this code",
+    "lg-save-warning": "⚠️ Codes are saved in your browser cache. They are not linked to the server version and will be deleted if you clear your browser cache, site data, or use incognito mode.",
+    "lg-save-btn": "Save",
+    "lg-cancel": "Cancel",
+    // Load modal
+    "lg-load-title": "Saved Codes",
+    "lg-export": "Export",
+    "lg-import": "Import",
+    "lg-close": "Close",
+    "lg-no-saves": "No saved codes",
+    "lg-load-btn": "Load",
+    "lg-delete-btn": "Delete",
+    // Notifications
+    "lg-copied": "Code copied!",
+    "lg-no-copy": "No code to copy!",
+    "lg-saved-ok": "Code saved successfully!",
+    "lg-loaded-ok": "Code loaded!",
+    "lg-deleted-ok": "Code deleted!",
+    "lg-exported-ok": "Codes exported!",
+    "lg-imported-ok": "Codes imported!",
+    "lg-invalid-json": "Invalid JSON code",
+    "lg-invalid-file": "Invalid JSON file",
+    "lg-no-name": "Enter a name and generate a code first!",
+    "lg-name-long": "Name must not exceed 50 characters",
+    "lg-no-file": "Select a JSON file"
   }
 };
 
@@ -186,86 +332,682 @@ function setLanguage(lang) {
   location.reload();
 }
 
+function t(key) {
+  const lang = getCurrentLanguage();
+  return (translations[lang] && translations[lang][key]) || (translations['ru'][key]) || key;
+}
+
 function updateGeneratorForm(lang) {
   const formWrapper = document.getElementById('form-wrapper');
   if (!formWrapper) return;
-  
-  // Русская версия
-  let iframeSrc = "https://script.google.com/macros/s/AKfycbwAKJv-ePXl0jpHQuyD3IK_OJjku2-ji_SsntWLkrmhEt5ocGdtfY552ZAXYs9qllJb/exec";
-  
-  // Английская версия
-  if (lang === 'en') {
-    iframeSrc = "https://script.google.com/macros/s/AKfycby_US7cmp-SPkdKOiUUraMz6PIFUDe6lSdG3D0uk4dg7hrJpWp_M1mZHeTv6PG0i3T1EQ/exec";
+  const mode = localStorage.getItem('generatorMode') || 'server';
+  if (mode === 'local') {
+    renderLocalGenerator(lang);
+  } else {
+    let iframeSrc = "https://script.google.com/macros/s/AKfycbwAKJv-ePXl0jpHQuyD3IK_OJjku2-ji_SsntWLkrmhEt5ocGdtfY552ZAXYs9qllJb/exec";
+    if (lang === 'en') {
+      iframeSrc = "https://script.google.com/macros/s/AKfycby_US7cmp-SPkdKOiUUraMz6PIFUDe6lSdG3D0uk4dg7hrJpWp_M1mZHeTv6PG0i3T1EQ/exec";
+    }
+    formWrapper.innerHTML = `<iframe src="${iframeSrc}" frameborder="0" marginheight="0" marginwidth="0"></iframe>`;
   }
-  
-  formWrapper.innerHTML = `<iframe src="${iframeSrc}" frameborder="0" marginheight="0" marginwidth="0"></iframe>`;
 }
 
 function translatePage() {
-  const currentLang = getCurrentLanguage();
+  const lang = getCurrentLanguage();
   const elements = document.querySelectorAll('[data-i18n]');
-  
-  elements.forEach(element => {
-    const key = element.getAttribute('data-i18n');
-    if (translations[currentLang] && translations[currentLang][key]) {
-      // Replace only the first text node, preserving child elements like spans
-      const firstTextNode = Array.from(element.childNodes).find(node => node.nodeType === 3);
-      if (firstTextNode) {
-        firstTextNode.textContent = translations[currentLang][key];
-      } else {
-        // If no text node exists, add the text
-        element.insertBefore(document.createTextNode(translations[currentLang][key]), element.firstChild);
-      }
-    }
+  elements.forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const tr = translations[lang] && translations[lang][key];
+    if (tr) el.textContent = tr;
   });
-
-  // Обновить язык документа
-  document.documentElement.lang = currentLang;
 }
 
 // ============================================
-// INITIALIZATION
+// 403 BANNER LOGIC
+// ============================================
+
+function initBanner() {
+  const banner      = document.getElementById('error-banner');
+  const toggleBtn   = document.getElementById('error-banner-toggle');
+  const btnLocal    = document.getElementById('switch-local-btn');
+  const btnServer   = document.getElementById('switch-server-btn');
+  const titleEl     = banner ? banner.querySelector('.error-banner-title') : null;
+  const descEl      = banner ? banner.querySelector('.error-banner-desc')  : null;
+
+  if (!banner) return;
+
+  const mode = localStorage.getItem('generatorMode') || 'server';
+
+  // Translations
+  if (titleEl) titleEl.textContent = mode === 'local' ? t('banner-title-local') : t('banner-title');
+  if (descEl)  descEl.textContent  = t('banner-desc');
+  if (btnLocal)  btnLocal.textContent  = t('banner-btn-local');
+  if (btnServer) btnServer.textContent = t('banner-btn-server');
+
+  // Banner color by mode
+  if (mode === 'local') {
+    banner.classList.add('error-banner--local');
+    if (btnLocal)  btnLocal.style.display  = 'none';
+    if (btnServer) btnServer.style.display = '';
+  } else {
+    banner.classList.remove('error-banner--local');
+    if (btnLocal)  btnLocal.style.display  = '';
+    if (btnServer) btnServer.style.display = 'none';
+  }
+
+  // Restore collapse state (default: expanded)
+  if (localStorage.getItem('bannerCollapsed') === 'true') {
+    banner.classList.add('collapsed');
+  }
+
+  // Toggle collapse on chevron button
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      banner.classList.toggle('collapsed');
+      localStorage.setItem('bannerCollapsed', banner.classList.contains('collapsed') ? 'true' : 'false');
+    });
+  }
+
+  // Switch to local
+  if (btnLocal) {
+    btnLocal.addEventListener('click', function(e) {
+      e.stopPropagation();
+      localStorage.setItem('generatorMode', 'local');
+      banner.classList.add('error-banner--local');
+      if (titleEl) titleEl.textContent = t('banner-title-local');
+      btnLocal.style.display  = 'none';
+      btnServer.style.display = '';
+      renderLocalGenerator(getCurrentLanguage());
+    });
+  }
+
+  // Switch back to server
+  if (btnServer) {
+    btnServer.addEventListener('click', function(e) {
+      e.stopPropagation();
+      localStorage.setItem('generatorMode', 'server');
+      banner.classList.remove('error-banner--local');
+      if (titleEl) titleEl.textContent = t('banner-title');
+      btnServer.style.display = 'none';
+      btnLocal.style.display  = '';
+      updateGeneratorForm(getCurrentLanguage());
+    });
+  }
+}
+
+// ============================================
+// LOCAL GENERATOR — DATA
+// ============================================
+
+const LG_LIVERIES = {
+  "ZiU-682 (ZiU-9)": [
+    "AdLivery1","AdLivery3","AdLivery4","Athens","Bogota","Budapest","Cheboksary","Chisinau","Green","Kharkiv","Minsk1","Minsk2","Moscow","Moscow oblast","Mykolaiv","Odessa","OldStyle1","OldStyle2","Orange","Red and beige","Saint Petersburg","White","White and blue","White and green","Yellow","Zhytomyr1","Zhytomyr2","Zhytomyr3","Zhytomyr4","Slot_1","Slot_2","Slot_3","Slot_4","Slot_5","Slot_6","Slot_7","Slot_8","Slot_9","Slot_10","Slot_11","Slot_12","Slot_13","Slot_14","Slot_15"
+  ],
+  "ZiU-6205 (ZiU-10)": [
+    "AdLivery4","Athens","Bogota","Budapest","Cheboksary","Chisinau","Green","Kharkiv","Minsk1","Minsk2","Moscow","Moscow oblast","Mykolaiv","Odessa","OldStyle1","OldStyle2","Orange","Red and beige","Saint Petersburg","White","White and blue","White and green","Yellow","Zhytomyr1","Zhytomyr2","Zhytomyr3","Zhytomyr4","Slot_1","Slot_2","Slot_3","Slot_4","Slot_5","Slot_6","Slot_7","Slot_8","Slot_9","Slot_10","Slot_11","Slot_12","Slot_13","Slot_14","Slot_15"
+  ],
+  "ZiU-682 (ZiU-9) EMU": [
+    "AdLivery1","AdLivery3","AdLivery4","Athens","Bogota","Budapest","Cheboksary","Chisinau","Green","Kazan","Kharkiv","Minsk1","Minsk2","Moscow","Moscow oblast","Mykolaiv","Odessa","OldStyle1","OldStyle2","Orange","Red and beige","Saint Petersburg","White","White and blue","White and green","Yellow","Zhytomyr1","Zhytomyr2","Zhytomyr3","Zhytomyr4","Slot_1","Slot_2","Slot_3","Slot_4","Slot_5","Slot_6","Slot_7","Slot_8","Slot_9","Slot_10","Slot_11","Slot_12","Slot_13","Slot_14","Slot_15"
+  ],
+  "ZiU-682 (ZiU-9) Service vehicle": [
+    "Service1","Service2","Service3","Slot_1","Slot_2","Slot_3","Slot_4","Slot_5","Slot_6","Slot_7","Slot_8","Slot_9","Slot_10","Slot_11","Slot_12","Slot_13","Slot_14","Slot_15"
+  ]
+};
+
+const LG_SIMPLE_VEHICLES = [
+  "VAZ-2109 Sputnik","(NonRP) Tow Scooter","(NonRP) Tow ScooterHeavy",
+  "(TrP Classic port) Tatra T6B5 (T3M)","(TrP Classic port) Tatra T6B5 (T3M) EMU",
+  "Boat","(EmptyBase) Monorail"
+];
+
+const LG_ZIU_VEHICLES = [
+  "ZiU-682 (ZiU-9)","ZiU-6205 (ZiU-10)","ZiU-682 (ZiU-9) EMU","ZiU-682 (ZiU-9) Service vehicle"
+];
+
+const LG_FLAGS = [
+  ["No flag","No flag"],["Custom","Custom"],["Australia","Australia"],["Austria","Austria"],
+  ["Belarus","Belarus"],["Belgium","Belgium"],["Bulgaria","Bulgaria"],["Canada","Canada"],
+  ["Czech Republic","Czech Republic"],["Denmark","Denmark"],["England","England"],
+  ["Estonia","Estonia"],["European Union","European Union"],["Finland","Finland"],
+  ["France","France"],["Germany","Germany"],["Greece","Greece"],["HITD","HITD"],
+  ["Hungary","Hungary"],["India","India"],["Italy","Italy"],["Japan","Japan"],
+  ["Latvia","Latvia"],["Lichtenstein","Lichtenstein"],["Lithuania","Lithuania"],
+  ["MITD","MITD"],["Moldova","Moldova"],["Netherlands","Netherlands"],
+  ["North Korea","North Korea"],["Norway","Norway"],["Poland","Poland"],
+  ["Portugal","Portugal"],["Pride","Pride"],["Progress Pride","Progress Pride"],
+  ["Romania","Romania"],["Russia","Russia"],["Scotland","Scotland"],["Serbia","Serbia"],
+  ["Slovakia","Slovakia"],["Slovenia","Slovenia"],["South Korea","South Korea"],
+  ["Spain","Spain"],["Sweden","Sweden"],["Switzerland","Switzerland"],["TrP","TrP"],
+  ["Turkey","Turkey"],["Ukraine","Ukraine"],["United Kingdom","United Kingdom"],
+  ["United States of America","United States of America"],["Wales","Wales"]
+];
+
+const LG_FLAGS_RU = {
+  "No flag":"Без флага","Custom":"Кастомный","Australia":"Австралия","Austria":"Австрия",
+  "Belarus":"Беларусь","Belgium":"Бельгия","Bulgaria":"Болгария","Canada":"Канада",
+  "Czech Republic":"Чехия","Denmark":"Дания","England":"Англия","Estonia":"Эстония",
+  "European Union":"Европейский Союз","Finland":"Финляндия","France":"Франция",
+  "Germany":"Германия","Greece":"Греция","HITD":"HITD","Hungary":"Венгрия","India":"Индия",
+  "Italy":"Италия","Japan":"Япония","Latvia":"Латвия","Lichtenstein":"Лихтенштейн",
+  "Lithuania":"Литва","MITD":"MITD","Moldova":"Молдова","Netherlands":"Нидерланды",
+  "North Korea":"Северная Корея","Norway":"Норвегия","Poland":"Польша","Portugal":"Португалия",
+  "Pride":"Прайд","Progress Pride":"Прогресс Прайд","Romania":"Румыния","Russia":"Россия",
+  "Scotland":"Шотландия","Serbia":"Сербия","Slovakia":"Словакия","Slovenia":"Словения",
+  "South Korea":"Южная Корея","Spain":"Испания","Sweden":"Швеция","Switzerland":"Швейцария",
+  "TrP":"TrP","Turkey":"Турция","Ukraine":"Украина","United Kingdom":"Великобритания",
+  "United States of America":"США","Wales":"Уэльс"
+};
+
+const LS_KEY = 'trprp_vsg_saves';
+
+// ============================================
+// LOCAL GENERATOR — LOCALSTORAGE
+// ============================================
+
+function lgGetSaves() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); }
+  catch(e) { return {}; }
+}
+
+function lgSetSaves(obj) {
+  localStorage.setItem(LS_KEY, JSON.stringify(obj));
+}
+
+function lgSave(name, code) {
+  const saves = lgGetSaves();
+  saves[name] = code;
+  lgSetSaves(saves);
+}
+
+function lgDelete(name) {
+  const saves = lgGetSaves();
+  delete saves[name];
+  lgSetSaves(saves);
+}
+
+function lgExport() {
+  const saves = lgGetSaves();
+  const blob = new Blob([JSON.stringify(saves, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'vsg_saved_codes.json'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function lgImport(jsonStr) {
+  const incoming = JSON.parse(jsonStr);
+  const saves = lgGetSaves();
+  Object.assign(saves, incoming);
+  lgSetSaves(saves);
+}
+
+// ============================================
+// LOCAL GENERATOR — RENDER
+// ============================================
+
+function lgFlagOptions(lang) {
+  const choose = t('lg-flag-choose');
+  let html = `<option value="">${choose}</option>`;
+  LG_FLAGS.forEach(([val]) => {
+    const label = lang === 'ru' ? (LG_FLAGS_RU[val] || val) : val;
+    html += `<option value="${val}">${label}</option>`;
+  });
+  return html;
+}
+
+function renderLocalGenerator(lang) {
+  const wrapper = document.getElementById('form-wrapper');
+  if (!wrapper) return;
+
+  wrapper.innerHTML = `
+    <div class="local-generator-wrap" id="lg-wrap">
+      <div class="local-generator-card" id="lg-card">
+        <h1>${t('lg-title')}</h1>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-number">${t('lg-number')}</label>
+          <input type="number" id="lg-number" class="lg-input" placeholder="${t('lg-number-ph')}" min="1" max="9999">
+          <div class="lg-error" id="lg-number-err">${t('lg-number-err')}</div>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-vehicle">${t('lg-vehicle')}</label>
+          <select id="lg-vehicle" class="lg-select">
+            <option value="ZiU-682 (ZiU-9)">ZiU-682 (ZiU-9)</option>
+            <option value="ZiU-6205 (ZiU-10)">ZiU-6205 (ZiU-10)</option>
+            <option value="ZiU-682 (ZiU-9) EMU">ZiU-682 (ZiU-9) EMU</option>
+            <option value="ZiU-682 (ZiU-9) Service vehicle">ZiU-682 (ZiU-9) Service vehicle</option>
+            <option value="(TrP Classic port) Tatra T6B5 (T3M)">(TrP Classic port) Tatra T6B5 (T3M)</option>
+            <option value="(TrP Classic port) Tatra T6B5 (T3M) EMU">(TrP Classic port) Tatra T6B5 (T3M) EMU</option>
+            <option value="Boat">Boat</option>
+            <option value="VAZ-2109 Sputnik">VAZ-2109 Sputnik</option>
+            <option value="(NonRP) Tow Scooter">(NonRP) Tow Scooter</option>
+            <option value="(NonRP) Tow ScooterHeavy">(NonRP) Tow ScooterHeavy</option>
+            <option value="(EmptyBase) Monorail">(EmptyBase) Monorail</option>
+          </select>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-side-ad">${t('lg-side-ad')}</label>
+          <select id="lg-side-ad" class="lg-select">
+            <option value="1">${t('lg-on')}</option>
+            <option value="2">${t('lg-random')}</option>
+            <option value="3" selected>${t('lg-off')}</option>
+          </select>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-boards">${t('lg-boards')}</label>
+          <select id="lg-boards" class="lg-select">
+            <option value="2">${t('lg-on2')}</option>
+            <option value="1">${t('lg-random2')}</option>
+            <option value="3" selected>${t('lg-off2')}</option>
+          </select>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-april">${t('lg-april')}</label>
+          <select id="lg-april" class="lg-select">
+            <option value="2">${t('lg-on2')}</option>
+            <option value="1">${t('lg-random2')}</option>
+            <option value="3" selected>${t('lg-off2')}</option>
+          </select>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-tester">${t('lg-tester')}</label>
+          <select id="lg-tester" class="lg-select">
+            <option value="2">${t('lg-random4')}</option>
+            <option value="1">${t('lg-on4')}</option>
+            <option value="3" selected>${t('lg-off4')}</option>
+          </select>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-custom">${t('lg-custom')}</label>
+          <select id="lg-custom" class="lg-select">
+            <option value="2">${t('lg-on3')}</option>
+            <option value="1">${t('lg-random3')}</option>
+            <option value="3" selected>${t('lg-off3')}</option>
+          </select>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-modern">${t('lg-modern')}</label>
+          <select id="lg-modern" class="lg-select">
+            <option value="2">${t('lg-random3')}</option>
+            <option value="1">${t('lg-on3')}</option>
+            <option value="3" selected>${t('lg-off3')}</option>
+          </select>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-livery">${t('lg-livery')}</label>
+          <select id="lg-livery" class="lg-select">
+            <option value="">${t('lg-livery-none')}</option>
+          </select>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-flagL">${t('lg-flagL')}</label>
+          <select id="lg-flagL" class="lg-select">${lgFlagOptions(lang)}</select>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-flagR">${t('lg-flagR')}</label>
+          <select id="lg-flagR" class="lg-select">${lgFlagOptions(lang)}</select>
+        </div>
+
+        <div class="lg-field">
+          <label class="lg-label" for="lg-existing">${t('lg-existing')}</label>
+          <textarea id="lg-existing" class="lg-textarea" rows="3" placeholder="${t('lg-existing-ph')}"></textarea>
+          <button class="lg-btn lg-btn--indigo lg-btn--full" id="lg-load-code-btn">${t('lg-load-code')}</button>
+        </div>
+
+        <div class="lg-btn-row">
+          <button class="lg-btn lg-btn--blue" id="lg-generate-btn">${t('lg-generate')}</button>
+          <button class="lg-btn lg-btn--green" id="lg-save-btn-open">${t('lg-save')}</button>
+          <button class="lg-btn lg-btn--indigo" id="lg-load-btn-open">${t('lg-load')}</button>
+        </div>
+
+        <div id="lg-output" class="lg-output"></div>
+        <button class="lg-btn lg-btn--green lg-btn--full" id="lg-copy-btn">${t('lg-copy')}</button>
+      </div>
+
+      <!-- Save Modal -->
+      <div class="lg-modal" id="lg-save-modal">
+        <div class="lg-modal-content">
+          <h2>${t('lg-save-title')}</h2>
+          <div class="lg-modal-warning">${t('lg-save-warning')}</div>
+          <input type="text" id="lg-save-name" class="lg-input" placeholder="${t('lg-save-name-ph')}">
+          <div class="lg-modal-row">
+            <button class="lg-btn lg-btn--blue" id="lg-save-confirm">${t('lg-save-btn')}</button>
+            <button class="lg-btn lg-btn--indigo" id="lg-save-cancel">${t('lg-cancel')}</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Load Modal -->
+      <div class="lg-modal" id="lg-load-modal">
+        <div class="lg-modal-content">
+          <h2>${t('lg-load-title')}</h2>
+          <div style="display:flex;gap:10px;margin-bottom:14px;">
+            <button class="lg-btn lg-btn--green" style="flex:1" id="lg-export-btn">${t('lg-export')}</button>
+            <label class="lg-btn lg-btn--indigo" style="flex:1;text-align:center;cursor:pointer;margin:0">
+              ${t('lg-import')}
+              <input type="file" id="lg-import-file" accept=".json" style="display:none">
+            </label>
+          </div>
+          <ul class="lg-saved-list" id="lg-saved-list"></ul>
+          <button class="lg-btn lg-btn--indigo lg-btn--full" id="lg-load-close">${t('lg-close')}</button>
+        </div>
+      </div>
+
+      <!-- Notification -->
+      <div class="lg-notification" id="lg-notif"></div>
+    </div>
+  `;
+
+  // Init vehicle controls
+  const vehicleSelect = document.getElementById('lg-vehicle');
+  lgUpdateVehicleOptions(vehicleSelect.value, lang);
+  vehicleSelect.addEventListener('change', function() {
+    lgUpdateVehicleOptions(this.value, lang);
+  });
+
+  // Generate
+  document.getElementById('lg-generate-btn').addEventListener('click', lgGenerate);
+
+  // Copy
+  document.getElementById('lg-copy-btn').addEventListener('click', lgCopy);
+
+  // Load code from textarea
+  document.getElementById('lg-load-code-btn').addEventListener('click', lgLoadFromTextarea);
+
+  // Save modal
+  document.getElementById('lg-save-btn-open').addEventListener('click', function() {
+    document.getElementById('lg-save-modal').classList.add('open');
+    document.getElementById('lg-save-name').focus();
+  });
+  document.getElementById('lg-save-cancel').addEventListener('click', function() {
+    document.getElementById('lg-save-modal').classList.remove('open');
+    document.getElementById('lg-save-name').value = '';
+  });
+  document.getElementById('lg-save-confirm').addEventListener('click', lgSaveCode);
+  document.getElementById('lg-save-modal').addEventListener('click', function(e) {
+    if (e.target === this) { this.classList.remove('open'); document.getElementById('lg-save-name').value = ''; }
+  });
+
+  // Load modal
+  document.getElementById('lg-load-btn-open').addEventListener('click', function() {
+    document.getElementById('lg-load-modal').classList.add('open');
+    lgRenderSavedList(lang);
+  });
+  document.getElementById('lg-load-close').addEventListener('click', function() {
+    document.getElementById('lg-load-modal').classList.remove('open');
+  });
+  document.getElementById('lg-load-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+
+  // Export / Import
+  document.getElementById('lg-export-btn').addEventListener('click', function() {
+    lgExport();
+    lgNotify(t('lg-exported-ok'), 'success');
+  });
+  document.getElementById('lg-import-file').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) { lgNotify(t('lg-no-file'), 'error'); return; }
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        lgImport(e.target.result);
+        lgRenderSavedList(lang);
+        lgNotify(t('lg-imported-ok'), 'success');
+      } catch(err) {
+        lgNotify(t('lg-invalid-file'), 'error');
+      }
+    };
+    reader.readAsText(file);
+  });
+}
+
+// ============================================
+// LOCAL GENERATOR — HELPERS
+// ============================================
+
+function lgNotify(msg, type) {
+  const el = document.getElementById('lg-notif');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'lg-notification ' + type;
+  void el.offsetWidth;
+  el.classList.add('show');
+  clearTimeout(el._timer);
+  el._timer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+function lgUpdateVehicleOptions(vehicleName, lang) {
+  lang = lang || getCurrentLanguage();
+  const simple = LG_SIMPLE_VEHICLES.includes(vehicleName);
+
+  const sideAd = document.getElementById('lg-side-ad');
+  const boards = document.getElementById('lg-boards');
+  const april  = document.getElementById('lg-april');
+  const tester = document.getElementById('lg-tester');
+  const custom = document.getElementById('lg-custom');
+  const modern = document.getElementById('lg-modern');
+  const livery = document.getElementById('lg-livery');
+  const flagL  = document.getElementById('lg-flagL');
+  const flagR  = document.getElementById('lg-flagR');
+
+  if (simple) {
+    [sideAd, boards, april, tester, custom, modern, flagL, flagR, livery].forEach(el => {
+      if (el) { el.disabled = true; el.value = ''; }
+    });
+    if (livery) livery.innerHTML = `<option value="">${t('lg-livery-na')}</option>`;
+    if (flagL)  flagL.innerHTML  = `<option value="">${t('lg-flag-na')}</option>`;
+    if (flagR)  flagR.innerHTML  = `<option value="">${t('lg-flag-na')}</option>`;
+  } else {
+    [sideAd, boards, april, custom, livery, flagL, flagR].forEach(el => {
+      if (el) el.disabled = false;
+    });
+    if (sideAd) sideAd.value = '3';
+    if (boards) { boards.disabled = false; boards.value = '3'; }
+    if (april)  { april.disabled  = false; april.value  = '3'; }
+    if (custom) custom.value = '3';
+
+    if (LG_ZIU_VEHICLES.includes(vehicleName)) {
+      if (tester) { tester.disabled = false; tester.value = '3'; }
+      if (modern) { modern.disabled = false; modern.value = '3'; }
+    } else {
+      if (tester) { tester.disabled = true; tester.value = ''; }
+      if (modern) { modern.disabled = true; modern.value = ''; }
+    }
+
+    // Liveries
+    if (livery) {
+      livery.innerHTML = `<option value="">${t('lg-livery-none')}</option>`;
+      if (LG_LIVERIES[vehicleName]) {
+        LG_LIVERIES[vehicleName].forEach(lv => {
+          const opt = document.createElement('option');
+          opt.value = lv; opt.textContent = lv;
+          livery.appendChild(opt);
+        });
+      }
+    }
+
+    // Flags
+    if (flagL) flagL.innerHTML = lgFlagOptions(lang);
+    if (flagR) flagR.innerHTML = lgFlagOptions(lang);
+  }
+}
+
+function lgGenerate() {
+  const numberRaw = document.getElementById('lg-number').value;
+  const number = numberRaw ? parseInt(numberRaw, 10) : null;
+  const errEl = document.getElementById('lg-number-err');
+
+  if (number !== null && (number < 1 || number > 9999)) {
+    errEl.style.display = 'block'; return;
+  }
+  errEl.style.display = 'none';
+
+  const vehicleName = document.getElementById('lg-vehicle').value;
+  const simple = LG_SIMPLE_VEHICLES.includes(vehicleName);
+
+  const val = id => document.getElementById(id) ? document.getElementById(id).value : '';
+  const intVal = id => val(id) ? parseInt(val(id), 10) : undefined;
+
+  const result = {};
+  if (number) result.Number = number;
+  if (vehicleName) result.VehicleName = vehicleName;
+
+  if (!simple) {
+    const sa = intVal('lg-side-ad'); if (sa !== undefined) result["Side advertisement"] = sa;
+    const lv = val('lg-livery');   if (lv)              result.Livery = lv;
+    const tb = intVal('lg-tester'); if (tb !== undefined) result["TrP early tester bonuses"] = tb;
+    const mf = intVal('lg-modern'); if (mf !== undefined) result["Modern front"] = mf;
+    const eb = intVal('lg-boards'); if (eb !== undefined) result["Electronic destination boards"] = eb;
+    const fa = intVal('lg-april');  if (fa !== undefined) result["First april screens"] = fa;
+    const ct = intVal('lg-custom'); if (ct !== undefined) result["Custom"] = ct;
+    const fl = val('lg-flagL');    if (fl) result.FlagL = fl === 'No flag' ? 'No' : fl;
+    const fr = val('lg-flagR');    if (fr) result.FlagR = fr === 'No flag' ? 'No' : fr;
+  }
+
+  document.getElementById('lg-output').textContent = JSON.stringify(result);
+}
+
+function lgCopy() {
+  const out = document.getElementById('lg-output').textContent;
+  if (!out) { lgNotify(t('lg-no-copy'), 'error'); return; }
+  const ta = document.createElement('textarea');
+  ta.value = out; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); lgNotify(t('lg-copied'), 'success'); }
+  catch(e) { lgNotify(t('lg-no-copy'), 'error'); }
+  document.body.removeChild(ta);
+}
+
+function lgLoadFromTextarea() {
+  const raw = document.getElementById('lg-existing').value;
+  try {
+    const code = JSON.parse(raw);
+    lgApplyCode(code);
+    lgNotify(t('lg-loaded-ok'), 'success');
+  } catch(e) {
+    lgNotify(t('lg-invalid-json'), 'error');
+  }
+}
+
+function lgApplyCode(code) {
+  const lang = getCurrentLanguage();
+  if (code.VehicleName) {
+    const vs = document.getElementById('lg-vehicle');
+    if (vs) { vs.value = code.VehicleName; lgUpdateVehicleOptions(code.VehicleName, lang); }
+  }
+  const setVal = (id, v) => { const el = document.getElementById(id); if (el && v !== undefined) el.value = v; };
+  setVal('lg-number',  code.Number || '');
+  setVal('lg-side-ad', code["Side advertisement"] || 3);
+  setVal('lg-livery',  code.Livery || '');
+  setVal('lg-tester',  code["TrP early tester bonuses"] || 3);
+  setVal('lg-modern',  code["Modern front"] || 3);
+  setVal('lg-boards',  code["Electronic destination boards"] || 3);
+  setVal('lg-april',   code["First april screens"] || 3);
+  setVal('lg-custom',  code["Custom"] || 3);
+  setVal('lg-flagL',   code.FlagL || '');
+  setVal('lg-flagR',   code.FlagR || '');
+}
+
+function lgSaveCode() {
+  const name = (document.getElementById('lg-save-name').value || '').trim();
+  const code = document.getElementById('lg-output').textContent;
+  if (!name || !code) { lgNotify(t('lg-no-name'), 'error'); return; }
+  if (name.length > 50) { lgNotify(t('lg-name-long'), 'error'); return; }
+  try { JSON.parse(code); } catch(e) { lgNotify(t('lg-invalid-json'), 'error'); return; }
+  lgSave(name, code);
+  document.getElementById('lg-save-modal').classList.remove('open');
+  document.getElementById('lg-save-name').value = '';
+  lgNotify(t('lg-saved-ok'), 'success');
+}
+
+function lgRenderSavedList(lang) {
+  const list = document.getElementById('lg-saved-list');
+  if (!list) return;
+  const saves = lgGetSaves();
+  const keys = Object.keys(saves);
+  if (keys.length === 0) {
+    list.innerHTML = `<li class="lg-empty">${t('lg-no-saves')}</li>`;
+    return;
+  }
+  list.innerHTML = keys.map(name => `
+    <li class="lg-saved-item">
+      <span title="${name}">${name}</span>
+      <div class="lg-saved-item-btns">
+        <button class="lg-btn lg-btn--blue" onclick="lgLoadSaved('${name.replace(/'/g,"\\'")}','${lang}')">${t('lg-load-btn')}</button>
+        <button class="lg-btn" style="background:#ef4444;color:#fff" onclick="lgDeleteSaved('${name.replace(/'/g,"\\'")}','${lang}')">${t('lg-delete-btn')}</button>
+      </div>
+    </li>
+  `).join('');
+}
+
+function lgLoadSaved(name, lang) {
+  const saves = lgGetSaves();
+  if (!saves[name]) { lgNotify(t('lg-invalid-json'), 'error'); return; }
+  try {
+    const code = JSON.parse(saves[name]);
+    lgApplyCode(code);
+    document.getElementById('lg-output').textContent = saves[name];
+    document.getElementById('lg-load-modal').classList.remove('open');
+    lgNotify(t('lg-loaded-ok'), 'success');
+  } catch(e) {
+    lgNotify(t('lg-invalid-json'), 'error');
+  }
+}
+
+function lgDeleteSaved(name, lang) {
+  lgDelete(name);
+  lgRenderSavedList(lang || getCurrentLanguage());
+  lgNotify(t('lg-deleted-ok'), 'success');
+}
+
+// ============================================
+// DOM READY
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
   const currentLang = getCurrentLanguage();
-  
-  // Translate page text
   translatePage();
-  
-  // Load generator form with correct language
+  initBanner();
   updateGeneratorForm(currentLang);
-  
-  // Update language button
+
   const langBtn = document.getElementById('lang-btn');
   if (langBtn) {
     langBtn.textContent = currentLang === 'ru' ? 'EN' : 'RU';
     langBtn.addEventListener('click', function() {
-      const current = getCurrentLanguage();
-      const newLang = current === 'ru' ? 'en' : 'ru';
+      const newLang = getCurrentLanguage() === 'ru' ? 'en' : 'ru';
       setLanguage(newLang);
     });
   }
 });
 
 // ============================================
-// THEME TOGGLE - DARK MODE
+// THEME TOGGLE
 // ============================================
 
 const themeBtn = document.getElementById('theme-btn');
 if (themeBtn) {
-  // Load saved theme preference
   const savedTheme = localStorage.getItem('theme') || 'light';
   if (savedTheme === 'dark') {
     document.body.classList.add('dark-mode');
     themeBtn.textContent = '☀️';
   }
-
   themeBtn.addEventListener('click', function() {
     document.body.classList.toggle('dark-mode');
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-    themeBtn.textContent = isDarkMode ? '☀️' : '🌙';
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    themeBtn.textContent = isDark ? '☀️' : '🌙';
   });
 }
 
@@ -284,9 +1026,7 @@ if (menuToggle && navMenu) {
     document.body.classList.toggle('menu-open');
   });
 
-  // Close menu when a link is clicked
-  const navLinks = navMenu.querySelectorAll('a[href]');
-  navLinks.forEach(link => {
+  navMenu.querySelectorAll('a[href]').forEach(link => {
     link.addEventListener('click', function() {
       menuToggle.classList.remove('active');
       navMenu.classList.remove('active');
@@ -294,7 +1034,6 @@ if (menuToggle && navMenu) {
     });
   });
 
-  // Close menu when clicking outside
   document.addEventListener('click', function(event) {
     if (!event.target.closest('.navbar')) {
       menuToggle.classList.remove('active');
@@ -305,71 +1044,51 @@ if (menuToggle && navMenu) {
 }
 
 if (menuBackBtn) {
-  menuBackBtn.addEventListener('click', function() {
-    history.back();
-  });
+  menuBackBtn.addEventListener('click', function() { history.back(); });
 }
 
 // ============================================
-// DROPDOWN MENU TOGGLE (DESKTOP & MOBILE)
+// DROPDOWN MENU TOGGLE
 // ============================================
 
-const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-dropdownToggles.forEach(toggle => {
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
   toggle.addEventListener('click', function(e) {
     e.preventDefault();
     const parentItem = this.closest('.nav-item');
     if (parentItem) {
-      // Close other open dropdowns at same level
-      const siblings = parentItem.parentNode.querySelectorAll('.nav-item.has-dropdown.open');
-      siblings.forEach(sibling => {
-        if (sibling !== parentItem) {
-          sibling.classList.remove('open');
-        }
+      parentItem.parentNode.querySelectorAll('.nav-item.has-dropdown.open').forEach(s => {
+        if (s !== parentItem) s.classList.remove('open');
       });
-      // Toggle current dropdown
       parentItem.classList.toggle('open');
     }
   });
 });
 
-// Close dropdowns when clicking outside
 document.addEventListener('click', function(event) {
   if (!event.target.closest('.navbar')) {
-    const openItems = document.querySelectorAll('.nav-item.has-dropdown.open');
-    openItems.forEach(item => {
-      item.classList.remove('open');
-    });
+    document.querySelectorAll('.nav-item.has-dropdown.open').forEach(item => item.classList.remove('open'));
   }
 });
 
-// Submenu toggle for mobile
-const submenuToggles = document.querySelectorAll('.submenu-toggle');
-submenuToggles.forEach(toggle => {
+document.querySelectorAll('.submenu-toggle').forEach(toggle => {
   toggle.addEventListener('click', function(e) {
     e.preventDefault();
     const parentSubmenu = this.closest('.dropdown-submenu');
     if (parentSubmenu) {
-      // Close other open submenus at same level
-      const siblings = parentSubmenu.parentNode.querySelectorAll('.dropdown-submenu.open');
-      siblings.forEach(sibling => {
-        if (sibling !== parentSubmenu) {
-          sibling.classList.remove('open');
-        }
+      parentSubmenu.parentNode.querySelectorAll('.dropdown-submenu.open').forEach(s => {
+        if (s !== parentSubmenu) s.classList.remove('open');
       });
-      // Toggle current submenu
       parentSubmenu.classList.toggle('open');
     }
   });
 });
 
 // ============================================
-// RESPONSIVE BEHAVIOR
+// RESPONSIVE
 // ============================================
 
 window.addEventListener('resize', function() {
-  // Reset menu visibility on desktop
-  if (window.innerWidth > 768) {
+  if (window.innerWidth > 768 && menuToggle && navMenu) {
     menuToggle.classList.remove('active');
     navMenu.classList.remove('active');
     document.body.classList.remove('menu-open');
