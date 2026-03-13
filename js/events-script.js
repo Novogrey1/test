@@ -207,6 +207,13 @@ function applyTheme(theme) {
 }
 
 function handleThemeClick() {
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) {
+        themeBtn.classList.remove('spinning');
+        void themeBtn.offsetWidth;
+        themeBtn.classList.add('spinning');
+        themeBtn.addEventListener('animationend', () => themeBtn.classList.remove('spinning'), { once: true });
+    }
     const currentTheme = localStorage.getItem('theme') || 'light';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     applyTheme(newTheme);
@@ -255,6 +262,12 @@ function setLanguage(lang) {
     reinitializeEventListeners();
     reinitializeTheme();
     initMobileMenu();
+    document.body.classList.add('loaded');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+        initScrollReveal();
+        const heroContent = document.querySelector('.hero-events-content');
+        if (heroContent) heroContent.classList.add('animate');
+    }));
 }
 
 function updateLangButton(lang) {
@@ -397,6 +410,66 @@ updateNavbar();
 // ============================================
 // ИНИЦИАЛИЗАЦИЯ
 // ============================================
+
+
+// ============================================
+// ЗАГРУЗКА СТРАНИЦЫ И SCROLL REVEAL
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) navbar.classList.add('nav-animate');
+
+    const heroContent = document.querySelector('.hero-events-content');
+    if (heroContent) {
+        setTimeout(() => heroContent.classList.add('animate'), 50);
+    }
+});
+
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+    setTimeout(initScrollReveal, 100);
+});
+
+function initScrollReveal() {
+    // Заголовки секций и описания
+    document.querySelectorAll('.section-header, .contacts-section h2, .docs-section h2, .disclaimer, .footer').forEach(el => {
+        el.classList.remove('reveal');
+        el.classList.add('reveal');
+    });
+
+    // Карточки календаря и формы
+    document.querySelectorAll('.calendar-card, .form-card').forEach((el, i) => {
+        el.classList.remove('reveal-up');
+        el.classList.add('reveal-up');
+        el.style.transitionDelay = (i * 0.1) + 's';
+    });
+
+    // Кнопки контактов и документов
+    document.querySelectorAll('.contact-buttons .contact-btn, .docs-buttons .doc-btn').forEach((el, i) => {
+        el.classList.remove('reveal');
+        el.classList.add('reveal');
+        el.style.transitionDelay = (i * 0.07) + 's';
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-up').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight || rect.top === 0) {
+            setTimeout(() => el.classList.add('visible'), 80);
+        } else {
+            observer.observe(el);
+        }
+    });
+}
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {

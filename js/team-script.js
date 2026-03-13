@@ -309,50 +309,58 @@ function setLanguage(lang) {
         langBtnAnim.classList.add('flipping');
     }
 
-    document.body.innerHTML = originalHTML;
-
-    function translateNode(node) {
-        if (node.nodeType === 3) {
-            // Текстовый узел
-            const originalText = node.textContent;
-            const trimmedText = originalText.trim();
-            
-            // Проверяем есть ли перевод для этого текста
-            if (trimmedText && translations[lang] && translations[lang][trimmedText]) {
-                // Заменяем на переведенный текст, сохраняя пробелы вокруг
-                const leadingSpace = originalText.match(/^\s*/)[0];
-                const trailingSpace = originalText.match(/\s*$/)[0];
-                node.textContent = leadingSpace + translations[lang][trimmedText] + trailingSpace;
-            }
-        } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
-            // Элемент - переводим все дочерние узлы
-            const childNodesCopy = Array.from(node.childNodes);
-            childNodesCopy.forEach(childNode => {
-                if (node.contains(childNode)) {
-                    translateNode(childNode);
-                }
-            });
-        }
-    }
-
-    // Переводим весь body
-    const bodyChildrenCopy = Array.from(document.body.childNodes);
-    bodyChildrenCopy.forEach(child => {
-        if (document.body.contains(child)) {
-            translateNode(child);
-        }
+    const EXIT_SEL = '.hero-team-content h1, .section-title, .team-card, .contacts-section h2, .docs-section h2, .disclaimer';
+    const exitEls = Array.from(document.querySelectorAll(EXIT_SEL));
+    exitEls.forEach((el, i) => {
+        el.style.animationDelay = (i * 30) + 'ms';
+        el.classList.remove('lang-enter');
+        el.classList.add('lang-exit');
     });
 
-    reinitializeEventListeners();
-    reinitializeTheme();
-    initMobileMenu();
-    document.body.classList.add('loaded');
-    // Ждём рендер перед проверкой позиций элементов
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-        initScrollReveal();
-        const heroContent = document.querySelector('.hero-team-content');
-        if (heroContent) heroContent.classList.add('animate');
-    }));
+    const exitDuration = Math.min(exitEls.length * 30 + 200, 400);
+
+    setTimeout(() => {
+        document.body.innerHTML = originalHTML;
+
+        function translateNode(node) {
+            if (node.nodeType === 3) {
+                const originalText = node.textContent;
+                const trimmedText = originalText.trim();
+                if (trimmedText && translations[lang] && translations[lang][trimmedText]) {
+                    const leadingSpace = originalText.match(/^\s*/)[0];
+                    const trailingSpace = originalText.match(/\s*$/)[0];
+                    node.textContent = leadingSpace + translations[lang][trimmedText] + trailingSpace;
+                }
+            } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+                Array.from(node.childNodes).forEach(child => {
+                    if (node.contains(child)) translateNode(child);
+                });
+            }
+        }
+        Array.from(document.body.childNodes).forEach(child => {
+            if (document.body.contains(child)) translateNode(child);
+        });
+
+        reinitializeEventListeners();
+        reinitializeTheme();
+        initMobileMenu();
+        document.body.classList.add('loaded');
+
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            const enterEls = Array.from(document.querySelectorAll(EXIT_SEL));
+            enterEls.forEach((el, i) => {
+                el.style.animationDelay = (i * 45) + 'ms';
+                el.classList.add('lang-enter');
+                el.addEventListener('animationend', () => {
+                    el.classList.remove('lang-enter');
+                    el.style.animationDelay = '';
+                }, { once: true });
+            });
+            const heroContent = document.querySelector('.hero-team-content');
+            if (heroContent) heroContent.classList.add('animate');
+            initScrollReveal();
+        }));
+    }, exitDuration);
 }
 
 function updateLangButton(lang) {
@@ -496,9 +504,7 @@ window.addEventListener('scroll', () => {
 // ЗАГРУЗКА СТРАНИЦЫ И SCROLL REVEAL
 // ============================================
 
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-
+document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     if (navbar) navbar.classList.add('nav-animate');
 
@@ -506,7 +512,10 @@ window.addEventListener('load', () => {
     if (heroContent) {
         setTimeout(() => heroContent.classList.add('animate'), 50);
     }
+});
 
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
     setTimeout(initScrollReveal, 100);
 });
 

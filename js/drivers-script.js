@@ -181,8 +181,16 @@ function applyTheme(theme) {
 }
 
 function handleThemeClick() {
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) {
+        themeBtn.classList.remove('spinning');
+        void themeBtn.offsetWidth;
+        themeBtn.classList.add('spinning');
+        themeBtn.addEventListener('animationend', () => themeBtn.classList.remove('spinning'), { once: true });
+    }
     const currentTheme = localStorage.getItem('theme') || 'light';
-    applyTheme(currentTheme === 'light' ? 'dark' : 'light');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    applyTheme(newTheme);
 }
 
 // ============================================
@@ -202,28 +210,64 @@ function initLanguageSystem() {
 function setLanguage(lang) {
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
-    document.body.innerHTML = originalHTML;
 
-    function translateNode(node) {
-        if (node.nodeType === 3) {
-            let text = node.textContent.trim();
-            if (text && translations[lang] && translations[lang][text]) {
-                node.textContent = node.textContent.replace(text, translations[lang][text]);
-            }
-        } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT') {
-            for (let i = 0; i < node.childNodes.length; i++) {
-                translateNode(node.childNodes[i]);
+    const langBtnAnim = document.getElementById('lang-btn');
+    if (langBtnAnim) {
+        langBtnAnim.classList.remove('flipping');
+        void langBtnAnim.offsetWidth;
+        langBtnAnim.classList.add('flipping');
+    }
+
+    const EXIT_SEL = '.charter-hint, .charter-card, .contacts-section h2, .docs-section h2, .disclaimer';
+    const exitEls = Array.from(document.querySelectorAll(EXIT_SEL));
+    exitEls.forEach((el, i) => {
+        el.style.animationDelay = (i * 30) + 'ms';
+        el.classList.remove('lang-enter');
+        el.classList.add('lang-exit');
+    });
+
+    const exitDuration = Math.min(exitEls.length * 30 + 200, 400);
+
+    setTimeout(() => {
+        document.body.innerHTML = originalHTML;
+
+        function translateNode(node) {
+            if (node.nodeType === 3) {
+                const originalText = node.textContent;
+                const trimmedText = originalText.trim();
+                if (trimmedText && translations[lang] && translations[lang][trimmedText]) {
+                    const leadingSpace = originalText.match(/^\s*/)[0];
+                    const trailingSpace = originalText.match(/\s*$/)[0];
+                    node.textContent = leadingSpace + translations[lang][trimmedText] + trailingSpace;
+                }
+            } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+                Array.from(node.childNodes).forEach(child => {
+                    if (node.contains(child)) translateNode(child);
+                });
             }
         }
-    }
+        Array.from(document.body.childNodes).forEach(child => {
+            if (document.body.contains(child)) translateNode(child);
+        });
 
-    for (let i = 0; i < document.body.childNodes.length; i++) {
-        translateNode(document.body.childNodes[i]);
-    }
+        reinitializeEventListeners();
+        reinitializeTheme();
+        initMobileMenu();
+        document.body.classList.add('loaded');
 
-    reinitializeEventListeners();
-    reinitializeTheme();
-    initMobileMenu();
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            const enterEls = Array.from(document.querySelectorAll(EXIT_SEL));
+            enterEls.forEach((el, i) => {
+                el.style.animationDelay = (i * 45) + 'ms';
+                el.classList.add('lang-enter');
+                el.addEventListener('animationend', () => {
+                    el.classList.remove('lang-enter');
+                    el.style.animationDelay = '';
+                }, { once: true });
+            });
+            initScrollReveal();
+        }));
+    }, exitDuration);
 }
 
 function updateLangButton(lang) {
@@ -422,6 +466,54 @@ function initDropdowns() {
 // ============================================
 // ИНИЦИАЛИЗАЦИЯ
 // ============================================
+
+
+// ============================================
+// ЗАГРУЗКА СТРАНИЦЫ И SCROLL REVEAL
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) navbar.classList.add('nav-animate');
+});
+
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+    setTimeout(initScrollReveal, 100);
+});
+
+function initScrollReveal() {
+    document.querySelectorAll('.charter-hint, .contacts-section h2, .docs-section h2, .disclaimer, .footer').forEach(el => {
+        el.classList.remove('reveal');
+        el.classList.add('reveal');
+    });
+    document.querySelectorAll('.charter-card').forEach((el, i) => {
+        el.classList.remove('reveal-up');
+        el.classList.add('reveal-up');
+        el.style.transitionDelay = (i * 0.1) + 's';
+    });
+    document.querySelectorAll('.contact-buttons .contact-btn, .docs-buttons .doc-btn').forEach((el, i) => {
+        el.classList.remove('reveal');
+        el.classList.add('reveal');
+        el.style.transitionDelay = (i * 0.07) + 's';
+    });
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal, .reveal-up').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight || rect.top === 0) {
+            setTimeout(() => el.classList.add('visible'), 80);
+        } else {
+            observer.observe(el);
+        }
+    });
+}
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
