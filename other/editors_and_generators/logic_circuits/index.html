@@ -144,6 +144,30 @@
         </div>
     </nav>
 
+
+    <div class="error-banner-outer">
+      <div class="error-banner" id="error-banner">
+        <div class="error-banner-body">
+          <div class="error-banner-row">
+            <div class="error-banner-left">
+              <span class="error-banner-icon">⚠️</span>
+              <span class="error-banner-title" id="banner-title">Возникает ошибка 403?</span>
+            </div>
+            <span class="error-banner-desc" id="banner-desc">Если при загрузке редактора появляется ошибка 403 — воспользуйтесь локальной версией. Она работает прямо в браузере без подключения к серверу Google.</span>
+            <div class="error-banner-actions">
+              <button class="error-banner-btn error-banner-btn--switch" id="switch-local-btn">🖥️ Переключиться на локальную версию</button>
+              <button class="error-banner-btn error-banner-btn--back" id="switch-server-btn" style="display:none">🌐 Вернуться к серверной версии</button>
+            </div>
+          </div>
+        </div>
+        <div class="error-banner-toggle-wrap">
+          <button class="error-banner-chevron-btn" id="error-banner-toggle" aria-label="Toggle banner">
+            <span class="error-banner-chevron">▲</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <section class="generator-section" id="generator">
         <div class="generator-container">
             <div class="form-card">
