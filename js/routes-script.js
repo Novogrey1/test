@@ -158,7 +158,7 @@ let originalHTML = null;
 // ============================================
 
 function initThemeSystem() {
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  const savedTheme = localStorage.getItem('theme') || 'dark';
   applyTheme(savedTheme);
   const themeBtn = document.getElementById('theme-btn');
   if (themeBtn) {
@@ -179,7 +179,7 @@ function applyTheme(theme) {
 }
 
 function handleThemeClick() {
-  const currentTheme = localStorage.getItem('theme') || 'light';
+  const currentTheme = localStorage.getItem('theme') || 'dark';
   applyTheme(currentTheme === 'light' ? 'dark' : 'light');
 }
 
@@ -255,7 +255,7 @@ function reinitializeEventListeners() {
 }
 
 function reinitializeTheme() {
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  const savedTheme = localStorage.getItem('theme') || 'dark';
   applyTheme(savedTheme);
   const themeBtn = document.getElementById('theme-btn');
   if (themeBtn) {
