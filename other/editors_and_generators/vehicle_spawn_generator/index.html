@@ -144,11 +144,41 @@
         </div>
     </nav>
 
+    <!-- 403 Error Banner — sticky below navbar always -->
+    <div class="error-banner-outer" id="error-banner-outer">
+        <div class="error-banner" id="error-banner">
+            <div class="error-banner-body" id="error-banner-body">
+                <div class="error-banner-row">
+                    <div class="error-banner-left">
+                        <span class="error-banner-icon">⚠️</span>
+                        <span class="error-banner-title" data-i18n="banner-title">Возникает ошибка 403?</span>
+                    </div>
+                    <span class="error-banner-desc" data-i18n="banner-desc">
+                        Если при загрузке генератора появляется ошибка 403 — воспользуйтесь локальной версией. Она работает прямо в браузере без подключения к серверу Google.
+                    </span>
+                    <div class="error-banner-actions">
+                        <button class="error-banner-btn error-banner-btn--switch" id="switch-local-btn" data-i18n="banner-btn-local">
+                            🖥️ Переключиться на локальную версию
+                        </button>
+                        <button class="error-banner-btn error-banner-btn--back" id="switch-server-btn" data-i18n="banner-btn-server" style="display:none;">
+                            🌐 Вернуться к серверной версии
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="error-banner-toggle-wrap">
+                <button class="error-banner-chevron-btn" id="error-banner-toggle" title="Свернуть / развернуть">
+                    <span class="error-banner-chevron" id="error-banner-chevron">▲</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <section class="generator-section" id="generator">
         <div class="generator-container">
             <div class="form-card">
                 <div class="form-wrapper" id="form-wrapper">
-                    <!-- Фрейм будет загружен здесь JavaScript -->
+                    <!-- Загружается JavaScript-ом -->
                 </div>
             </div>
         </div>
