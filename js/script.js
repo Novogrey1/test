@@ -313,22 +313,16 @@ document.querySelectorAll('.contact-btn, .btn').forEach(btn => {
 });
 
 // Анимация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) navbar.classList.add('nav-animate');
+
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) heroContent.classList.add('animate');
+});
+
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
-
-    // Анимация появления элементов навбара
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        navbar.classList.add('nav-animate');
-    }
-
-    // Анимация hero-контента
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        heroContent.classList.add('animate');
-    }
-
-    // Запускаем scroll reveal после небольшой задержки
     setTimeout(initScrollReveal, 100);
 });
 
@@ -458,33 +452,55 @@ function setLanguage(lang) {
         langBtnAnim.classList.add('flipping');
     }
 
-    // Восстанавливаем исходный HTML
-    document.body.innerHTML = originalHTML;
+    // Каскадный выезд элементов
+    const EXIT_SEL = '.hero-title, .hero-subtitle, .hero-buttons, .text-content h2, .text-content p, .contacts-section h2, .docs-section h2, .disclaimer';
+    const exitEls = Array.from(document.querySelectorAll(EXIT_SEL));
+    exitEls.forEach((el, i) => {
+        el.style.animationDelay = (i * 30) + 'ms';
+        el.classList.remove('lang-enter');
+        el.classList.add('lang-exit');
+    });
 
-    // Переводим все текстовые узлы
-    function translateNode(node) {
-        if (node.nodeType === 3) { // TEXT_NODE
-            let text = node.textContent.trim();
-            if (text && text.length > 0 && translations[lang] && translations[lang][text]) {
-                node.textContent = node.textContent.replace(text, translations[lang][text]);
-            }
-        } else if (node.nodeType === 1) { // ELEMENT_NODE
-            if (node.tagName !== 'SCRIPT') {
-                for (let i = 0; i < node.childNodes.length; i++) {
-                    translateNode(node.childNodes[i]);
+    const exitDuration = Math.min(exitEls.length * 30 + 200, 400);
+
+    setTimeout(() => {
+        document.body.innerHTML = originalHTML;
+
+        function translateNode(node) {
+            if (node.nodeType === 3) {
+                const originalText = node.textContent;
+                const trimmedText = originalText.trim();
+                if (trimmedText && translations[lang] && translations[lang][trimmedText]) {
+                    const leadingSpace = originalText.match(/^\s*/)[0];
+                    const trailingSpace = originalText.match(/\s*$/)[0];
+                    node.textContent = leadingSpace + translations[lang][trimmedText] + trailingSpace;
                 }
+            } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+                Array.from(node.childNodes).forEach(child => {
+                    if (node.contains(child)) translateNode(child);
+                });
             }
         }
-    }
+        Array.from(document.body.childNodes).forEach(child => {
+            if (document.body.contains(child)) translateNode(child);
+        });
 
-    for (let i = 0; i < document.body.childNodes.length; i++) {
-        translateNode(document.body.childNodes[i]);
-    }
+        reinitializeEventListeners();
+        reinitializeTheme();
+        document.body.classList.add('loaded');
 
-    reinitializeEventListeners();
-    reinitializeTheme();
-    initScrollReveal();
-    document.body.classList.add('loaded');
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            const enterEls = Array.from(document.querySelectorAll(EXIT_SEL));
+            enterEls.forEach((el, i) => {
+                el.style.animationDelay = (i * 45) + 'ms';
+                el.classList.add('lang-enter');
+                el.addEventListener('animationend', () => {
+                    el.classList.remove('lang-enter');
+                    el.style.animationDelay = '';
+                }, { once: true });
+            });
+        }));
+    }, exitDuration);
 }
 
 // Функция обновления кнопки языка
