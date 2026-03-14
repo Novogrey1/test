@@ -42,12 +42,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
-    opacity: 0;
-    transition: background-color 0.4s ease, color 0.4s ease, opacity 0.5s ease;
-}
-
-body.loaded {
-    opacity: 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -252,14 +247,6 @@ body.loaded {
     font-weight: bold;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
     max-width: 800px;
-    opacity: 0;
-    transform: translateY(-22px);
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.hero-events-content.animate h1 {
-    opacity: 1;
-    transform: none;
 }
 
 /* ============================================
@@ -456,46 +443,60 @@ body.dark-mode .form-wrapper iframe {
     border-top: 1px solid var(--border-color);
 }
 
-
 /* ============================================
-   SCROLL REVEAL & LOAD ANIMATIONS
+   АНИМАЦИЯ СМЕНЫ ЯЗЫКА
    ============================================ */
 
-.reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+@keyframes langSlideOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-16px) scale(0.97); }
 }
 
-.reveal.visible {
-    opacity: 1;
-    transform: none;
+@keyframes langSlideIn {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to   { opacity: 1; transform: none; }
 }
 
-.reveal-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+.lang-exit {
+    animation: langSlideOut 0.18s cubic-bezier(0.4, 0, 1, 1) forwards;
+    pointer-events: none;
 }
 
-.reveal-up.visible {
-    opacity: 1;
-    transform: none;
+.lang-enter {
+    animation: langSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* ============================================
-   THEME BUTTON SPIN
+   АНИМАЦИЯ СМЕНЫ ЯЗЫКА
    ============================================ */
 
-.theme-btn.spinning {
-    animation: themeSpin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+@keyframes langSlideOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-16px) scale(0.97); }
 }
 
-@keyframes themeSpin {
-    0%   { transform: rotate(0deg) scale(1); }
-    40%  { transform: rotate(200deg) scale(1.25); }
-    100% { transform: rotate(360deg) scale(1); }
+@keyframes langSlideIn {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to   { opacity: 1; transform: none; }
 }
+
+.lang-exit {
+    animation: langSlideOut 0.18s cubic-bezier(0.4, 0, 1, 1) forwards;
+    pointer-events: none;
+}
+
+.lang-enter {
+    animation: langSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal-up.visible { opacity: 1; transform: none; }
 
 /* ============================================
    NAVBAR ITEMS FADE IN ON LOAD
@@ -503,10 +504,7 @@ body.dark-mode .form-wrapper iframe {
 
 .navbar.nav-animate .nav-item,
 .navbar.nav-animate .language-selector,
-.navbar.nav-animate .theme-selector {
-    animation: navItemIn 0.5s ease both;
-}
-
+.navbar.nav-animate .theme-selector { animation: navItemIn 0.5s ease both; }
 .navbar.nav-animate .nav-item:nth-child(2) { animation-delay: 0.05s; }
 .navbar.nav-animate .nav-item:nth-child(3) { animation-delay: 0.10s; }
 .navbar.nav-animate .nav-item:nth-child(4) { animation-delay: 0.15s; }
@@ -515,10 +513,20 @@ body.dark-mode .form-wrapper iframe {
 .navbar.nav-animate .nav-item:nth-child(7) { animation-delay: 0.28s; }
 .navbar.nav-animate .language-selector     { animation-delay: 0.31s; }
 .navbar.nav-animate .theme-selector        { animation-delay: 0.34s; }
-
 @keyframes navItemIn {
     from { opacity: 0; transform: translateY(-10px); }
     to   { opacity: 1; transform: none; }
+}
+
+/* ============================================
+   THEME BUTTON SPIN
+   ============================================ */
+
+.theme-btn.spinning { animation: themeSpin 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+@keyframes themeSpin {
+    0%   { transform: rotate(0deg) scale(1); }
+    40%  { transform: rotate(200deg) scale(1.25); }
+    100% { transform: rotate(360deg) scale(1); }
 }
 
 /* ============================================
@@ -759,18 +767,18 @@ body.menu-open {
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 10px);
     left: 0;
     background-color: var(--primary-color);
     min-width: 230px;
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     z-index: 3000;
-    padding: 10px 0 6px 0;
+    padding: 6px 0;
     list-style: none;
     border: 1px solid rgba(255,255,255,0.07);
     /* появляется быстро, исчезает с задержкой 350ms */
-    transition: opacity 0.18s ease, visibility 0s linear 0.25s;
+    transition: opacity 0.18s ease, visibility 0s linear 0.35s;
 }
 
 .nav-item:hover > .dropdown-menu,
@@ -834,7 +842,7 @@ body.menu-open {
     padding: 6px 0;
     list-style: none;
     border: 1px solid rgba(255,255,255,0.07);
-    transition: opacity 0.18s ease, visibility 0s linear 0.25s;
+    transition: opacity 0.18s ease, visibility 0s linear 0.35s;
 }
 
 .dropdown-submenu:hover > .dropdown-submenu-list,
@@ -906,5 +914,204 @@ body.menu-open {
 
     .dropdown-submenu > .dropdown-link {
         font-weight: 600;
+    }
+}
+/* TRP shared page animations */
+:root {
+    --secondary-color: #e8e8e8;
+    --text-color: #2a2a2a;
+    --border-color: #c0bdb8;
+    --bg-color: #e8e5e0;
+    --bg-secondary: #dedad4;
+    --card-bg: #dedad4;
+    --heading-color: #1a1a1a;
+    --text-light: #666;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+.events-section,
+.updates-section,
+.faq-section,
+.tables-section,
+.generator-section,
+.charter-section,
+.schemes-section {
+    background-color: var(--bg-secondary);
+}
+
+.contacts-section,
+.docs-section,
+.footer {
+    background-color: var(--navbar-bg, #1a1a1a) !important;
+    color: #e8e8e8;
+}
+
+.contacts-section h2,
+.docs-section h2,
+.footer,
+.footer p {
+    color: #e8e8e8 !important;
+}
+
+.disclaimer {
+    color: rgba(232, 232, 232, 0.72) !important;
+}
+
+.contact-btn,
+.doc-btn {
+    border-color: #e8e8e8 !important;
+    color: #e8e8e8 !important;
+}
+
+.contact-btn:hover,
+.doc-btn:hover {
+    background-color: #e8e8e8 !important;
+    color: var(--navbar-bg, #1a1a1a) !important;
+}
+
+.form-card,
+.calendar-card,
+.charter-card,
+.scheme-card,
+.faq-item,
+.update-entry,
+.table-block,
+.database-frame-wrap,
+.local-generator-card,
+.generator-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.theme-btn.spinning {
+    animation: themeSpin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes themeSpin {
+    0%   { transform: rotate(0deg) scale(1); }
+    40%  { transform: rotate(200deg) scale(1.25); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes langSlideOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-16px) scale(0.97); }
+}
+
+@keyframes langSlideIn {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to   { opacity: 1; transform: none; }
+}
+
+.lang-exit {
+    animation: langSlideOut 0.18s cubic-bezier(0.4, 0, 1, 1) forwards;
+    pointer-events: none;
+}
+
+.lang-enter {
+    animation: langSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.navbar.trp-nav-animate .nav-item,
+.navbar.trp-nav-animate .language-selector,
+.navbar.trp-nav-animate .theme-selector {
+    opacity: 0;
+    animation: trpNavItemIn 0.5s ease both;
+}
+
+.navbar.trp-nav-animate .nav-item:nth-child(2) { animation-delay: 0.05s; }
+.navbar.trp-nav-animate .nav-item:nth-child(3) { animation-delay: 0.10s; }
+.navbar.trp-nav-animate .nav-item:nth-child(4) { animation-delay: 0.15s; }
+.navbar.trp-nav-animate .nav-item:nth-child(5) { animation-delay: 0.20s; }
+.navbar.trp-nav-animate .nav-item:nth-child(6) { animation-delay: 0.25s; }
+.navbar.trp-nav-animate .nav-item:nth-child(7) { animation-delay: 0.28s; }
+.navbar.trp-nav-animate .language-selector { animation-delay: 0.31s; }
+.navbar.trp-nav-animate .theme-selector { animation-delay: 0.34s; }
+
+@keyframes trpNavItemIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.trp-hero-block > * {
+    opacity: 0;
+    transform: translateY(-22px);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--trp-hero-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.trp-hero-block.trp-hero-visible > * {
+    opacity: 1;
+    transform: none;
+}
+
+.trp-scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--trp-stagger, 0ms);
+    will-change: opacity, transform;
+}
+
+.trp-scroll-reveal.trp-title-reveal {
+    transform: translateY(-22px);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.trp-scroll-reveal.trp-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.trp-banner-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.trp-banner-reveal.trp-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.dropdown-arrow,
+.submenu-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0.75em;
+    line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar.trp-nav-animate .nav-item,
+    .navbar.trp-nav-animate .language-selector,
+    .navbar.trp-nav-animate .theme-selector,
+    .theme-btn.spinning,
+    .lang-exit,
+    .lang-enter,
+    .trp-hero-block > *,
+    .trp-scroll-reveal,
+    .trp-banner-reveal {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
     }
 }

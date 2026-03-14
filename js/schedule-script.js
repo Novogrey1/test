@@ -620,3 +620,416 @@ document.addEventListener("keydown", e => {
     e.preventDefault();
   }
 });
+// TRP shared page animations
+;(() => {
+    if (window.__trpPageAnimationsBooted) {
+        return;
+    }
+    window.__trpPageAnimationsBooted = true;
+
+    const NAV_CLASS = 'trp-nav-animate';
+    const HERO_CLASS = 'trp-hero-block';
+    const HERO_VISIBLE_CLASS = 'trp-hero-visible';
+    const REVEAL_CLASS = 'trp-scroll-reveal';
+    const TITLE_CLASS = 'trp-title-reveal';
+    const BANNER_CLASS = 'trp-banner-reveal';
+    const VISIBLE_CLASS = 'trp-visible';
+    const LANGUAGE_TARGET_SELECTOR = [
+        '.hero-content h1',
+        '[class*="hero-"][class*="content"] h1',
+        '[class*="hero"][class*="content"] h1',
+        '.database-hero h1',
+        '.section-title',
+        '.subsection-title',
+        '.section-header',
+        '.section-header > *',
+        '.contacts-section h2',
+        '.docs-section h2',
+        '.disclaimer',
+        '.calendar-card',
+        '.form-card',
+        '.charter-card',
+        '.scheme-card',
+        '.faq-item',
+        '.update-entry',
+        '.table-block',
+        '.database-frame-wrap',
+        '.local-generator-card',
+        '.generator-card',
+        '.buttons-container > *',
+        '.contact-buttons > *',
+        '.docs-buttons > *',
+        '.team-grid > *',
+        '.winners-grid > *'
+    ].join(', ');
+    const seen = new WeakSet();
+    const observed = new WeakSet();
+    let observer = null;
+    let refreshTimer = 0;
+    let initialLanguagePaintDone = false;
+
+    function afterPaint(callback) {
+        requestAnimationFrame(() => {
+            requestAnimationFrame(callback);
+        });
+    }
+
+    function ensureObserver() {
+        if (observer || !('IntersectionObserver' in window)) {
+            return;
+        }
+
+        observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(VISIBLE_CLASS);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+    }
+
+    function isHidden(element) {
+        if (!element || !element.isConnected || element.hidden) {
+            return true;
+        }
+
+        const style = window.getComputedStyle(element);
+        return style.display === 'none' || style.visibility === 'hidden';
+    }
+
+    function isTitleLike(element) {
+        return (
+            /^H[1-6]$/.test(element.tagName) ||
+            element.classList.contains('section-title') ||
+            element.classList.contains('subsection-title') ||
+            element.classList.contains('section-header') ||
+            element.classList.contains('update-date')
+        );
+    }
+
+    function hasOwnAnimation(element) {
+        return (
+            element.classList.contains('reveal') ||
+            element.classList.contains('reveal-left') ||
+            element.classList.contains('reveal-right') ||
+            element.classList.contains('reveal-up') ||
+            element.classList.contains('lang-enter') ||
+            element.classList.contains('lang-exit') ||
+            element.classList.contains(REVEAL_CLASS) ||
+            element.classList.contains('animate')
+        );
+    }
+
+    function isMeaningful(element) {
+        if (!element || isHidden(element) || hasOwnAnimation(element)) {
+            return false;
+        }
+
+        if (element.closest('.navbar, .dropdown-menu, .dropdown-submenu-list, .menu-toggle, footer, .footer, .error-banner, .error-banner-outer')) {
+            return false;
+        }
+
+        const tagName = element.tagName;
+        if (['SCRIPT', 'STYLE', 'NOSCRIPT', 'TEMPLATE'].includes(tagName)) {
+            return false;
+        }
+
+        const className = Array.from(element.classList).join(' ');
+        if (/(nav|menu|dropdown|submenu|logo|theme|lang|footer)/i.test(className)) {
+            return false;
+        }
+
+        if (isTitleLike(element) || ['P', 'ARTICLE', 'FORM', 'TABLE', 'UL', 'OL', 'FIGURE'].includes(tagName)) {
+            return true;
+        }
+
+        if (element.querySelector('iframe, table, img, video, canvas')) {
+            return true;
+        }
+
+        return /(card|item|block|entry|wrap|wrapper|panel|table|hero|frame|hint|buttons|form|search|filter|result|preview|update|faq|scheme|list|grid|database)/i.test(className) || (element.textContent || '').trim().length > 60;
+    }
+
+    function markVisible(element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 40 || rect.top === 0) {
+            afterPaint(() => {
+                element.classList.add(VISIBLE_CLASS);
+            });
+            return true;
+        }
+
+        return false;
+    }
+
+    function reveal(element, delay) {
+        if (!isMeaningful(element) || seen.has(element)) {
+            return;
+        }
+
+        seen.add(element);
+        element.classList.add(REVEAL_CLASS);
+        element.style.setProperty('--trp-stagger', delay + 'ms');
+
+        if (isTitleLike(element)) {
+            element.classList.add(TITLE_CLASS);
+        }
+
+        ensureObserver();
+
+        if (!markVisible(element) && observer && !observed.has(element)) {
+            observer.observe(element);
+            observed.add(element);
+        }
+    }
+
+    function revealGroup(group) {
+        Array.from(group.children).forEach((child, index) => {
+            reveal(child, index * 70);
+        });
+    }
+
+    function getSectionRoot(section) {
+        return (
+            section.querySelector(':scope > .container') ||
+            section.querySelector(':scope > .generator-container') ||
+            section.querySelector(':scope > .content-container') ||
+            section.querySelector(':scope > .table-container') ||
+            section.querySelector(':scope > .faq-container') ||
+            section
+        );
+    }
+
+    function prepareHero() {
+        document.querySelectorAll('.hero-content, [class*="hero-"][class*="content"], [class*="hero"][class*="content"], .database-hero').forEach((hero) => {
+            if (hero.classList.contains(HERO_CLASS) || hero.classList.contains('animate')) {
+                return;
+            }
+
+            hero.classList.add(HERO_CLASS);
+            Array.from(hero.children).forEach((child, index) => {
+                child.style.setProperty('--trp-hero-delay', (index * 140) + 'ms');
+            });
+
+            afterPaint(() => {
+                hero.classList.add(HERO_VISIBLE_CLASS);
+            });
+        });
+    }
+
+    function prepareSection(section) {
+        if (!section || /hero/i.test(section.className)) {
+            return;
+        }
+
+        const root = getSectionRoot(section);
+        let revealIndex = 0;
+
+        Array.from(root.children).forEach((child) => {
+            if (isHidden(child)) {
+                return;
+            }
+
+            if (child.matches('.contact-buttons, .docs-buttons, .hero-buttons, .buttons-container')) {
+                revealGroup(child);
+                return;
+            }
+
+            if (child.matches('.section-header')) {
+                const headingNodes = Array.from(child.querySelectorAll(':scope > .section-title, :scope > .subsection-title, :scope > h1, :scope > h2, :scope > h3'));
+                if (headingNodes.length) {
+                    headingNodes.forEach((node, index) => {
+                        reveal(node, (revealIndex + index) * 60);
+                    });
+                    revealIndex += headingNodes.length;
+                    return;
+                }
+            }
+
+            if (/(grid|list)/i.test(Array.from(child.classList).join(' ')) && child.children.length > 1) {
+                Array.from(child.children).forEach((item, index) => {
+                    reveal(item, index * 70);
+                });
+                return;
+            }
+
+            if (isMeaningful(child)) {
+                reveal(child, revealIndex * 60);
+                revealIndex += 1;
+            }
+        });
+    }
+
+    function prepareNavbar() {
+        const navbar = document.querySelector('.navbar');
+        if (!navbar || navbar.classList.contains('nav-animate') || navbar.classList.contains(NAV_CLASS)) {
+            return;
+        }
+
+        afterPaint(() => {
+            navbar.classList.add(NAV_CLASS);
+        });
+    }
+
+    function ensureArrow(toggle, className, glyph) {
+        if (!toggle) {
+            return;
+        }
+
+        let arrow = toggle.querySelector(':scope > .' + className);
+        if (!arrow) {
+            arrow = document.createElement('span');
+            arrow.className = className;
+            toggle.append(document.createTextNode(' '), arrow);
+        }
+
+        arrow.textContent = glyph;
+        arrow.setAttribute('aria-hidden', 'true');
+    }
+
+    function ensureNavArrows() {
+        document.querySelectorAll('.dropdown-toggle').forEach((toggle) => {
+            ensureArrow(toggle, 'dropdown-arrow', '\u25BE');
+        });
+
+        document.querySelectorAll('.submenu-toggle').forEach((toggle) => {
+            ensureArrow(toggle, 'submenu-arrow', '\u25B8');
+        });
+    }
+
+    function bindThemeButtonSpin() {
+        const themeBtn = document.getElementById('theme-btn');
+        if (!themeBtn || themeBtn.dataset.trpSpinBound === 'true') {
+            return;
+        }
+
+        themeBtn.dataset.trpSpinBound = 'true';
+        themeBtn.addEventListener('click', () => {
+            themeBtn.classList.remove('spinning');
+            void themeBtn.offsetWidth;
+            themeBtn.classList.add('spinning');
+            themeBtn.addEventListener('animationend', () => {
+                themeBtn.classList.remove('spinning');
+            }, { once: true });
+        });
+    }
+
+    function prepareBanners() {
+        document.querySelectorAll('.error-banner-outer, .error-banner').forEach((banner, index) => {
+            if (banner.classList.contains(BANNER_CLASS)) {
+                return;
+            }
+
+            banner.classList.add(BANNER_CLASS);
+            banner.style.transitionDelay = (index * 70) + 'ms';
+
+            afterPaint(() => {
+                banner.classList.add(VISIBLE_CLASS);
+            });
+        });
+    }
+
+    function getLanguageTargets(root = document) {
+        return Array.from(new Set(
+            Array.from(root.querySelectorAll(LANGUAGE_TARGET_SELECTOR)).filter((element) => {
+                return element && element.isConnected && !isHidden(element) && !element.closest('.navbar, footer, .footer');
+            })
+        ));
+    }
+
+    function animateLanguageEnter() {
+        getLanguageTargets(document).forEach((element, index) => {
+            element.classList.remove('lang-exit');
+            element.style.animationDelay = (index * 45) + 'ms';
+            element.classList.add('lang-enter');
+            element.addEventListener('animationend', () => {
+                element.classList.remove('lang-enter');
+                element.style.animationDelay = '';
+            }, { once: true });
+        });
+    }
+
+    function wrapLanguageSwitcher() {
+        if (window.__trpLanguageWrapInstalled || typeof window.setLanguage !== 'function') {
+            return;
+        }
+
+        const originalSetLanguage = window.setLanguage;
+        window.__trpLanguageWrapInstalled = true;
+
+        window.setLanguage = function wrappedSetLanguage(lang, skipAnim = false) {
+            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const shouldAnimate = !skipAnim && initialLanguagePaintDone && !reduceMotion;
+
+            if (!shouldAnimate) {
+                const result = originalSetLanguage.call(this, lang, true);
+                initialLanguagePaintDone = true;
+                afterPaint(refresh);
+                return result;
+            }
+
+            const exitElements = getLanguageTargets(document);
+            exitElements.forEach((element, index) => {
+                element.classList.remove('lang-enter');
+                element.style.animationDelay = (index * 30) + 'ms';
+                element.classList.add('lang-exit');
+            });
+
+            const exitDuration = Math.min(exitElements.length * 30 + 200, 400);
+            window.setTimeout(() => {
+                originalSetLanguage.call(this, lang, true);
+                if (typeof window.updateLangButton === 'function') {
+                    window.updateLangButton(lang);
+                }
+
+                afterPaint(() => {
+                    animateLanguageEnter();
+                    refresh();
+                });
+            }, exitDuration);
+        };
+    }
+
+    function refresh() {
+        wrapLanguageSwitcher();
+        ensureNavArrows();
+        bindThemeButtonSpin();
+        prepareNavbar();
+        prepareHero();
+        prepareBanners();
+        document.querySelectorAll('section').forEach(prepareSection);
+        document.querySelectorAll('.contacts-section h2, .docs-section h2, .disclaimer, .footer p, .section-title, .subsection-title, .section-header, .section-header > *').forEach((element, index) => {
+            reveal(element, index * 40);
+        });
+        document.querySelectorAll('.contact-buttons, .docs-buttons').forEach(revealGroup);
+    }
+
+    function scheduleRefresh() {
+        clearTimeout(refreshTimer);
+        refreshTimer = window.setTimeout(refresh, 60);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', refresh);
+    } else {
+        refresh();
+    }
+
+    window.addEventListener('load', refresh, { once: true });
+    window.addEventListener('resize', scheduleRefresh);
+
+    if (document.body) {
+        new MutationObserver((mutations) => {
+            if (mutations.some((mutation) => mutation.type === 'childList')) {
+                scheduleRefresh();
+            }
+        }).observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+})();
