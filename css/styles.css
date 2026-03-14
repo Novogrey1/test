@@ -519,7 +519,7 @@ body.dark-mode .hero {
 
 /* Секция контактов */
 .contacts-section {
-    background-color: var(--primary-color);
+    background-color: var(--navbar-bg);
     color: var(--secondary-color);
     padding: 3rem 0;
     text-align: center;
@@ -550,12 +550,12 @@ body.dark-mode .hero {
 
 .contact-btn:hover {
     background-color: var(--secondary-color);
-    color: var(--primary-color);
+    color: var(--navbar-bg);
 }
 
 /* Секция документации */
 .docs-section {
-    background-color: var(--primary-color);
+    background-color: var(--navbar-bg);
     color: var(--secondary-color);
     padding: 3rem 0;
     text-align: center;
@@ -587,18 +587,18 @@ body.dark-mode .hero {
 
 .doc-btn:hover {
     background-color: var(--secondary-color);
-    color: var(--primary-color);
+    color: var(--navbar-bg);
 }
 
 .disclaimer {
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: rgba(232, 232, 232, 0.72);
     margin-top: 1rem;
 }
 
 /* Подвал */
 .footer {
-    background-color: var(--primary-color);
+    background-color: var(--navbar-bg);
     color: var(--secondary-color);
     text-align: center;
     padding: 2rem 0;
@@ -659,20 +659,6 @@ body.dark-mode .hero {
 }
 
 /* ============================================
-   LANG BUTTON FLIP ANIMATION
-   ============================================ */
-
-.lang-btn.flipping {
-    animation: langFlip 0.35s ease;
-}
-
-@keyframes langFlip {
-    0%   { transform: rotateY(0deg) scale(1); }
-    50%  { transform: rotateY(90deg) scale(0.85); }
-    100% { transform: rotateY(0deg) scale(1); }
-}
-
-/* ============================================
    HERO CONTENT STAGGER ON LOAD
    ============================================ */
 
@@ -729,6 +715,30 @@ body.dark-mode .hero {
 
 
 /* Мобильная адаптивность */
+
+/* ============================================
+   АНИМАЦИЯ СМЕНЫ ЯЗЫКА
+   ============================================ */
+
+@keyframes langSlideOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-16px) scale(0.97); }
+}
+
+@keyframes langSlideIn {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to   { opacity: 1; transform: none; }
+}
+
+.lang-exit {
+    animation: langSlideOut 0.18s cubic-bezier(0.4, 0, 1, 1) forwards;
+    pointer-events: none;
+}
+
+.lang-enter {
+    animation: langSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 @media (max-width: 768px) {
     .menu-toggle {
         display: flex;
@@ -1226,4 +1236,26 @@ body.menu-open {
     .dropdown-submenu > .dropdown-link {
         font-weight: 600;
     }
+}
+/* ============================================
+   АНИМАЦИЯ СМЕНЫ ЯЗЫКА
+   ============================================ */
+
+@keyframes langSlideOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-16px) scale(0.97); }
+}
+
+@keyframes langSlideIn {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to   { opacity: 1; transform: none; }
+}
+
+.lang-exit {
+    animation: langSlideOut 0.18s cubic-bezier(0.4, 0, 1, 1) forwards;
+    pointer-events: none;
+}
+
+.lang-enter {
+    animation: langSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

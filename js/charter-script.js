@@ -205,35 +205,29 @@ function initLanguageSystem() {
         originalHTML = document.body.innerHTML;
     }
     const savedLanguage = localStorage.getItem('language') || 'ru';
-    setLanguage(savedLanguage);
+    setLanguage(savedLanguage, true);
     updateLangButton(savedLanguage);
     setupLanguageButton();
     reinitializeEventListeners();
     initThemeSystem();
 }
 
-function setLanguage(lang) {
+function setLanguage(lang, skipAnim = false) {
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
 
-    // Флип кнопки языка
-    const langBtnAnim = document.getElementById('lang-btn');
-    if (langBtnAnim) {
-        langBtnAnim.classList.remove('flipping');
-        void langBtnAnim.offsetWidth;
-        langBtnAnim.classList.add('flipping');
+    const EXIT_SEL = '.hero-charter-content h1, .charter-hint, .charter-card, .contacts-section h2, .docs-section h2, .disclaimer';
+
+    if (!skipAnim) {
+        const exitEls = Array.from(document.querySelectorAll(EXIT_SEL));
+        exitEls.forEach((el, i) => {
+            el.style.animationDelay = (i * 30) + 'ms';
+            el.classList.remove('lang-enter');
+            el.classList.add('lang-exit');
+        });
     }
 
-    // Каскадный выезд элементов
-    const EXIT_SEL = '.hero-charter-content h1, .charter-hint, .charter-card, .contacts-section h2, .docs-section h2, .disclaimer';
-    const exitEls = Array.from(document.querySelectorAll(EXIT_SEL));
-    exitEls.forEach((el, i) => {
-        el.style.animationDelay = (i * 30) + 'ms';
-        el.classList.remove('lang-enter');
-        el.classList.add('lang-exit');
-    });
-
-    const exitDuration = Math.min(exitEls.length * 30 + 200, 400);
+    const exitDuration = skipAnim ? 0 : Math.min(document.querySelectorAll(EXIT_SEL).length * 30 + 200, 400);
 
     setTimeout(() => {
         document.body.innerHTML = originalHTML;
@@ -260,18 +254,29 @@ function setLanguage(lang) {
         reinitializeEventListeners();
         reinitializeTheme();
         initMobileMenu();
+        updateLangButton(lang);
         document.body.classList.add('loaded');
 
         requestAnimationFrame(() => requestAnimationFrame(() => {
-            const enterEls = Array.from(document.querySelectorAll(EXIT_SEL));
-            enterEls.forEach((el, i) => {
-                el.style.animationDelay = (i * 45) + 'ms';
-                el.classList.add('lang-enter');
-                el.addEventListener('animationend', () => {
-                    el.classList.remove('lang-enter');
-                    el.style.animationDelay = '';
-                }, { once: true });
-            });
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                navbar.classList.remove('nav-animate');
+                void navbar.offsetWidth;
+                navbar.classList.add('nav-animate');
+            }
+
+            if (!skipAnim) {
+                const enterEls = Array.from(document.querySelectorAll(EXIT_SEL));
+                enterEls.forEach((el, i) => {
+                    el.style.animationDelay = (i * 45) + 'ms';
+                    el.classList.add('lang-enter');
+                    el.addEventListener('animationend', () => {
+                        el.classList.remove('lang-enter');
+                        el.style.animationDelay = '';
+                    }, { once: true });
+                });
+            }
+
             const heroContent = document.querySelector('.hero-charter-content');
             if (heroContent) heroContent.classList.add('animate');
             initScrollReveal();
@@ -508,16 +513,6 @@ function initDropdowns() {
 // ============================================
 // ЗАГРУЗКА СТРАНИЦЫ И SCROLL REVEAL
 // ============================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.querySelector('.navbar');
-    if (navbar) navbar.classList.add('nav-animate');
-
-    const heroContent = document.querySelector('.hero-charter-content');
-    if (heroContent) {
-        setTimeout(() => heroContent.classList.add('animate'), 50);
-    }
-});
 
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
