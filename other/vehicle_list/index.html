@@ -167,6 +167,64 @@
      ============================================ -->
 <section class="tables-section">
     <div class="container">
+        <div class="table-sort-panel">
+            <div class="table-sort-panel-head">
+                <div class="table-sort-copy">
+                    <p class="table-sort-caption" id="vehicle-sort-caption">Сортировка и фильтрация списка</p>
+                    <p class="table-sort-hint" id="vehicle-sort-hint">Сортировка применяется отдельно внутри каждого парка и блока списанных машин. Точный бортовой номер имеет приоритет над диапазоном.</p>
+                </div>
+            </div>
+            <div class="table-sort-controls">
+                <label class="table-sort-field">
+                    <span id="vehicle-sort-field-label">Сортировать по</span>
+                    <select id="vehicle-sort-field">
+                        <option value="" selected hidden>Выберите поле</option>
+                        <option value="board">Бортовой номер</option>
+                        <option value="status">Статус</option>
+                        <option value="factory">Заводской номер</option>
+                        <option value="model">Модель</option>
+                    </select>
+                </label>
+                <label class="table-sort-field">
+                    <span id="vehicle-sort-direction-label">Порядок</span>
+                    <select id="vehicle-sort-direction">
+                        <option value="asc">По возрастанию</option>
+                        <option value="desc">По убыванию</option>
+                    </select>
+                </label>
+                <label class="table-sort-field">
+                    <span id="vehicle-filter-status-label">Статус</span>
+                    <select id="vehicle-filter-status">
+                        <option value="">Все статусы</option>
+                    </select>
+                </label>
+                <label class="table-sort-field">
+                    <span id="vehicle-filter-model-label">Модель</span>
+                    <select id="vehicle-filter-model">
+                        <option value="">Все модели</option>
+                    </select>
+                </label>
+                <label class="table-sort-field">
+                    <span id="vehicle-filter-livery-label">Окраска</span>
+                    <select id="vehicle-filter-livery">
+                        <option value="">Все окраски</option>
+                    </select>
+                </label>
+                <label class="table-sort-field">
+                    <span id="vehicle-filter-board-label">Бортовой номер</span>
+                    <input type="number" id="vehicle-filter-board" inputmode="numeric" min="0" step="1" placeholder="Точный номер" autocomplete="off">
+                </label>
+                <label class="table-sort-field">
+                    <span id="vehicle-filter-board-from-label">Номер от</span>
+                    <input type="number" id="vehicle-filter-board-from" inputmode="numeric" min="0" step="1" placeholder="От" autocomplete="off">
+                </label>
+                <label class="table-sort-field">
+                    <span id="vehicle-filter-board-to-label">Номер до</span>
+                    <input type="number" id="vehicle-filter-board-to" inputmode="numeric" min="0" step="1" placeholder="До" autocomplete="off">
+                </label>
+                <button type="button" class="table-sort-reset" id="vehicle-sort-reset">Сбросить всё</button>
+            </div>
+        </div>
 
         <!-- Главный Троллейбусный Парк -->
         <div class="table-block">

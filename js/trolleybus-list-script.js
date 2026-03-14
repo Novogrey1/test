@@ -215,7 +215,7 @@ function setupLanguageButton() {
     }
 }
 
-function reinitializeEventListeners() { setupLanguageButton(); initDropdowns(); initMobileMenu(); initModal(); }
+function reinitializeEventListeners() { setupLanguageButton(); initDropdowns(); initMobileMenu(); initModal(); initVehicleListSorting(); }
 
 function reinitializeTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -337,6 +337,277 @@ const tableTranslationsEN = {
 };
 
 // Применить данные таблицы с учётом текущего языка
+const VEHICLE_SORT_STORAGE_KEY = 'vehicleListSortState';
+const DEFAULT_VEHICLE_SORT_STATE = Object.freeze({ field: 'default', direction: 'asc' });
+const vehicleSortCopy = {
+    ru: {
+        caption: 'Сортировка списка',
+        hint: 'Сортировка применяется отдельно внутри каждого парка и блока списанных машин.',
+        fieldLabel: 'Сортировать по',
+        directionLabel: 'Порядок',
+        reset: 'Сбросить',
+        fields: {
+            default: 'Исходный порядок',
+            board: 'Бортовой номер',
+            model: 'Марка / модель',
+            status: 'Статус',
+            factory: 'Заводской номер',
+            livery: 'Окраска',
+            note: 'Примечание / депо'
+        },
+        directions: {
+            asc: 'По возрастанию',
+            desc: 'По убыванию'
+        }
+    },
+    en: {
+        caption: 'List sorting',
+        hint: 'Sorting is applied separately inside each depot table and the retired vehicles block.',
+        fieldLabel: 'Sort by',
+        directionLabel: 'Order',
+        reset: 'Reset',
+        fields: {
+            default: 'Default order',
+            board: 'Board number',
+            model: 'Brand / model',
+            status: 'Status',
+            factory: 'Factory number',
+            livery: 'Livery',
+            note: 'Note / depot'
+        },
+        directions: {
+            asc: 'Ascending',
+            desc: 'Descending'
+        }
+    }
+};
+
+let vehicleSortState = loadVehicleSortState();
+
+function loadVehicleSortState() {
+    try {
+        const raw = localStorage.getItem(VEHICLE_SORT_STORAGE_KEY);
+        if (!raw) return { ...DEFAULT_VEHICLE_SORT_STATE };
+
+        const parsed = JSON.parse(raw);
+        const allowedFields = new Set(['default', 'board', 'model', 'status', 'factory', 'livery', 'note']);
+        return {
+            field: allowedFields.has(parsed.field) ? parsed.field : DEFAULT_VEHICLE_SORT_STATE.field,
+            direction: parsed.direction === 'desc' ? 'desc' : 'asc'
+        };
+    } catch (error) {
+        return { ...DEFAULT_VEHICLE_SORT_STATE };
+    }
+}
+
+function saveVehicleSortState() {
+    localStorage.setItem(VEHICLE_SORT_STORAGE_KEY, JSON.stringify(vehicleSortState));
+}
+
+function getVehicleSortLanguage() {
+    return (localStorage.getItem('language') || 'ru') === 'en' ? 'en' : 'ru';
+}
+
+function getVehicleSortTexts() {
+    return vehicleSortCopy[getVehicleSortLanguage()] || vehicleSortCopy.ru;
+}
+
+function normalizeVehicleSortValue(value) {
+    return String(value || '').replace(/\s+/g, ' ').trim();
+}
+
+function isVehicleSortValueEmpty(value) {
+    const normalized = normalizeVehicleSortValue(value).toLowerCase();
+    return (
+        !normalized ||
+        normalized === '-' ||
+        normalized === '—' ||
+        normalized === 'loading...' ||
+        normalized === 'загрузка...' ||
+        normalized === 'no data' ||
+        normalized === 'нет данных'
+    );
+}
+
+function prepareVehicleTableSorting() {
+    document.querySelectorAll('.table-block tbody').forEach((tbody) => {
+        Array.from(tbody.querySelectorAll(':scope > tr')).forEach((row, index) => {
+            if (!row.dataset.originalIndex) {
+                row.dataset.originalIndex = String(index);
+            }
+        });
+    });
+}
+
+function getVehicleSortRowValue(row, field) {
+    switch (field) {
+        case 'board': {
+            const boardLink = row.querySelector('.tbus-link');
+            return normalizeVehicleSortValue(boardLink ? boardLink.textContent : row.cells[1] && row.cells[1].textContent);
+        }
+        case 'model': {
+            const model = row.querySelector('.model');
+            return normalizeVehicleSortValue(model ? model.textContent : row.cells[2] && row.cells[2].textContent);
+        }
+        case 'status': {
+            const status = row.querySelector('.status, .statusdop');
+            return normalizeVehicleSortValue(status ? status.textContent : row.cells[3] && row.cells[3].textContent);
+        }
+        case 'factory': {
+            const factory = row.querySelector('.factory-number');
+            return normalizeVehicleSortValue(factory ? factory.textContent : row.cells[4] && row.cells[4].textContent);
+        }
+        case 'livery': {
+            const livery = row.querySelector('.livery');
+            return normalizeVehicleSortValue(livery ? livery.textContent : row.cells[5] && row.cells[5].textContent);
+        }
+        case 'note':
+            return normalizeVehicleSortValue(row.cells[row.cells.length - 1] && row.cells[row.cells.length - 1].textContent);
+        default:
+            return row.dataset.originalIndex || '0';
+    }
+}
+
+function renumberVehicleTableRows(tbody) {
+    Array.from(tbody.querySelectorAll(':scope > tr')).forEach((row, index) => {
+        if (row.cells[0]) {
+            row.cells[0].textContent = String(index + 1);
+        }
+    });
+}
+
+function compareVehicleRows(leftRow, rightRow, collator) {
+    if (vehicleSortState.field === 'default') {
+        return Number(leftRow.dataset.originalIndex || 0) - Number(rightRow.dataset.originalIndex || 0);
+    }
+
+    const leftValue = getVehicleSortRowValue(leftRow, vehicleSortState.field);
+    const rightValue = getVehicleSortRowValue(rightRow, vehicleSortState.field);
+    const leftEmpty = isVehicleSortValueEmpty(leftValue);
+    const rightEmpty = isVehicleSortValueEmpty(rightValue);
+
+    if (leftEmpty && rightEmpty) {
+        return Number(leftRow.dataset.originalIndex || 0) - Number(rightRow.dataset.originalIndex || 0);
+    }
+    if (leftEmpty) return 1;
+    if (rightEmpty) return -1;
+
+    let result = collator.compare(leftValue, rightValue);
+    if (result === 0) {
+        result = Number(leftRow.dataset.originalIndex || 0) - Number(rightRow.dataset.originalIndex || 0);
+    }
+
+    return vehicleSortState.direction === 'desc' ? -result : result;
+}
+
+function updateVehicleSortTexts() {
+    const texts = getVehicleSortTexts();
+    const caption = document.getElementById('vehicle-sort-caption');
+    const hint = document.getElementById('vehicle-sort-hint');
+    const fieldLabel = document.getElementById('vehicle-sort-field-label');
+    const directionLabel = document.getElementById('vehicle-sort-direction-label');
+    const resetButton = document.getElementById('vehicle-sort-reset');
+    const fieldSelect = document.getElementById('vehicle-sort-field');
+    const directionSelect = document.getElementById('vehicle-sort-direction');
+
+    if (caption) caption.textContent = texts.caption;
+    if (hint) hint.textContent = texts.hint;
+    if (fieldLabel) fieldLabel.textContent = texts.fieldLabel;
+    if (directionLabel) directionLabel.textContent = texts.directionLabel;
+    if (resetButton) resetButton.textContent = texts.reset;
+
+    if (fieldSelect) {
+        Array.from(fieldSelect.options).forEach((option) => {
+            option.textContent = texts.fields[option.value] || option.textContent;
+        });
+    }
+
+    if (directionSelect) {
+        Array.from(directionSelect.options).forEach((option) => {
+            option.textContent = texts.directions[option.value] || option.textContent;
+        });
+    }
+}
+
+function syncVehicleSortControls() {
+    const fieldSelect = document.getElementById('vehicle-sort-field');
+    const directionSelect = document.getElementById('vehicle-sort-direction');
+    const resetButton = document.getElementById('vehicle-sort-reset');
+
+    updateVehicleSortTexts();
+    if (!fieldSelect || !directionSelect || !resetButton) return;
+
+    const isDefault = vehicleSortState.field === 'default';
+    fieldSelect.value = vehicleSortState.field;
+    directionSelect.value = vehicleSortState.direction;
+    directionSelect.disabled = isDefault;
+    resetButton.disabled = isDefault;
+}
+
+function applyVehicleListSorting() {
+    prepareVehicleTableSorting();
+
+    const collator = new Intl.Collator(getVehicleSortLanguage(), {
+        numeric: true,
+        sensitivity: 'base'
+    });
+
+    document.querySelectorAll('.table-block tbody').forEach((tbody) => {
+        const rows = Array.from(tbody.querySelectorAll(':scope > tr'));
+        rows.sort((leftRow, rightRow) => compareVehicleRows(leftRow, rightRow, collator));
+        rows.forEach((row) => tbody.appendChild(row));
+        renumberVehicleTableRows(tbody);
+    });
+
+    syncVehicleSortControls();
+}
+
+function handleVehicleSortChange() {
+    const fieldSelect = document.getElementById('vehicle-sort-field');
+    const directionSelect = document.getElementById('vehicle-sort-direction');
+    if (!fieldSelect || !directionSelect) return;
+
+    vehicleSortState.field = fieldSelect.value;
+    vehicleSortState.direction = vehicleSortState.field === 'default' ? 'asc' : directionSelect.value;
+    saveVehicleSortState();
+    applyVehicleListSorting();
+}
+
+function resetVehicleListSorting() {
+    vehicleSortState = { ...DEFAULT_VEHICLE_SORT_STATE };
+    saveVehicleSortState();
+    applyVehicleListSorting();
+}
+
+function initVehicleListSorting() {
+    const fieldSelect = document.getElementById('vehicle-sort-field');
+    const directionSelect = document.getElementById('vehicle-sort-direction');
+    const resetButton = document.getElementById('vehicle-sort-reset');
+
+    updateVehicleSortTexts();
+    if (!fieldSelect || !directionSelect || !resetButton) return;
+
+    prepareVehicleTableSorting();
+
+    if (fieldSelect.dataset.sortBound !== 'true') {
+        fieldSelect.dataset.sortBound = 'true';
+        fieldSelect.addEventListener('change', handleVehicleSortChange);
+    }
+
+    if (directionSelect.dataset.sortBound !== 'true') {
+        directionSelect.dataset.sortBound = 'true';
+        directionSelect.addEventListener('change', handleVehicleSortChange);
+    }
+
+    if (resetButton.dataset.sortBound !== 'true') {
+        resetButton.dataset.sortBound = 'true';
+        resetButton.addEventListener('click', resetVehicleListSorting);
+    }
+
+    syncVehicleSortControls();
+    applyVehicleListSorting();
+}
+
 function applyTableData(data) {
     if (!data) return;
     const lang = localStorage.getItem('language') || 'ru';
@@ -372,6 +643,717 @@ function applyTableData(data) {
         const codeEl = document.querySelector(`.code[data-id="${item.id}"]`);
         if (codeEl) codeEl.textContent = item.code || '-';
     });
+
+    applyVehicleListSorting();
+}
+
+const VEHICLE_FILTER_STORAGE_KEY = 'vehicleListFilterState';
+const DEFAULT_VEHICLE_FILTER_STATE = Object.freeze({
+    status: '',
+    model: '',
+    livery: '',
+    board: '',
+    boardFrom: '',
+    boardTo: ''
+});
+const VEHICLE_MODEL_ORDER_V2 = Object.freeze(['technical', 'sme', 'ziu10', 'ziu9']);
+const vehicleListPanelCopyV2 = {
+    ru: {
+        caption: 'Сортировка и фильтрация списка',
+        hint: 'Сортировка применяется отдельно внутри каждого парка и блока списанных машин. Точный бортовой номер имеет приоритет над диапазоном.',
+        sortFieldLabel: 'Сортировать по',
+        sortDirectionLabel: 'Порядок',
+        sortPlaceholder: 'Выберите поле',
+        reset: 'Сбросить всё',
+        sortFields: {
+            board: 'Бортовой номер',
+            status: 'Статус',
+            factory: 'Заводской номер',
+            model: 'Модель'
+        },
+        directions: {
+            asc: 'По возрастанию',
+            desc: 'По убыванию'
+        },
+        filters: {
+            statusLabel: 'Статус',
+            modelLabel: 'Модель',
+            liveryLabel: 'Окраска',
+            boardLabel: 'Бортовой номер',
+            boardFromLabel: 'Номер от',
+            boardToLabel: 'Номер до',
+            allStatuses: 'Все статусы',
+            allModels: 'Все модели',
+            allLiveries: 'Все окраски',
+            boardPlaceholder: 'Точный номер',
+            boardFromPlaceholder: 'От',
+            boardToPlaceholder: 'До'
+        },
+        models: {
+            technical: 'Технический',
+            sme: 'СМЕ',
+            ziu10: 'ЗиУ-10',
+            ziu9: 'ЗиУ-9'
+        }
+    },
+    en: {
+        caption: 'Sorting and filtering',
+        hint: 'Sorting is applied separately inside each depot table and the retired vehicles block. An exact board number takes priority over a range.',
+        sortFieldLabel: 'Sort by',
+        sortDirectionLabel: 'Order',
+        sortPlaceholder: 'Select a field',
+        reset: 'Reset all',
+        sortFields: {
+            board: 'Board number',
+            status: 'Status',
+            factory: 'Factory number',
+            model: 'Model'
+        },
+        directions: {
+            asc: 'Ascending',
+            desc: 'Descending'
+        },
+        filters: {
+            statusLabel: 'Status',
+            modelLabel: 'Model',
+            liveryLabel: 'Livery',
+            boardLabel: 'Board number',
+            boardFromLabel: 'Number from',
+            boardToLabel: 'Number to',
+            allStatuses: 'All statuses',
+            allModels: 'All models',
+            allLiveries: 'All liveries',
+            boardPlaceholder: 'Exact number',
+            boardFromPlaceholder: 'From',
+            boardToPlaceholder: 'To'
+        },
+        models: {
+            technical: 'Technical',
+            sme: 'EMU',
+            ziu10: 'ZiU-10',
+            ziu9: 'ZiU-9'
+        }
+    }
+};
+
+let vehicleFilterState = loadVehicleFilterState();
+vehicleSortState = loadVehicleSortState();
+
+function loadVehicleSortState() {
+    try {
+        const raw = localStorage.getItem(VEHICLE_SORT_STORAGE_KEY);
+        if (!raw) return { ...DEFAULT_VEHICLE_SORT_STATE };
+
+        const parsed = JSON.parse(raw);
+        const allowedFields = new Set(['default', 'board', 'status', 'factory', 'model']);
+        return {
+            field: allowedFields.has(parsed.field) ? parsed.field : DEFAULT_VEHICLE_SORT_STATE.field,
+            direction: parsed.direction === 'desc' ? 'desc' : 'asc'
+        };
+    } catch (error) {
+        return { ...DEFAULT_VEHICLE_SORT_STATE };
+    }
+}
+
+function loadVehicleFilterState() {
+    try {
+        const raw = localStorage.getItem(VEHICLE_FILTER_STORAGE_KEY);
+        if (!raw) return { ...DEFAULT_VEHICLE_FILTER_STATE };
+
+        const parsed = JSON.parse(raw);
+        return {
+            status: normalizeVehicleSortValue(parsed.status),
+            model: normalizeVehicleSortValue(parsed.model),
+            livery: normalizeVehicleSortValue(parsed.livery),
+            board: sanitizeVehicleNumberInput(parsed.board),
+            boardFrom: sanitizeVehicleNumberInput(parsed.boardFrom),
+            boardTo: sanitizeVehicleNumberInput(parsed.boardTo)
+        };
+    } catch (error) {
+        return { ...DEFAULT_VEHICLE_FILTER_STATE };
+    }
+}
+
+function saveVehicleSortState() {
+    localStorage.setItem(VEHICLE_SORT_STORAGE_KEY, JSON.stringify(vehicleSortState));
+}
+
+function saveVehicleFilterState() {
+    localStorage.setItem(VEHICLE_FILTER_STORAGE_KEY, JSON.stringify(vehicleFilterState));
+}
+
+function getVehicleSortLanguage() {
+    return (localStorage.getItem('language') || 'ru') === 'en' ? 'en' : 'ru';
+}
+
+function getVehicleSortTexts() {
+    return vehicleListPanelCopyV2[getVehicleSortLanguage()] || vehicleListPanelCopyV2.ru;
+}
+
+function normalizeVehicleSortValue(value) {
+    return String(value || '').replace(/\s+/g, ' ').trim();
+}
+
+function sanitizeVehicleNumberInput(value) {
+    return String(value || '').replace(/[^\d]/g, '');
+}
+
+function isVehicleLoadingValue(value) {
+    const normalized = normalizeVehicleSortValue(value).toLowerCase();
+    return (
+        !normalized ||
+        normalized === 'loading...' ||
+        normalized === 'загрузка...' ||
+        normalized === 'no data' ||
+        normalized === 'нет данных'
+    );
+}
+
+function isVehicleSortValueEmpty(value) {
+    const normalized = normalizeVehicleSortValue(value).toLowerCase();
+    return (
+        !normalized ||
+        normalized === '-' ||
+        normalized === '—' ||
+        isVehicleLoadingValue(normalized)
+    );
+}
+
+function prepareVehicleTableSorting() {
+    document.querySelectorAll('.table-block tbody').forEach((tbody) => {
+        Array.from(tbody.querySelectorAll(':scope > tr')).forEach((row, index) => {
+            if (!row.dataset.originalIndex) {
+                row.dataset.originalIndex = String(index);
+            }
+        });
+    });
+}
+
+function parseVehicleNumber(value) {
+    const digits = sanitizeVehicleNumberInput(value);
+    return digits ? Number(digits) : NaN;
+}
+
+function getVehicleBoardValue(row) {
+    const boardLink = row.querySelector('.tbus-link');
+    return normalizeVehicleSortValue(boardLink ? boardLink.textContent : row.cells[1] && row.cells[1].textContent);
+}
+
+function getVehicleModelLabel(row) {
+    const model = row.querySelector('.model');
+    return normalizeVehicleSortValue(model ? model.textContent : row.cells[2] && row.cells[2].textContent);
+}
+
+function getVehicleModelCategory(value) {
+    const normalized = normalizeVehicleSortValue(value).toLowerCase();
+
+    if (normalized.includes('техпомощ') || normalized.includes('technical') || normalized.includes('service vehicle') || normalized.includes('service')) {
+        return 'technical';
+    }
+    if (normalized.includes('сме') || normalized.includes('emu')) {
+        return 'sme';
+    }
+    if (normalized.includes('зиу-10') || normalized.includes('ziu-10') || normalized.includes('6205')) {
+        return 'ziu10';
+    }
+    if (normalized.includes('зиу-9') || normalized.includes('ziu-9') || normalized.includes('682')) {
+        return 'ziu9';
+    }
+
+    return 'other';
+}
+
+function getVehicleModelKey(row) {
+    const model = row.querySelector('.model');
+    const rawValue = model ? (model.dataset.modelRaw || model.textContent) : row.cells[2] && row.cells[2].textContent;
+    return getVehicleModelCategory(rawValue);
+}
+
+function getVehicleStatusData(row) {
+    const status = row.querySelector('.status, .statusdop');
+    const label = normalizeVehicleSortValue(status ? status.textContent : row.cells[3] && row.cells[3].textContent);
+    const key = normalizeVehicleSortValue(status ? (status.dataset.status || status.textContent) : label);
+    return { key, label };
+}
+
+function getVehicleFactoryValue(row) {
+    const factory = row.querySelector('.factory-number');
+    return normalizeVehicleSortValue(factory ? factory.textContent : row.cells[4] && row.cells[4].textContent);
+}
+
+function getVehicleLiveryValue(row) {
+    const livery = row.querySelector('.livery');
+    return normalizeVehicleSortValue(livery ? livery.textContent : row.cells[5] && row.cells[5].textContent);
+}
+
+function getVehicleSortRowValue(row, field) {
+    switch (field) {
+        case 'board':
+            return getVehicleBoardValue(row);
+        case 'model':
+            return getVehicleModelLabel(row);
+        case 'status':
+            return getVehicleStatusData(row).label;
+        case 'factory':
+            return getVehicleFactoryValue(row);
+        default:
+            return row.dataset.originalIndex || '0';
+    }
+}
+
+function renumberVehicleTableRows(tbody) {
+    let visibleIndex = 0;
+    Array.from(tbody.querySelectorAll(':scope > tr')).forEach((row) => {
+        if (row.hidden) return;
+        visibleIndex += 1;
+        if (row.cells[0]) {
+            row.cells[0].textContent = String(visibleIndex);
+        }
+    });
+}
+
+function compareVehicleRows(leftRow, rightRow, collator) {
+    if (vehicleSortState.field === 'default') {
+        return Number(leftRow.dataset.originalIndex || 0) - Number(rightRow.dataset.originalIndex || 0);
+    }
+
+    if (vehicleSortState.field === 'model') {
+        const leftRank = VEHICLE_MODEL_ORDER_V2.indexOf(getVehicleModelKey(leftRow));
+        const rightRank = VEHICLE_MODEL_ORDER_V2.indexOf(getVehicleModelKey(rightRow));
+        const safeLeftRank = leftRank === -1 ? VEHICLE_MODEL_ORDER_V2.length : leftRank;
+        const safeRightRank = rightRank === -1 ? VEHICLE_MODEL_ORDER_V2.length : rightRank;
+
+        let result = safeLeftRank - safeRightRank;
+        if (result === 0) {
+            result = collator.compare(getVehicleModelLabel(leftRow), getVehicleModelLabel(rightRow));
+        }
+        if (result === 0) {
+            result = Number(leftRow.dataset.originalIndex || 0) - Number(rightRow.dataset.originalIndex || 0);
+        }
+
+        return vehicleSortState.direction === 'desc' ? -result : result;
+    }
+
+    const leftValue = getVehicleSortRowValue(leftRow, vehicleSortState.field);
+    const rightValue = getVehicleSortRowValue(rightRow, vehicleSortState.field);
+    const leftEmpty = isVehicleSortValueEmpty(leftValue);
+    const rightEmpty = isVehicleSortValueEmpty(rightValue);
+
+    if (leftEmpty && rightEmpty) {
+        return Number(leftRow.dataset.originalIndex || 0) - Number(rightRow.dataset.originalIndex || 0);
+    }
+    if (leftEmpty) return 1;
+    if (rightEmpty) return -1;
+
+    let result;
+    if (vehicleSortState.field === 'board' || vehicleSortState.field === 'factory') {
+        const leftNumber = parseVehicleNumber(leftValue);
+        const rightNumber = parseVehicleNumber(rightValue);
+        const leftHasNumber = Number.isFinite(leftNumber);
+        const rightHasNumber = Number.isFinite(rightNumber);
+
+        if (leftHasNumber && rightHasNumber) {
+            result = leftNumber - rightNumber;
+        } else if (leftHasNumber) {
+            result = -1;
+        } else if (rightHasNumber) {
+            result = 1;
+        } else {
+            result = collator.compare(leftValue, rightValue);
+        }
+    } else {
+        result = collator.compare(leftValue, rightValue);
+    }
+
+    if (result === 0) {
+        result = Number(leftRow.dataset.originalIndex || 0) - Number(rightRow.dataset.originalIndex || 0);
+    }
+
+    return vehicleSortState.direction === 'desc' ? -result : result;
+}
+
+function hasActiveVehicleFilters() {
+    return Boolean(
+        vehicleFilterState.status ||
+        vehicleFilterState.model ||
+        vehicleFilterState.livery ||
+        vehicleFilterState.board ||
+        vehicleFilterState.boardFrom ||
+        vehicleFilterState.boardTo
+    );
+}
+
+function getVehicleFilterFallbackLabel(type, value, texts) {
+    if (!value) return '';
+
+    switch (type) {
+        case 'status':
+            return getVehicleSortLanguage() === 'en' ? (tableTranslationsEN.status[value] || value) : value;
+        case 'model':
+            return texts.models[value] || value;
+        case 'livery':
+            return value;
+        default:
+            return value;
+    }
+}
+
+function appendVehicleSelectOption(select, value, label) {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = label;
+    select.appendChild(option);
+}
+
+function populateVehicleSelect(select, defaultLabel, options, selectedValue, fallbackLabel) {
+    if (!select) return;
+
+    const normalizedSelectedValue = normalizeVehicleSortValue(selectedValue);
+    const hasSelectedValue = normalizedSelectedValue && options.some((option) => option.value === normalizedSelectedValue);
+    const optionList = hasSelectedValue || !normalizedSelectedValue
+        ? options
+        : [...options, { value: normalizedSelectedValue, label: fallbackLabel || normalizedSelectedValue }];
+
+    select.innerHTML = '';
+    appendVehicleSelectOption(select, '', defaultLabel);
+    optionList.forEach((option) => appendVehicleSelectOption(select, option.value, option.label));
+    select.value = normalizedSelectedValue;
+}
+
+function collectVehicleFilterOptions() {
+    const texts = getVehicleSortTexts();
+    const collator = new Intl.Collator(getVehicleSortLanguage(), {
+        numeric: true,
+        sensitivity: 'base'
+    });
+    const statusMap = new Map();
+    const liveryMap = new Map();
+    const modelKeys = new Set();
+
+    document.querySelectorAll('.table-block tbody > tr').forEach((row) => {
+        const statusData = getVehicleStatusData(row);
+        if (statusData.key && !isVehicleLoadingValue(statusData.key) && !statusMap.has(statusData.key)) {
+            statusMap.set(statusData.key, statusData.label);
+        }
+
+        const modelKey = getVehicleModelKey(row);
+        if (modelKey !== 'other') {
+            modelKeys.add(modelKey);
+        }
+
+        const liveryValue = getVehicleLiveryValue(row);
+        if (liveryValue && !isVehicleLoadingValue(liveryValue) && !liveryMap.has(liveryValue)) {
+            liveryMap.set(liveryValue, liveryValue);
+        }
+    });
+
+    return {
+        status: Array.from(statusMap, ([value, label]) => ({ value, label })).sort((left, right) => collator.compare(left.label, right.label)),
+        model: VEHICLE_MODEL_ORDER_V2.filter((key) => modelKeys.has(key)).map((key) => ({ value: key, label: texts.models[key] || key })),
+        livery: Array.from(liveryMap, ([value, label]) => ({ value, label })).sort((left, right) => collator.compare(left.label, right.label))
+    };
+}
+
+function updateVehicleSortTexts() {
+    const texts = getVehicleSortTexts();
+    const caption = document.getElementById('vehicle-sort-caption');
+    const hint = document.getElementById('vehicle-sort-hint');
+    const fieldLabel = document.getElementById('vehicle-sort-field-label');
+    const directionLabel = document.getElementById('vehicle-sort-direction-label');
+    const statusLabel = document.getElementById('vehicle-filter-status-label');
+    const modelLabel = document.getElementById('vehicle-filter-model-label');
+    const liveryLabel = document.getElementById('vehicle-filter-livery-label');
+    const boardLabel = document.getElementById('vehicle-filter-board-label');
+    const boardFromLabel = document.getElementById('vehicle-filter-board-from-label');
+    const boardToLabel = document.getElementById('vehicle-filter-board-to-label');
+    const resetButton = document.getElementById('vehicle-sort-reset');
+    const fieldSelect = document.getElementById('vehicle-sort-field');
+    const directionSelect = document.getElementById('vehicle-sort-direction');
+    const boardInput = document.getElementById('vehicle-filter-board');
+    const boardFromInput = document.getElementById('vehicle-filter-board-from');
+    const boardToInput = document.getElementById('vehicle-filter-board-to');
+
+    if (caption) caption.textContent = texts.caption;
+    if (hint) hint.textContent = texts.hint;
+    if (fieldLabel) fieldLabel.textContent = texts.sortFieldLabel;
+    if (directionLabel) directionLabel.textContent = texts.sortDirectionLabel;
+    if (statusLabel) statusLabel.textContent = texts.filters.statusLabel;
+    if (modelLabel) modelLabel.textContent = texts.filters.modelLabel;
+    if (liveryLabel) liveryLabel.textContent = texts.filters.liveryLabel;
+    if (boardLabel) boardLabel.textContent = texts.filters.boardLabel;
+    if (boardFromLabel) boardFromLabel.textContent = texts.filters.boardFromLabel;
+    if (boardToLabel) boardToLabel.textContent = texts.filters.boardToLabel;
+    if (resetButton) resetButton.textContent = texts.reset;
+
+    if (fieldSelect) {
+        Array.from(fieldSelect.options).forEach((option) => {
+            if (!option.value) {
+                option.textContent = texts.sortPlaceholder;
+                return;
+            }
+            option.textContent = texts.sortFields[option.value] || option.textContent;
+        });
+    }
+
+    if (directionSelect) {
+        Array.from(directionSelect.options).forEach((option) => {
+            option.textContent = texts.directions[option.value] || option.textContent;
+        });
+    }
+
+    if (boardInput) boardInput.placeholder = texts.filters.boardPlaceholder;
+    if (boardFromInput) boardFromInput.placeholder = texts.filters.boardFromPlaceholder;
+    if (boardToInput) boardToInput.placeholder = texts.filters.boardToPlaceholder;
+}
+
+function syncVehicleSortControls() {
+    const fieldSelect = document.getElementById('vehicle-sort-field');
+    const directionSelect = document.getElementById('vehicle-sort-direction');
+
+    updateVehicleSortTexts();
+    if (!fieldSelect || !directionSelect) return;
+
+    const isDefault = vehicleSortState.field === 'default';
+    fieldSelect.value = isDefault ? '' : vehicleSortState.field;
+    directionSelect.value = vehicleSortState.direction;
+    directionSelect.disabled = isDefault;
+}
+
+function syncVehicleFilterControls() {
+    const statusSelect = document.getElementById('vehicle-filter-status');
+    const modelSelect = document.getElementById('vehicle-filter-model');
+    const liverySelect = document.getElementById('vehicle-filter-livery');
+    const boardInput = document.getElementById('vehicle-filter-board');
+    const boardFromInput = document.getElementById('vehicle-filter-board-from');
+    const boardToInput = document.getElementById('vehicle-filter-board-to');
+    const resetButton = document.getElementById('vehicle-sort-reset');
+
+    if (statusSelect) statusSelect.value = vehicleFilterState.status;
+    if (modelSelect) modelSelect.value = vehicleFilterState.model;
+    if (liverySelect) liverySelect.value = vehicleFilterState.livery;
+    if (boardInput) boardInput.value = vehicleFilterState.board;
+    if (boardFromInput) boardFromInput.value = vehicleFilterState.boardFrom;
+    if (boardToInput) boardToInput.value = vehicleFilterState.boardTo;
+
+    const exactBoardActive = Boolean(vehicleFilterState.board);
+    if (boardFromInput) boardFromInput.disabled = exactBoardActive;
+    if (boardToInput) boardToInput.disabled = exactBoardActive;
+    if (resetButton) resetButton.disabled = vehicleSortState.field === 'default' && !hasActiveVehicleFilters();
+}
+
+function refreshVehicleFilterOptions() {
+    const texts = getVehicleSortTexts();
+    const statusSelect = document.getElementById('vehicle-filter-status');
+    const modelSelect = document.getElementById('vehicle-filter-model');
+    const liverySelect = document.getElementById('vehicle-filter-livery');
+    if (!statusSelect || !modelSelect || !liverySelect) return;
+
+    const options = collectVehicleFilterOptions();
+    populateVehicleSelect(statusSelect, texts.filters.allStatuses, options.status, vehicleFilterState.status, getVehicleFilterFallbackLabel('status', vehicleFilterState.status, texts));
+    populateVehicleSelect(modelSelect, texts.filters.allModels, options.model, vehicleFilterState.model, getVehicleFilterFallbackLabel('model', vehicleFilterState.model, texts));
+    populateVehicleSelect(liverySelect, texts.filters.allLiveries, options.livery, vehicleFilterState.livery, getVehicleFilterFallbackLabel('livery', vehicleFilterState.livery, texts));
+}
+
+function matchesVehicleFilters(row) {
+    const statusData = getVehicleStatusData(row);
+    if (vehicleFilterState.status && statusData.key !== vehicleFilterState.status) {
+        return false;
+    }
+
+    if (vehicleFilterState.model && getVehicleModelKey(row) !== vehicleFilterState.model) {
+        return false;
+    }
+
+    if (vehicleFilterState.livery && getVehicleLiveryValue(row) !== vehicleFilterState.livery) {
+        return false;
+    }
+
+    const boardNumber = parseVehicleNumber(getVehicleBoardValue(row));
+    if (vehicleFilterState.board) {
+        return Number.isFinite(boardNumber) && boardNumber === Number(vehicleFilterState.board);
+    }
+
+    let boardFrom = vehicleFilterState.boardFrom ? Number(vehicleFilterState.boardFrom) : NaN;
+    let boardTo = vehicleFilterState.boardTo ? Number(vehicleFilterState.boardTo) : NaN;
+    if (Number.isFinite(boardFrom) && Number.isFinite(boardTo) && boardFrom > boardTo) {
+        [boardFrom, boardTo] = [boardTo, boardFrom];
+    }
+
+    if (Number.isFinite(boardFrom) && (!Number.isFinite(boardNumber) || boardNumber < boardFrom)) {
+        return false;
+    }
+
+    if (Number.isFinite(boardTo) && (!Number.isFinite(boardNumber) || boardNumber > boardTo)) {
+        return false;
+    }
+
+    return true;
+}
+
+function applyVehicleListSorting() {
+    prepareVehicleTableSorting();
+    refreshVehicleFilterOptions();
+
+    const collator = new Intl.Collator(getVehicleSortLanguage(), {
+        numeric: true,
+        sensitivity: 'base'
+    });
+
+    document.querySelectorAll('.table-block tbody').forEach((tbody) => {
+        const rows = Array.from(tbody.querySelectorAll(':scope > tr'));
+        rows.sort((leftRow, rightRow) => compareVehicleRows(leftRow, rightRow, collator));
+        rows.forEach((row) => tbody.appendChild(row));
+        rows.forEach((row) => {
+            row.hidden = !matchesVehicleFilters(row);
+        });
+        renumberVehicleTableRows(tbody);
+    });
+
+    syncVehicleSortControls();
+    syncVehicleFilterControls();
+}
+
+function handleVehicleSortChange() {
+    const fieldSelect = document.getElementById('vehicle-sort-field');
+    const directionSelect = document.getElementById('vehicle-sort-direction');
+    if (!fieldSelect || !directionSelect) return;
+
+    vehicleSortState.field = fieldSelect.value || 'default';
+    vehicleSortState.direction = vehicleSortState.field === 'default' ? 'asc' : directionSelect.value;
+    saveVehicleSortState();
+    applyVehicleListSorting();
+}
+
+function handleVehicleFilterChange() {
+    const statusSelect = document.getElementById('vehicle-filter-status');
+    const modelSelect = document.getElementById('vehicle-filter-model');
+    const liverySelect = document.getElementById('vehicle-filter-livery');
+    const boardInput = document.getElementById('vehicle-filter-board');
+    const boardFromInput = document.getElementById('vehicle-filter-board-from');
+    const boardToInput = document.getElementById('vehicle-filter-board-to');
+
+    vehicleFilterState = {
+        status: normalizeVehicleSortValue(statusSelect ? statusSelect.value : ''),
+        model: normalizeVehicleSortValue(modelSelect ? modelSelect.value : ''),
+        livery: normalizeVehicleSortValue(liverySelect ? liverySelect.value : ''),
+        board: sanitizeVehicleNumberInput(boardInput ? boardInput.value : ''),
+        boardFrom: sanitizeVehicleNumberInput(boardFromInput ? boardFromInput.value : ''),
+        boardTo: sanitizeVehicleNumberInput(boardToInput ? boardToInput.value : '')
+    };
+
+    saveVehicleFilterState();
+    applyVehicleListSorting();
+}
+
+function resetVehicleListSorting() {
+    vehicleSortState = { ...DEFAULT_VEHICLE_SORT_STATE };
+    vehicleFilterState = { ...DEFAULT_VEHICLE_FILTER_STATE };
+    saveVehicleSortState();
+    saveVehicleFilterState();
+    applyVehicleListSorting();
+}
+
+function initVehicleListSorting() {
+    const fieldSelect = document.getElementById('vehicle-sort-field');
+    const directionSelect = document.getElementById('vehicle-sort-direction');
+    const statusSelect = document.getElementById('vehicle-filter-status');
+    const modelSelect = document.getElementById('vehicle-filter-model');
+    const liverySelect = document.getElementById('vehicle-filter-livery');
+    const boardInput = document.getElementById('vehicle-filter-board');
+    const boardFromInput = document.getElementById('vehicle-filter-board-from');
+    const boardToInput = document.getElementById('vehicle-filter-board-to');
+    const resetButton = document.getElementById('vehicle-sort-reset');
+
+    updateVehicleSortTexts();
+    if (!fieldSelect || !directionSelect || !statusSelect || !modelSelect || !liverySelect || !boardInput || !boardFromInput || !boardToInput || !resetButton) return;
+
+    prepareVehicleTableSorting();
+
+    if (fieldSelect.dataset.sortBound !== 'true') {
+        fieldSelect.dataset.sortBound = 'true';
+        fieldSelect.addEventListener('change', handleVehicleSortChange);
+    }
+
+    if (directionSelect.dataset.sortBound !== 'true') {
+        directionSelect.dataset.sortBound = 'true';
+        directionSelect.addEventListener('change', handleVehicleSortChange);
+    }
+
+    if (statusSelect.dataset.filterBound !== 'true') {
+        statusSelect.dataset.filterBound = 'true';
+        statusSelect.addEventListener('change', handleVehicleFilterChange);
+    }
+
+    if (modelSelect.dataset.filterBound !== 'true') {
+        modelSelect.dataset.filterBound = 'true';
+        modelSelect.addEventListener('change', handleVehicleFilterChange);
+    }
+
+    if (liverySelect.dataset.filterBound !== 'true') {
+        liverySelect.dataset.filterBound = 'true';
+        liverySelect.addEventListener('change', handleVehicleFilterChange);
+    }
+
+    if (boardInput.dataset.filterBound !== 'true') {
+        boardInput.dataset.filterBound = 'true';
+        boardInput.addEventListener('input', handleVehicleFilterChange);
+    }
+
+    if (boardFromInput.dataset.filterBound !== 'true') {
+        boardFromInput.dataset.filterBound = 'true';
+        boardFromInput.addEventListener('input', handleVehicleFilterChange);
+    }
+
+    if (boardToInput.dataset.filterBound !== 'true') {
+        boardToInput.dataset.filterBound = 'true';
+        boardToInput.addEventListener('input', handleVehicleFilterChange);
+    }
+
+    if (resetButton.dataset.sortBound !== 'true') {
+        resetButton.dataset.sortBound = 'true';
+        resetButton.addEventListener('click', resetVehicleListSorting);
+    }
+
+    applyVehicleListSorting();
+}
+
+function applyTableData(data) {
+    if (!data) return;
+    const lang = localStorage.getItem('language') || 'ru';
+    const isEN = lang === 'en';
+    const statusMap = isEN ? tableTranslationsEN.status : {};
+    const modelMap  = isEN ? tableTranslationsEN.model  : {};
+
+    data.forEach(item => {
+        const statusEl = document.querySelector(`.status[data-id="${item.id}"]`);
+        if (statusEl) {
+            statusEl.textContent = statusMap[item.status] || item.status;
+            statusEl.dataset.status = item.status;
+            updateStatusStyle(statusEl, item.status);
+        }
+
+        const modelEl = document.querySelector(`.model[data-id="${item.id}"]`);
+        if (modelEl) {
+            modelEl.textContent = modelMap[item.model] || item.model || '-';
+            modelEl.dataset.modelRaw = item.model || '-';
+        }
+
+        const infoEl = document.querySelector(`.info[data-id="${item.id}"]`);
+        if (infoEl) {
+            infoEl.textContent = (isEN ? item.informationeng : item.information) || '-';
+        }
+
+        const numEl = document.querySelector(`.factory-number[data-id="${item.id}"]`);
+        if (numEl) numEl.textContent = item.number || '-';
+        const livEl = document.querySelector(`.livery[data-id="${item.id}"]`);
+        if (livEl) livEl.textContent = item.livery || '-';
+        const drvEl = document.querySelector(`.drivers[data-id="${item.id}"]`);
+        if (drvEl) drvEl.textContent = item.drivers || '-';
+        const codeEl = document.querySelector(`.code[data-id="${item.id}"]`);
+        if (codeEl) codeEl.textContent = item.code || '-';
+    });
+
+    applyVehicleListSorting();
 }
 
 async function updateStatuses() {

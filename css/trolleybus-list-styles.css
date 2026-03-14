@@ -126,6 +126,123 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.table-sort-panel {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .table-sort-panel {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.table-sort-panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.table-sort-copy {
+    max-width: 760px;
+}
+
+.table-sort-caption {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--heading-color);
+    margin-bottom: 0.35rem;
+}
+
+.table-sort-hint {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.table-sort-controls {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    align-items: end;
+}
+
+.table-sort-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.table-sort-field span {
+    font-size: 0.92rem;
+    font-weight: bold;
+    color: var(--heading-color);
+}
+
+.table-sort-field select,
+.table-sort-field input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--bg-secondary);
+    color: var(--text-color);
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.table-sort-field select:focus,
+.table-sort-field input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+.table-sort-field select:disabled,
+.table-sort-field input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.table-sort-field input::placeholder {
+    color: var(--text-light);
+}
+
+.table-sort-reset {
+    width: 100%;
+    padding: 11px 18px;
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    background-color: transparent;
+    color: var(--accent-color);
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.table-sort-reset:hover:not(:disabled) {
+    background-color: var(--accent-color);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.table-sort-reset:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 1024px) {
+    .table-sort-controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 .table-block {
     margin-bottom: 3rem;
 }
@@ -356,6 +473,8 @@ tr:hover td {
     .logo { font-size: 1.2rem; }
     .navbar-avatar { height: 35px; width: 35px; }
     .hero-list-content h1 { font-size: 1.8rem; }
+    .table-sort-controls { grid-template-columns: 1fr; }
+    .table-sort-reset { width: 100%; }
     th, td { padding: 7px 8px; font-size: 0.82rem; }
 }
 
@@ -367,6 +486,9 @@ tr:hover td {
     .navbar-avatar { height: 30px; width: 30px; }
     .nav-menu { top: 0; gap: 0.5rem; font-size: 0.8rem; padding-top: 70px; }
     .hero-list-content h1 { font-size: 1.4rem; }
+    .table-sort-panel { padding: 18px; }
+    .table-sort-caption { font-size: 1rem; }
+    .table-sort-hint { font-size: 0.88rem; }
     .contact-buttons, .docs-buttons { flex-direction: column; align-items: center; gap: 10px; }
     .contact-btn, .doc-btn { padding: 10px 15px; font-size: 0.85rem; width: 100%; max-width: 300px; }
     .contacts-section h2, .docs-section h2 { font-size: 1.3rem; }
