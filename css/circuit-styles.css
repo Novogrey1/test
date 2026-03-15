@@ -570,6 +570,18 @@ body.dark-mode .logic-block-card {
     line-height: 1.5;
 }
 
+@media (max-width: 1024px) {
+    .logic-reference-section.logic-reference-section--prioritized {
+        padding-top: 2rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .logic-reference-section.logic-reference-section--prioritized + .generator-section {
+        padding-top: 1.5rem;
+        min-height: auto;
+    }
+}
+
 @media (max-width: 768px) {
     .logic-reference-section {
         padding: 3rem 0;
