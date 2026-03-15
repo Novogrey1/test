@@ -183,6 +183,7 @@ function t(key) {
 
 const CIRCUIT_DEFAULT_THEME = 'dark';
 const CIRCUIT_THEME_ICON = '\uD83C\uDF19';
+const CIRCUIT_REFERENCE_PRIORITY_BREAKPOINT = 1024;
 
 function normalizeCircuitTheme(theme, fallback = CIRCUIT_DEFAULT_THEME) {
   if (theme === 'dark' || theme === 'light') {
@@ -314,6 +315,7 @@ function setLanguage(lang) {
   updateLangButton(lang);
   updateGeneratorForm(lang);
   updateLogicReference(lang);
+  syncCircuitReferencePlacement();
 
   // Назначаем кнопку языка
   const langBtn = document.getElementById('lang-btn');
@@ -731,6 +733,45 @@ function updateLogicReference(lang) {
   }).join('');
 }
 
+function shouldPrioritizeCircuitReference() {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+    return false;
+  }
+
+  return window.matchMedia(`(max-width: ${CIRCUIT_REFERENCE_PRIORITY_BREAKPOINT}px)`).matches;
+}
+
+function syncCircuitReferencePlacement() {
+  const generatorSection = document.getElementById('generator');
+  const referenceSection = document.getElementById('logic-reference');
+
+  if (!generatorSection || !referenceSection || !generatorSection.parentNode) {
+    return;
+  }
+
+  const parent = generatorSection.parentNode;
+  const prioritizeReference = shouldPrioritizeCircuitReference();
+
+  if (prioritizeReference) {
+    if (generatorSection.previousElementSibling !== referenceSection) {
+      parent.insertBefore(referenceSection, generatorSection);
+    }
+  } else if (generatorSection.nextElementSibling !== referenceSection) {
+    parent.insertBefore(referenceSection, generatorSection.nextSibling);
+  }
+
+  referenceSection.classList.toggle('logic-reference-section--prioritized', prioritizeReference);
+}
+
+function bindCircuitResponsiveLayout() {
+  if (window.__trpCircuitResponsiveLayoutBound) {
+    return;
+  }
+
+  window.__trpCircuitResponsiveLayoutBound = true;
+  window.addEventListener('resize', syncCircuitReferencePlacement);
+}
+
 // ============================================
 // MOBILE MENU
 // ============================================
@@ -1040,6 +1081,7 @@ function initBanner() {
 
 function init() {
   if (!originalHTML) originalHTML = document.body.innerHTML;
+  bindCircuitResponsiveLayout();
   initLanguageSystem();
 }
 
