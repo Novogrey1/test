@@ -511,6 +511,14 @@
     state.signature = '';
   }
 
+  function syncRenderedSignature(root, signature) {
+    if (!root) {
+      return;
+    }
+
+    root.__trpAnnouncementsRenderSignature = signature || '';
+  }
+
   function updateToggleButton(button, collapsed, lang) {
     var toggleMeta;
     var textNode;
@@ -677,6 +685,7 @@
 
       queueLayoutSync();
       state.signature = buildSignature(collectPayload());
+      syncRenderedSignature(root, state.signature);
       return;
     }
 
@@ -704,6 +713,7 @@
     }
 
     state.signature = buildSignature(collectPayload());
+    syncRenderedSignature(root, state.signature);
   }
 
   function render(force) {
@@ -725,7 +735,12 @@
 
     root = ensureRoot();
 
-    if (!force && state.signature === signature && root.childElementCount) {
+    if (
+      !force &&
+      state.signature === signature &&
+      root.__trpAnnouncementsRenderSignature === signature &&
+      root.childElementCount
+    ) {
       return;
     }
 
@@ -734,6 +749,7 @@
     }).join('');
     root.setAttribute('data-path', payload.path);
     root.setAttribute('data-lang', payload.lang);
+    syncRenderedSignature(root, signature);
     syncRootLayout(root, payload.lang);
     state.signature = signature;
   }
