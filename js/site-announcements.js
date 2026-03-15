@@ -8,6 +8,7 @@
   var state = {
     root: null,
     queued: false,
+    layoutQueued: false,
     signature: '',
     syncTimer: 0,
     lifecycleBound: false
@@ -258,6 +259,10 @@
     return 'trp-site-announcement-collapse:' + id;
   }
 
+  function getContentExpandKey(id) {
+    return 'trp-site-announcement-content-expand:' + id;
+  }
+
   function isCollapsed(entry) {
     var stored = safeGet(getCollapseKey(entry.id));
 
@@ -273,6 +278,14 @@
 
   function setCollapsed(id, collapsed) {
     safeSet(getCollapseKey(id), collapsed ? 'true' : 'false');
+  }
+
+  function isContentExpanded(entry) {
+    return safeGet(getContentExpandKey(entry.id)) === 'true';
+  }
+
+  function setContentExpanded(id, expanded) {
+    safeSet(getContentExpandKey(id), expanded ? 'true' : 'false');
   }
 
   function getSitePrefix() {
@@ -330,6 +343,24 @@
     };
   }
 
+  function getContentToggleMeta(lang, expanded) {
+    if (lang === 'en') {
+      return {
+        label: expanded ? 'Show less' : 'Show full text',
+        aria: expanded ? 'Collapse full text' : 'Expand full text'
+      };
+    }
+
+    return {
+      label: expanded
+        ? '\u0421\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u0442\u0435\u043a\u0441\u0442'
+        : '\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e',
+      aria: expanded
+        ? '\u0421\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043f\u043e\u043b\u043d\u044b\u0439 \u0442\u0435\u043a\u0441\u0442 \u043e\u0431\u044a\u044f\u0432\u043b\u0435\u043d\u0438\u044f'
+        : '\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u043f\u043e\u043b\u043d\u044b\u0439 \u0442\u0435\u043a\u0441\u0442 \u043e\u0431\u044a\u044f\u0432\u043b\u0435\u043d\u0438\u044f'
+    };
+  }
+
   function buildActionHtml(action, lang) {
     var href = resolveHref(action && action.href);
     var label;
@@ -366,6 +397,7 @@
       body: readText(entry.body, lang),
       collapsible: collapsible,
       collapsed: collapsible ? isCollapsed(entry) : false,
+      contentExpanded: isContentExpanded(entry),
       actions: actions.map(function (action) {
         return {
           href: resolveHref(action && action.href),
@@ -400,6 +432,7 @@
 
   function buildCardHtml(entry, lang) {
     var toggleMeta = getToggleMeta(lang, entry.collapsed);
+    var contentToggleMeta = getContentToggleMeta(lang, entry.contentExpanded);
     var actionsHtml = entry.actions.map(function (action) {
       return buildActionHtml(action, lang);
     }).join('');
@@ -409,6 +442,7 @@
       entry.collapsed ? ' is-collapsed' : '',
       '" data-announcement-id="', escapeHtml(entry.id),
       '" data-collapsed="', entry.collapsed ? 'true' : 'false',
+      '" data-content-expanded="', entry.contentExpanded ? 'true' : 'false',
       '" data-collapsible="', entry.collapsible ? 'true' : 'false',
       '">',
       '<div class="trp-site-announcement__head">',
@@ -427,7 +461,14 @@
       ].join('') : '',
       '</div>',
       '<div class="trp-site-announcement__body">',
-      '<div class="trp-site-announcement__content">', entry.body || '', '</div>',
+      '<div class="trp-site-announcement__content-shell">',
+      '<div class="trp-site-announcement__content" data-announcement-content="true">', entry.body || '', '</div>',
+      '</div>',
+      '<button class="trp-site-announcement__content-toggle" type="button" hidden data-announcement-content-toggle="true" aria-label="',
+      escapeHtml(contentToggleMeta.aria),
+      '" aria-expanded="', entry.contentExpanded ? 'true' : 'false', '">',
+      escapeHtml(contentToggleMeta.label),
+      '</button>',
       actionsHtml ? '<div class="trp-site-announcement__actions">' + actionsHtml + '</div>' : '',
       '</div>',
       '</article>'
@@ -489,6 +530,19 @@
     }
   }
 
+  function updateContentToggleButton(button, expanded, lang) {
+    var toggleMeta;
+
+    if (!button) {
+      return;
+    }
+
+    toggleMeta = getContentToggleMeta(lang, expanded);
+    button.textContent = toggleMeta.label;
+    button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    button.setAttribute('aria-label', toggleMeta.aria);
+  }
+
   function setCardCollapsed(card, collapsed, lang) {
     var button;
 
@@ -503,13 +557,128 @@
     updateToggleButton(button, collapsed, lang);
   }
 
+  function setCardContentExpanded(card, expanded, lang) {
+    var button;
+
+    if (!card) {
+      return;
+    }
+
+    card.classList.toggle('is-content-expanded', expanded);
+    card.setAttribute('data-content-expanded', expanded ? 'true' : 'false');
+
+    button = card.querySelector('[data-announcement-content-toggle="true"]');
+    updateContentToggleButton(button, expanded, lang);
+  }
+
+  function getContentPreviewHeight() {
+    return Math.max(150, Math.min(260, Math.round(window.innerHeight * 0.24)));
+  }
+
+  function getContentExpandedHeight(previewHeight) {
+    return Math.max(previewHeight + 40, Math.min(500, Math.round(window.innerHeight * 0.48)));
+  }
+
+  function syncCardLayout(card, lang) {
+    var content;
+    var contentButton;
+    var previewHeight;
+    var expandedHeight;
+    var isLong;
+    var isExpanded;
+
+    if (!card) {
+      return;
+    }
+
+    content = card.querySelector('[data-announcement-content="true"]');
+    contentButton = card.querySelector('[data-announcement-content-toggle="true"]');
+    previewHeight = getContentPreviewHeight();
+    expandedHeight = getContentExpandedHeight(previewHeight);
+
+    card.style.setProperty('--trp-announcement-preview-height', previewHeight + 'px');
+    card.style.setProperty('--trp-announcement-expanded-height', expandedHeight + 'px');
+
+    if (!content || !contentButton) {
+      return;
+    }
+
+    isLong = content.scrollHeight > previewHeight + 12;
+    isExpanded = card.getAttribute('data-content-expanded') === 'true';
+
+    card.classList.toggle('is-long-content', isLong);
+    card.classList.toggle('is-content-expanded', isLong && isExpanded);
+
+    contentButton.hidden = !isLong;
+    contentButton.setAttribute('aria-hidden', isLong ? 'false' : 'true');
+    updateContentToggleButton(contentButton, isLong && isExpanded, lang);
+  }
+
+  function syncRootLayout(root, lang) {
+    if (!root) {
+      return;
+    }
+
+    Array.prototype.forEach.call(root.querySelectorAll('.trp-site-announcement'), function (card) {
+      syncCardLayout(card, lang);
+    });
+  }
+
+  function queueLayoutSync() {
+    if (state.layoutQueued) {
+      return;
+    }
+
+    state.layoutQueued = true;
+    window.requestAnimationFrame(function () {
+      var root = state.root || document.getElementById(rootId);
+
+      state.layoutQueued = false;
+      if (!root) {
+        return;
+      }
+
+      syncRootLayout(root, getCurrentLang());
+    });
+  }
+
   function onRootActivate(event) {
     var root = state.root || document.getElementById(rootId);
     var target = event.target;
+    var contentButton = target && target.closest ? target.closest('[data-announcement-content-toggle="true"]') : null;
     var button = target && target.closest ? target.closest('[data-announcement-toggle="true"]') : null;
     var card;
     var id;
-    var nextCollapsed;
+    var nextValue;
+
+    if (!root) {
+      return;
+    }
+
+    if (contentButton && root.contains(contentButton)) {
+      card = contentButton.closest('.trp-site-announcement');
+      if (!card) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      if (typeof event.stopImmediatePropagation === 'function') {
+        event.stopImmediatePropagation();
+      }
+
+      nextValue = card.getAttribute('data-content-expanded') !== 'true';
+      setCardContentExpanded(card, nextValue, getCurrentLang());
+
+      id = card.getAttribute('data-announcement-id');
+      if (id) {
+        setContentExpanded(id, nextValue);
+      }
+
+      queueLayoutSync();
+      state.signature = buildSignature(collectPayload());
+      return;
+    }
 
     if (!root || !button || !root.contains(button)) {
       return;
@@ -526,12 +695,12 @@
       event.stopImmediatePropagation();
     }
 
-    nextCollapsed = card.getAttribute('data-collapsed') !== 'true';
-    setCardCollapsed(card, nextCollapsed, getCurrentLang());
+    nextValue = card.getAttribute('data-collapsed') !== 'true';
+    setCardCollapsed(card, nextValue, getCurrentLang());
 
     id = card.getAttribute('data-announcement-id');
     if (id) {
-      setCollapsed(id, nextCollapsed);
+      setCollapsed(id, nextValue);
     }
 
     state.signature = buildSignature(collectPayload());
@@ -565,6 +734,7 @@
     }).join('');
     root.setAttribute('data-path', payload.path);
     root.setAttribute('data-lang', payload.lang);
+    syncRootLayout(root, payload.lang);
     state.signature = signature;
   }
 
@@ -594,6 +764,8 @@
     window.addEventListener('pageshow', queueRender);
     window.addEventListener('focus', queueRender);
     window.addEventListener('storage', queueRender);
+    window.addEventListener('resize', queueLayoutSync);
+    window.addEventListener('orientationchange', queueLayoutSync);
     document.addEventListener('visibilitychange', function () {
       if (!document.hidden) {
         queueRender();
