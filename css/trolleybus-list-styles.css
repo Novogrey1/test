@@ -1,4 +1,4 @@
-body { overflow-x: clip; }
+body { overflow-x: hidden; }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -451,12 +451,21 @@ tr:hover td {
     .menu-toggle { display: flex; }
     .navbar-container { justify-content: space-between; }
     .nav-menu {
-        position: fixed; left: -100%; top: 0; height: 100vh;
+        position: fixed; left: 0;
+        transform: translate3d(calc(-100% - 20px), 0, 0); top: 0; height: 100dvh;
+        min-height: 100vh;
         flex-direction: column; background-color: var(--primary-color);
-        width: 100%; text-align: center; transition: left 0.3s ease;
+        border-radius: 0 20px 20px 0;
+        width: min(86vw, 360px);
+        max-width: calc(100vw - 16px); text-align: center; transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
         gap: 0; padding: 80px 2rem 2rem 2rem; z-index: 1100; overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
     }
-    .nav-menu.active { left: 0; }
+    .nav-menu.active { left: 0;
+        transform: translate3d(0, 0, 0); }
     .nav-menu li { padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .nav-menu li:last-child { border-bottom: none; }
     .language-selector, .theme-selector {
