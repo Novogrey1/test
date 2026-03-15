@@ -17,7 +17,8 @@
     cleanup: [],
     observer: null,
     queued: false,
-    softMode: false
+    softMode: false,
+    mobileCollapsed: false
   };
   var texts = {
     ru: {
@@ -31,7 +32,10 @@
       note: '\u0411\u0435\u0437 \u043f\u0440\u0438\u043d\u044f\u0442\u0438\u044f \u0441\u0430\u0439\u0442 \u043e\u0441\u0442\u0430\u0435\u0442\u0441\u044f \u0437\u0430\u0431\u043b\u043e\u043a\u0438\u0440\u043e\u0432\u0430\u043d \u0434\u043b\u044f \u043f\u0435\u0440\u0435\u0445\u043e\u0434\u043e\u0432.',
       accept: '\u041f\u0440\u0438\u043d\u044f\u0442\u044c \u0438 \u0432\u043e\u0439\u0442\u0438',
       reject: '\u041e\u0442\u043a\u043b\u043e\u043d\u0438\u0442\u044c',
-      langButton: 'EN'
+      langButton: 'EN',
+      compactTitle: '\u042e\u0440\u0438\u0434\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b',
+      collapseLabel: '\u0421\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043f\u0430\u043d\u0435\u043b\u044c',
+      expandLabel: '\u0420\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043f\u0430\u043d\u0435\u043b\u044c'
     },
     en: {
       kicker: 'Site Access',
@@ -44,7 +48,10 @@
       note: 'Until acceptance is confirmed, the site stays locked for navigation.',
       accept: 'Accept and continue',
       reject: 'Decline',
-      langButton: 'RU'
+      langButton: 'RU',
+      compactTitle: 'Legal documents',
+      collapseLabel: 'Collapse panel',
+      expandLabel: 'Expand panel'
     }
   };
 
@@ -210,6 +217,21 @@
       '  gap: 12px;',
       '  margin-bottom: 10px;',
       '}',
+      '#' + rootId + ' .trp-consent-head-copy {',
+      '  min-width: 0;',
+      '}',
+      '#' + rootId + ' .trp-consent-mini-title {',
+      '  display: none;',
+      '  margin-top: 4px;',
+      '  font-size: 13px;',
+      '  font-weight: 700;',
+      '  line-height: 1.3;',
+      '}',
+      '#' + rootId + ' .trp-consent-head-actions {',
+      '  display: flex;',
+      '  align-items: center;',
+      '  gap: 8px;',
+      '}',
       '#' + rootId + ' .trp-consent-kicker {',
       '  font-size: 11px;',
       '  font-weight: 700;',
@@ -238,6 +260,34 @@
       '}',
       '#' + rootId + ' .trp-consent-lang:hover {',
       '  transform: translateY(-1px);',
+      '}',
+      '#' + rootId + ' .trp-consent-collapse {',
+      '  display: none;',
+      '  width: 34px;',
+      '  height: 34px;',
+      '  border: 1px solid rgba(17, 24, 32, 0.12);',
+      '  border-radius: 10px;',
+      '  background: rgba(255, 255, 255, 0.72);',
+      '  color: inherit;',
+      '  cursor: pointer;',
+      '  transition: transform 0.2s ease, background-color 0.2s ease;',
+      '}',
+      'body.dark-mode #' + rootId + ' .trp-consent-collapse,',
+      'body.dark #' + rootId + ' .trp-consent-collapse {',
+      '  background: rgba(255, 255, 255, 0.06);',
+      '  border-color: rgba(255, 255, 255, 0.12);',
+      '}',
+      '#' + rootId + ' .trp-consent-collapse:hover {',
+      '  transform: translateY(-1px);',
+      '}',
+      '#' + rootId + ' .trp-consent-collapse-text {',
+      '  display: inline-block;',
+      '  font-size: 18px;',
+      '  line-height: 1;',
+      '  font-weight: 700;',
+      '}',
+      '#' + rootId + ' .trp-consent-body {',
+      '  display: block;',
       '}',
       '#' + rootId + ' .trp-consent-title {',
       '  margin: 0 0 10px;',
@@ -359,6 +409,36 @@
       '  }',
       '  #' + rootId + ' .trp-consent-actions {',
       '    flex-direction: column;',
+      '  }',
+      '  body.trp-consent-soft-lock #' + rootId + ' .trp-consent-collapse {',
+      '    display: inline-flex;',
+      '    align-items: center;',
+      '    justify-content: center;',
+      '  }',
+      '  body.trp-consent-soft-lock #' + rootId + ' .trp-consent-panel {',
+      '    right: 12px;',
+      '    bottom: 12px;',
+      '    left: auto;',
+      '    width: min(330px, calc(100vw - 24px));',
+      '  }',
+      '  body.trp-consent-soft-lock #' + rootId + ' .trp-consent-panel.is-collapsed {',
+      '    width: min(232px, calc(100vw - 24px));',
+      '    padding: 12px 14px;',
+      '    border-radius: 16px;',
+      '  }',
+      '  body.trp-consent-soft-lock #' + rootId + ' .trp-consent-panel.is-collapsed::before {',
+      '    height: 3px;',
+      '    border-radius: 16px 16px 0 0;',
+      '  }',
+      '  body.trp-consent-soft-lock #' + rootId + ' .trp-consent-panel.is-collapsed .trp-consent-head {',
+      '    margin-bottom: 0;',
+      '    align-items: center;',
+      '  }',
+      '  body.trp-consent-soft-lock #' + rootId + ' .trp-consent-panel.is-collapsed .trp-consent-mini-title {',
+      '    display: block;',
+      '  }',
+      '  body.trp-consent-soft-lock #' + rootId + ' .trp-consent-panel.is-collapsed .trp-consent-body {',
+      '    display: none;',
       '  }',
       '}'
     ].join('\n');
@@ -553,7 +633,47 @@
     }
     state.root = null;
     state.panel = null;
+    state.mobileCollapsed = false;
     unlockPage();
+  }
+
+  function canUseMobileCollapse() {
+    return isOfficialDocsPage() &&
+      !!window.matchMedia &&
+      window.matchMedia('(max-width: 768px)').matches;
+  }
+
+  function syncCollapseState(root) {
+    var panel = root ? root.querySelector('.trp-consent-panel') : null;
+    var collapseButton = root ? root.querySelector('[data-role="toggle-collapse"]') : null;
+    var textNode;
+
+    if (!panel) {
+      return;
+    }
+
+    if (!canUseMobileCollapse()) {
+      state.mobileCollapsed = false;
+    }
+
+    panel.classList.toggle('is-collapsed', !!state.mobileCollapsed);
+
+    if (!collapseButton) {
+      return;
+    }
+
+    collapseButton.setAttribute('aria-expanded', state.mobileCollapsed ? 'false' : 'true');
+    collapseButton.setAttribute(
+      'aria-label',
+      state.mobileCollapsed
+        ? collapseButton.getAttribute('data-expand-label') || ''
+        : collapseButton.getAttribute('data-collapse-label') || ''
+    );
+
+    textNode = collapseButton.querySelector('.trp-consent-collapse-text');
+    if (textNode) {
+      textNode.textContent = state.mobileCollapsed ? '+' : '−';
+    }
   }
 
   function updateAcceptState(root) {
@@ -622,8 +742,17 @@
         setUiLang(nextLang);
         createWidget(true, {
           terms: terms,
-          privacy: privacy
+          privacy: privacy,
+          collapsed: state.mobileCollapsed
         });
+      });
+    }
+
+    var collapseButton = root.querySelector('[data-role="toggle-collapse"]');
+    if (collapseButton) {
+      collapseButton.addEventListener('click', function () {
+        state.mobileCollapsed = !state.mobileCollapsed;
+        syncCollapseState(root);
       });
     }
   }
@@ -641,15 +770,25 @@
     var copy = texts[getUiLang()] || texts.ru;
     var links = getDocLinks();
     var root = document.getElementById(rootId);
+    var allowMobileCollapse = canUseMobileCollapse();
+    var hasCollapseButton;
 
     if (root && !force) {
       state.root = root;
       state.panel = root.querySelector('.trp-consent-panel');
       if (state.panel) {
-        bindRoot(root);
-        updateAcceptState(root);
-        lockPage();
-        return;
+        hasCollapseButton = !!root.querySelector('[data-role="toggle-collapse"]');
+        if (hasCollapseButton !== allowMobileCollapse) {
+          if (root.parentNode) {
+            root.parentNode.removeChild(root);
+          }
+        } else {
+          bindRoot(root);
+          updateAcceptState(root);
+          lockPage();
+          syncCollapseState(root);
+          return;
+        }
       }
       if (root.parentNode) {
         root.parentNode.removeChild(root);
@@ -666,9 +805,18 @@
       '<div class="trp-consent-backdrop" aria-hidden="true"></div>',
       '<aside class="trp-consent-panel" role="dialog" aria-modal="true" aria-labelledby="trp-consent-title" tabindex="-1">',
       '<div class="trp-consent-head">',
+      '<div class="trp-consent-head-copy">',
       '<div class="trp-consent-kicker">' + copy.kicker + '</div>',
-      '<button type="button" class="trp-consent-lang" data-role="toggle-lang">' + copy.langButton + '</button>',
+      '<div class="trp-consent-mini-title">' + copy.compactTitle + '</div>',
       '</div>',
+      '<div class="trp-consent-head-actions">',
+      '<button type="button" class="trp-consent-lang" data-role="toggle-lang">' + copy.langButton + '</button>',
+      allowMobileCollapse
+        ? '<button type="button" class="trp-consent-collapse" data-role="toggle-collapse" data-collapse-label="' + copy.collapseLabel + '" data-expand-label="' + copy.expandLabel + '" aria-label="' + copy.collapseLabel + '" aria-expanded="true"><span class="trp-consent-collapse-text">−</span></button>'
+        : '',
+      '</div>',
+      '</div>',
+      '<div class="trp-consent-body">',
       '<h2 class="trp-consent-title" id="trp-consent-title">' + copy.title + '</h2>',
       '<p class="trp-consent-description">' + copy.description + '</p>',
       '<div class="trp-consent-checks">',
@@ -692,6 +840,7 @@
       '<button type="button" class="trp-consent-accept" data-role="accept" disabled>' + copy.accept + '</button>',
       '<button type="button" class="trp-consent-reject" data-role="reject">' + copy.reject + '</button>',
       '</div>',
+      '</div>',
       '</aside>'
     ].join('');
 
@@ -706,11 +855,17 @@
       if (preservedChecks.privacy) {
         root.querySelector('[data-consent="privacy"]').checked = true;
       }
+      if (allowMobileCollapse) {
+        state.mobileCollapsed = !!preservedChecks.collapsed;
+      }
+    } else if (!allowMobileCollapse) {
+      state.mobileCollapsed = false;
     }
 
     bindRoot(root);
     updateAcceptState(root);
     lockPage();
+    syncCollapseState(root);
     focusFirst();
   }
 
@@ -753,6 +908,7 @@
     } else {
       createWidget(false);
     }
+    window.addEventListener('resize', scheduleSync);
     startObserver();
   }
 
