@@ -183,7 +183,6 @@ function t(key) {
 
 const CIRCUIT_DEFAULT_THEME = 'dark';
 const CIRCUIT_THEME_ICON = '\uD83C\uDF19';
-const CIRCUIT_REFERENCE_PRIORITY_BREAKPOINT = 1024;
 
 function normalizeCircuitTheme(theme, fallback = CIRCUIT_DEFAULT_THEME) {
   if (theme === 'dark' || theme === 'light') {
@@ -315,7 +314,6 @@ function setLanguage(lang) {
   updateLangButton(lang);
   updateGeneratorForm(lang);
   updateLogicReference(lang);
-  syncCircuitReferencePlacement();
 
   // Назначаем кнопку языка
   const langBtn = document.getElementById('lang-btn');
@@ -374,7 +372,7 @@ function updateGeneratorForm(lang) {
     formWrapper.innerHTML = `
       <div class="frame-loading-shell frame-loading-shell--circuit">
         <div class="frame-loading-cover" aria-hidden="true"></div>
-        <iframe class="circuit-frame circuit-frame--server" data-base-src="${iframeSrc}" data-theme-cache="${currentTheme}" src="${buildCircuitServerSrc(iframeSrc, currentTheme)}" style="width:100%;min-height:900px;height:900px;border:none;display:block;" frameborder="0"></iframe>
+        <iframe class="circuit-frame circuit-frame--server" data-base-src="${iframeSrc}" data-theme-cache="${currentTheme}" src="${buildCircuitServerSrc(iframeSrc, currentTheme)}" style="width:100%;border:none;display:block;" frameborder="0"></iframe>
       </div>`;
     bindCircuitFrameLoad(formWrapper.querySelector('.circuit-frame--server'));
   }
@@ -387,12 +385,12 @@ function renderLocalCircuit(lang) {
   const l = lang || getCurrentLanguage();
   const theme = getCachedTheme();
   formWrapper.innerHTML = `
-    <div style="width:100%;min-height:100vh;">
+    <div style="width:100%;">
       <iframe
         class="circuit-frame circuit-frame--local"
         id="circuit-frame"
         srcdoc="${escapeForSrcdoc(getCircuitEditorHTML(l, theme))}"
-        style="width:100%;min-height:900px;height:900px;border:none;display:block;"
+        style="width:100%;border:none;display:block;"
         sandbox="allow-scripts allow-forms allow-same-origin allow-modals allow-downloads"
       ></iframe>
     </div>`;
@@ -733,45 +731,6 @@ function updateLogicReference(lang) {
   }).join('');
 }
 
-function shouldPrioritizeCircuitReference() {
-  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
-    return false;
-  }
-
-  return window.matchMedia(`(max-width: ${CIRCUIT_REFERENCE_PRIORITY_BREAKPOINT}px)`).matches;
-}
-
-function syncCircuitReferencePlacement() {
-  const generatorSection = document.getElementById('generator');
-  const referenceSection = document.getElementById('logic-reference');
-
-  if (!generatorSection || !referenceSection || !generatorSection.parentNode) {
-    return;
-  }
-
-  const parent = generatorSection.parentNode;
-  const prioritizeReference = shouldPrioritizeCircuitReference();
-
-  if (prioritizeReference) {
-    if (generatorSection.previousElementSibling !== referenceSection) {
-      parent.insertBefore(referenceSection, generatorSection);
-    }
-  } else if (generatorSection.nextElementSibling !== referenceSection) {
-    parent.insertBefore(referenceSection, generatorSection.nextSibling);
-  }
-
-  referenceSection.classList.toggle('logic-reference-section--prioritized', prioritizeReference);
-}
-
-function bindCircuitResponsiveLayout() {
-  if (window.__trpCircuitResponsiveLayoutBound) {
-    return;
-  }
-
-  window.__trpCircuitResponsiveLayoutBound = true;
-  window.addEventListener('resize', syncCircuitReferencePlacement);
-}
-
 // ============================================
 // MOBILE MENU
 // ============================================
@@ -1081,7 +1040,6 @@ function initBanner() {
 
 function init() {
   if (!originalHTML) originalHTML = document.body.innerHTML;
-  bindCircuitResponsiveLayout();
   initLanguageSystem();
 }
 
@@ -1482,6 +1440,24 @@ body{background:linear-gradient(135deg,#0a0e1a,#0d1421);min-height:100vh;display
 @keyframes spin{to{transform:rotate(360deg)}}
 #zoom-bar{position:absolute;bottom:10px;left:10px;display:inline-flex;align-items:center;gap:4px;background:#0a0e18;border:1px solid #1f2937;border-radius:8px;padding:4px 8px;z-index:50}
 #sel-bar{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:#1e1235;border:1px solid #4c1d95;border-radius:20px;padding:4px 16px;font-size:10px;font-weight:700;color:#c4b5fd;display:none;z-index:60;pointer-events:none;white-space:nowrap}
+@media (max-width:1024px){
+  body{padding:1.25rem .75rem}
+  .app-wrap{border-radius:14px}
+  .main-area{flex-direction:column;height:auto}
+  #canvas-wrap{min-height:460px;height:460px}
+  #props-panel{width:100%;min-width:0;max-height:340px;border-left:none;border-top:1px solid #1f2937}
+}
+@media (max-width:768px){
+  body{padding:1rem .5rem}
+  .app-title{font-size:1.45rem;padding:1rem .75rem .7rem}
+  .toolbar{padding:6px 7px}
+  .tb-group{gap:4px}
+  .tb-btn,.mode-btn,.sim-btn{font-size:10px}
+  #canvas-wrap{min-height:400px;height:400px}
+  #props-panel{padding:9px 8px;max-height:none}
+  .desc-block{font-size:9px}
+  .desc-block .dtitle,.desc-block .dk,.desc-block .dv,.desc-block .dnote{font-size:8px}
+}
 </style>
 </head>
 <body>
