@@ -209,6 +209,12 @@ html, body {
     transform: scale(1.05);
 }
 
+.theme-btn:disabled {
+    opacity: 0.7;
+    cursor: default;
+    pointer-events: none;
+}
+
 /* ============================================
    FULLSCREEN GENERATOR SECTION
    ============================================ */
@@ -259,6 +265,333 @@ html, body {
     border: none;
     flex: 1;
     min-height: 100%;
+}
+
+.form-wrapper iframe.circuit-frame--server {
+    min-height: 900px;
+    height: 900px;
+    filter: none !important;
+}
+
+.form-wrapper iframe.circuit-frame--local {
+    min-height: 900px;
+    height: 900px;
+    filter: none !important;
+}
+
+.frame-loading-shell {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at top, rgba(90, 159, 255, 0.16), transparent 48%),
+        #28292b;
+}
+
+.frame-loading-shell--circuit {
+    min-height: 900px;
+}
+
+.frame-loading-shell iframe {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+}
+
+.frame-loading-shell.is-loaded iframe,
+.frame-loading-shell iframe.is-loaded {
+    opacity: 1;
+}
+
+.frame-loading-shell:not(.is-loaded) iframe {
+    pointer-events: none;
+}
+
+.frame-loading-cover {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        linear-gradient(110deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.09) 50%, rgba(255, 255, 255, 0.03) 75%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+    background-size: 220% 100%, 100% 100%;
+    animation: frameLoadingSweep 1.35s ease-in-out infinite;
+}
+
+.frame-loading-shell.is-loaded .frame-loading-cover {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+}
+
+@keyframes frameLoadingSweep {
+    0% {
+        background-position: 100% 0, 0 0;
+    }
+    100% {
+        background-position: -100% 0, 0 0;
+    }
+}
+
+.logic-reference-section {
+    padding: 4rem 0;
+    background:
+        linear-gradient(180deg, rgba(74, 144, 226, 0.08) 0%, rgba(74, 144, 226, 0) 240px),
+        var(--bg-secondary);
+}
+
+.logic-reference-shell {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 28px;
+    padding: 2.25rem;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.08);
+}
+
+.logic-reference-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+.logic-reference-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(74, 144, 226, 0.12);
+    color: var(--accent-color);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.logic-reference-title {
+    font-size: clamp(2rem, 2.8vw, 2.8rem);
+    line-height: 1.1;
+    color: var(--heading-color);
+}
+
+.logic-reference-intro,
+.logic-reference-note,
+.logic-reference-group-intro,
+.logic-block-summary,
+.logic-block-footnote {
+    color: var(--text-light);
+}
+
+.logic-reference-intro {
+    max-width: 820px;
+    font-size: 1.02rem;
+}
+
+.logic-reference-note {
+    margin-bottom: 2rem;
+    padding: 1rem 1.15rem;
+    border-left: 4px solid var(--accent-color);
+    background: rgba(74, 144, 226, 0.08);
+    border-radius: 12px;
+    font-size: 0.96rem;
+}
+
+.logic-reference-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.logic-reference-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.logic-reference-group-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.logic-reference-group-title {
+    font-size: 1.45rem;
+    color: var(--heading-color);
+}
+
+.logic-reference-group-intro {
+    max-width: 860px;
+}
+
+.logic-reference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.logic-block-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+    background:
+        linear-gradient(180deg, rgba(74, 144, 226, 0.06), rgba(74, 144, 226, 0) 120px),
+        var(--bg-secondary);
+}
+
+.logic-block-card-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.logic-block-card-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.logic-block-code {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0.28rem 0.58rem;
+    border-radius: 10px;
+    background: rgba(26, 26, 26, 0.08);
+    color: var(--heading-color);
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+body.dark-mode .logic-block-code {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .logic-reference-section {
+    background: #0a0f1b;
+}
+
+body.dark-mode .logic-reference-shell {
+    background: #0a0f1b;
+    border-color: #1a2740;
+    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.34);
+}
+
+body.dark-mode .logic-reference-note,
+body.dark-mode .logic-block-meta {
+    background: rgba(21, 33, 54, 0.9);
+    border-color: #223455;
+}
+
+body.dark-mode .logic-block-card {
+    background:
+        linear-gradient(180deg, rgba(90, 159, 255, 0.08), rgba(90, 159, 255, 0) 120px),
+        #0f1728;
+    border-color: #223455;
+}
+
+.logic-block-name {
+    font-size: 1.2rem;
+    color: var(--heading-color);
+}
+
+.logic-block-summary {
+    font-size: 0.96rem;
+}
+
+.logic-block-meta {
+    flex-shrink: 0;
+    min-width: 150px;
+    padding: 0.8rem 0.9rem;
+    border-radius: 14px;
+    background: rgba(74, 144, 226, 0.08);
+    border: 1px solid rgba(74, 144, 226, 0.16);
+    font-size: 0.88rem;
+    color: var(--text-color);
+}
+
+.logic-block-meta-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--text-light);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.logic-block-table-wrap {
+    overflow-x: auto;
+}
+
+.logic-block-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 100%;
+}
+
+.logic-block-table th,
+.logic-block-table td {
+    padding: 0.75rem 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+    vertical-align: top;
+}
+
+.logic-block-table thead th {
+    color: var(--text-light);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.logic-block-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.logic-block-table td:first-child,
+.logic-block-table td:nth-child(2) {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    color: var(--heading-color);
+}
+
+.logic-block-footnote {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .logic-reference-section {
+        padding: 3rem 0;
+    }
+
+    .logic-reference-shell {
+        padding: 1.4rem;
+        border-radius: 22px;
+    }
+
+    .logic-block-card-head {
+        flex-direction: column;
+    }
+
+    .logic-block-meta {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .logic-block-table {
+        min-width: 520px;
+    }
 }
 
 /* Фильтр инверсии убран — веб-приложения уже тёмные по умолчанию */
