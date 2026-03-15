@@ -1,5 +1,5 @@
 body {
-    overflow-x: clip;
+    overflow-x: hidden;
 }
 
 * {
@@ -552,23 +552,32 @@ body.dark-mode .panel-img {
 
     .nav-menu {
         position: fixed;
-        left: -100%;
+        left: 0;
+        transform: translate3d(calc(-100% - 20px), 0, 0);
         top: 0;
-        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
         flex-direction: column;
         background-color: var(--primary-color);
-        width: 100%;
+        border-radius: 0 20px 20px 0;
+        width: min(86vw, 360px);
+        max-width: calc(100vw - 16px);
         text-align: center;
-        transition: left 0.3s ease;
+        transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         gap: 0;
         padding: 80px 2rem 2rem 2rem;
         z-index: 1100;
         overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
     }
 
     .nav-menu.active {
         left: 0;
+        transform: translate3d(0, 0, 0);
     }
 
     .nav-menu li {
