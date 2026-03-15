@@ -200,6 +200,110 @@ function t(key) {
   return (translations[lang] && translations[lang][key]) || translations['ru'][key] || key;
 }
 
+const TDW_DEFAULT_THEME = 'dark';
+const TDW_THEME_ICON = '\uD83C\uDF19';
+
+function normalizeTDWTheme(theme, fallback = TDW_DEFAULT_THEME) {
+  if (theme === 'dark' || theme === 'light') {
+    return theme;
+  }
+  return fallback;
+}
+
+function getCachedTheme() {
+  return TDW_DEFAULT_THEME;
+}
+
+function buildTDWServerSrc(baseUrl, theme = getCachedTheme()) {
+  const cachedTheme = normalizeTDWTheme(theme);
+  try {
+    const url = new URL(baseUrl);
+    url.searchParams.set('theme', cachedTheme);
+    url.searchParams.set('themeCache', cachedTheme);
+    return url.toString();
+  } catch (error) {
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    return `${baseUrl}${separator}theme=${encodeURIComponent(cachedTheme)}&themeCache=${encodeURIComponent(cachedTheme)}`;
+  }
+}
+
+function applyTheme(theme) {
+  const nextTheme = normalizeTDWTheme(theme, TDW_DEFAULT_THEME);
+  const themeBtn = document.getElementById('theme-btn');
+
+  document.body.classList.toggle('dark-mode', nextTheme === 'dark');
+
+  if (themeBtn) {
+    themeBtn.textContent = TDW_THEME_ICON;
+    themeBtn.disabled = true;
+    themeBtn.setAttribute('aria-disabled', 'true');
+    themeBtn.title = 'Dark theme fixed';
+    themeBtn.textContent = nextTheme === 'dark' ? 'вЂпёЏ' : 'рџЊ™';
+  }
+}
+
+function lockTDWThemeButton() {
+  const themeBtn = document.getElementById('theme-btn');
+  if (!themeBtn) return;
+
+  themeBtn.textContent = TDW_THEME_ICON;
+  themeBtn.disabled = true;
+  themeBtn.setAttribute('aria-disabled', 'true');
+  themeBtn.title = 'Dark theme fixed';
+}
+
+function rerenderTDWGeneratorForTheme(theme) {
+  const currentTheme = normalizeTDWTheme(theme, getCachedTheme());
+  const mode = localStorage.getItem('tdwGeneratorMode') || 'server';
+
+  if (mode === 'local') {
+    renderLocalGenerator();
+    return;
+  }
+
+  const serverFrame = document.querySelector('.tdw-frame--server');
+  if (!serverFrame) {
+    updateGeneratorForm(getCurrentLanguage());
+    return;
+  }
+
+  const baseSrc = serverFrame.dataset.baseSrc || serverFrame.src;
+  const nextSrc = buildTDWServerSrc(baseSrc, currentTheme);
+
+  serverFrame.dataset.baseSrc = baseSrc;
+  serverFrame.dataset.themeCache = currentTheme;
+
+  if (serverFrame.src !== nextSrc) {
+    serverFrame.src = nextSrc;
+  }
+
+  syncTDWFrameTheme(currentTheme);
+}
+
+function handleThemeClick() {
+  applyTheme(TDW_DEFAULT_THEME);
+  lockTDWThemeButton();
+}
+
+function handleTDWThemeStorageSync(event) {
+  if (event.key && event.key !== 'theme') {
+    return;
+  }
+
+  applyTheme(TDW_DEFAULT_THEME);
+  lockTDWThemeButton();
+}
+
+function initThemeSystem() {
+  applyTheme(TDW_DEFAULT_THEME);
+  lockTDWThemeButton();
+
+  const themeBtn = document.getElementById('theme-btn');
+  if (themeBtn) {
+    themeBtn.onclick = handleThemeClick;
+  }
+}
+
 function setLanguage(lang) {
   localStorage.setItem('language', lang);
   location.reload();
@@ -223,7 +327,14 @@ function updateGeneratorForm(lang) {
     iframeSrc = "https://script.google.com/macros/s/AKfycbzM-ZFN81X-ns2Bqipa7YzgF02_RV37lgjwTdPg1XV0g_0CXlmHFe1q5OMJsedVgVMy/exec";
   }
 
-  formWrapper.innerHTML = `<iframe src="${iframeSrc}" frameborder="0" marginheight="0" marginwidth="0"></iframe>`;
+  const currentTheme = getCachedTheme();
+  formWrapper.innerHTML = `
+    <div class="frame-loading-shell frame-loading-shell--tdw">
+      <div class="frame-loading-cover" aria-hidden="true"></div>
+      <iframe class="tdw-frame tdw-frame--server" data-base-src="${iframeSrc}" data-theme-cache="${currentTheme}" src="${buildTDWServerSrc(iframeSrc, currentTheme)}" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+    </div>`;
+  bindTDWFrameLoad(formWrapper.querySelector('.tdw-frame--server'));
+  syncTDWFrameTheme(currentTheme);
 }
 
 // ============================================
@@ -306,15 +417,54 @@ function renderLocalGenerator() {
   const formWrapper = document.getElementById('form-wrapper');
   if (!formWrapper) return;
   const lang = getCurrentLanguage();
+  const theme = getCachedTheme();
   formWrapper.innerHTML = `
     <div class="local-generator-wrap" style="width:100%;min-height:100vh;">
       <iframe
+        class="tdw-frame tdw-frame--local"
         id="local-gen-frame"
-        srcdoc="${escapeForSrcdoc(getLocalGeneratorHTML(lang))}"
+        srcdoc="${escapeForSrcdoc(getLocalGeneratorHTML(lang, theme))}"
         style="width:100%;min-height:1200px;height:1200px;border:none;display:block;"
         sandbox="allow-scripts allow-forms allow-same-origin allow-modals allow-downloads"
       ></iframe>
     </div>`;
+  syncTDWFrameTheme();
+}
+
+function syncTDWFrameTheme(theme) {
+  const currentTheme = normalizeTDWTheme(theme, getCachedTheme());
+  const isDark = currentTheme === 'dark';
+  const frameBg = isDark ? '#28292b' : '#f8f8f8';
+  const formWrapper = document.getElementById('form-wrapper');
+
+  if (formWrapper) {
+    formWrapper.style.backgroundColor = frameBg;
+  }
+
+  document.querySelectorAll('.tdw-frame').forEach((frame) => {
+    frame.style.setProperty('filter', 'none', 'important');
+    frame.style.backgroundColor = frameBg;
+
+    if (!frame.classList.contains('tdw-frame--server')) {
+      return;
+    }
+
+    const baseSrc = frame.dataset.baseSrc || frame.src;
+    const cachedTheme = frame.dataset.themeCache;
+
+    frame.dataset.baseSrc = baseSrc;
+
+    if (cachedTheme === currentTheme) {
+      return;
+    }
+
+    frame.dataset.themeCache = currentTheme;
+    const nextSrc = buildTDWServerSrc(baseSrc, currentTheme);
+    if (frame.src !== nextSrc) {
+      bindTDWFrameLoad(frame);
+      frame.src = nextSrc;
+    }
+  });
 }
 
 function escapeForSrcdoc(html) {
@@ -323,8 +473,38 @@ function escapeForSrcdoc(html) {
     .replace(/"/g, '&quot;');
 }
 
-function getLocalGeneratorHTML(lang) {
+function bindTDWFrameLoad(frame) {
+  if (!frame) return;
+
+  const shell = frame.closest('.frame-loading-shell');
+  if (!shell) return;
+
+  const markLoaded = function () {
+    shell.classList.add('is-loaded');
+    frame.classList.add('is-loaded');
+  };
+
+  shell.classList.remove('is-loaded');
+  frame.classList.remove('is-loaded');
+  frame.addEventListener('load', markLoaded, { once: true });
+}
+
+function getLocalGeneratorHTML(lang, theme) {
   const en = lang === 'en';
+  const dark = (theme || 'light') === 'dark';
+  const forcedThemeCSS = dark
+    ? `
+:root{--bg:#28292b!important;--surface:#313338!important;--surface2:#3a3d42!important;--border:#4a4f55!important;--accent:#5a9fff!important;--accent2:#8b5cf6!important;--green:#28d9a6!important;--yellow:#f5c542!important;--red:#f05252!important;--text:#e8e8e8!important;--muted:#b0b0b0!important}
+html{color-scheme:dark;background:#28292b!important}
+body{background:var(--bg)!important}
+body::before{background:radial-gradient(ellipse 80% 40% at 20% 10%,rgba(90,159,255,.05) 0%,transparent 60%),radial-gradient(ellipse 60% 30% at 80% 90%,rgba(139,92,246,.05) 0%,transparent 60%)!important}
+`
+    : `
+:root{--bg:#f3f4f6!important;--surface:#ffffff!important;--surface2:#eef2f7!important;--border:#d8dee9!important;--accent:#2563eb!important;--accent2:#7c3aed!important;--green:#059669!important;--yellow:#d97706!important;--red:#dc2626!important;--text:#0f172a!important;--muted:#64748b!important}
+html{color-scheme:light;background:#f3f4f6!important}
+body{background:var(--bg)!important}
+body::before{background:radial-gradient(ellipse 80% 40% at 20% 10%,rgba(37,99,235,.06) 0%,transparent 60%),radial-gradient(ellipse 60% 30% at 80% 90%,rgba(124,58,237,.06) 0%,transparent 60%)!important}
+`;
   const ui = {
     title:           en ? 'Stage Code Generator'                                    : 'Генератор кода для трибуны',
     audioCard:       en ? '🎵 Audio Visualisation'                                  : '🎵 Аудио-визуализация',
@@ -404,6 +584,7 @@ function getLocalGeneratorHTML(lang) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"><\/script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
+${forcedThemeCSS}
 :root{--bg:#0d0f14;--surface:#141720;--surface2:#1c2030;--border:#2a2f42;--accent:#4f8ef7;--accent2:#7c3aed;--green:#22d3a0;--yellow:#f5c542;--red:#f05252;--text:#e2e8f0;--muted:#64748b}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
@@ -789,6 +970,7 @@ function translatePage() {
 
 document.addEventListener('DOMContentLoaded', function() {
   const currentLang = getCurrentLanguage();
+  initThemeSystem();
   
   // Translate page text
   translatePage();
@@ -817,12 +999,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Применяем тему сразу, чтобы не было мигания при загрузке
 (function() {
-  if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-  }
+  document.body.classList.toggle('dark-mode', getCachedTheme() === 'dark');
 })();
 
-document.addEventListener('DOMContentLoaded', function() {
+function unusedLegacyThemeInit() {
   const themeBtn = document.getElementById('theme-btn');
   if (!themeBtn) return;
 
@@ -834,8 +1014,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const isDarkMode = document.body.classList.contains('dark-mode');
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     themeBtn.textContent = isDarkMode ? '☀️' : '🌙';
+    if ((localStorage.getItem('tdwGeneratorMode') || 'server') === 'local') {
+      renderLocalGenerator();
+    } else {
+      updateGeneratorForm(getCurrentLanguage());
+    }
   });
-});
+}
 
 // ============================================
 // MOBILE MENU TOGGLE

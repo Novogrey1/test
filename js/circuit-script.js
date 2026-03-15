@@ -181,30 +181,93 @@ function t(key) {
   return (translations[lang] && translations[lang][key]) || translations['ru'][key] || key;
 }
 
+const CIRCUIT_DEFAULT_THEME = 'dark';
+const CIRCUIT_THEME_ICON = '\uD83C\uDF19';
+
+function normalizeCircuitTheme(theme, fallback = CIRCUIT_DEFAULT_THEME) {
+  if (theme === 'dark' || theme === 'light') {
+    return theme;
+  }
+  return fallback;
+}
+
+function getCachedTheme() {
+  return CIRCUIT_DEFAULT_THEME;
+}
+
+function buildCircuitServerSrc(baseUrl, theme = getCachedTheme()) {
+  const cachedTheme = normalizeCircuitTheme(theme);
+  try {
+    const url = new URL(baseUrl);
+    url.searchParams.set('theme', cachedTheme);
+    url.searchParams.set('themeCache', cachedTheme);
+    return url.toString();
+  } catch (error) {
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    return `${baseUrl}${separator}theme=${encodeURIComponent(cachedTheme)}&themeCache=${encodeURIComponent(cachedTheme)}`;
+  }
+}
+
+function rerenderCircuitGeneratorForTheme(theme) {
+  const currentTheme = normalizeCircuitTheme(theme, getCachedTheme());
+  const mode = localStorage.getItem('circuitGeneratorMode') || 'server';
+
+  if (mode === 'local') {
+    renderLocalCircuit(getCurrentLanguage());
+    return;
+  }
+
+  const serverFrame = document.querySelector('.circuit-frame--server');
+  if (!serverFrame) {
+    updateGeneratorForm(getCurrentLanguage());
+    return;
+  }
+
+  const baseSrc = serverFrame.dataset.baseSrc || serverFrame.src;
+  const nextSrc = buildCircuitServerSrc(baseSrc, currentTheme);
+
+  serverFrame.dataset.baseSrc = baseSrc;
+  serverFrame.dataset.themeCache = currentTheme;
+
+  if (serverFrame.src !== nextSrc) {
+    serverFrame.src = nextSrc;
+  }
+
+  syncCircuitFrameTheme(currentTheme);
+}
+
+function handleCircuitThemeStorageSync(event) {
+  if (event.key && event.key !== 'theme') {
+    return;
+  }
+
+  applyTheme(CIRCUIT_DEFAULT_THEME);
+}
+
 // ============================================
 // THEME SYSTEM
 // ============================================
 
 function applyTheme(theme) {
-  localStorage.setItem('theme', theme);
+  const currentTheme = normalizeCircuitTheme(theme, CIRCUIT_DEFAULT_THEME);
   const themeBtn = document.getElementById('theme-btn');
-  if (theme === 'dark') {
-    document.body.classList.add('dark-mode');
-    if (themeBtn) themeBtn.textContent = '☀️';
-  } else {
-    document.body.classList.remove('dark-mode');
-    if (themeBtn) themeBtn.textContent = '🌙';
+
+  document.body.classList.toggle('dark-mode', currentTheme === 'dark');
+
+  if (themeBtn) {
+    themeBtn.textContent = CIRCUIT_THEME_ICON;
+    themeBtn.disabled = true;
+    themeBtn.setAttribute('aria-disabled', 'true');
+    themeBtn.title = 'Dark theme fixed';
   }
 }
 
 function handleThemeClick() {
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  applyTheme(currentTheme === 'light' ? 'dark' : 'light');
+  applyTheme(CIRCUIT_DEFAULT_THEME);
 }
 
 function initThemeSystem() {
-  const saved = localStorage.getItem('theme');
-  applyTheme(saved !== null ? saved : 'dark');
+  applyTheme(CIRCUIT_DEFAULT_THEME);
   const themeBtn = document.getElementById('theme-btn');
   if (themeBtn) {
     themeBtn.onclick = handleThemeClick;
@@ -250,6 +313,7 @@ function setLanguage(lang) {
   initBanner();
   updateLangButton(lang);
   updateGeneratorForm(lang);
+  updateLogicReference(lang);
 
   // Назначаем кнопку языка
   const langBtn = document.getElementById('lang-btn');
@@ -277,6 +341,22 @@ function escapeForSrcdoc(html) {
   return html.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
+function bindCircuitFrameLoad(frame) {
+  if (!frame) return;
+
+  const shell = frame.closest('.frame-loading-shell');
+  if (!shell) return;
+
+  const markLoaded = function () {
+    shell.classList.add('is-loaded');
+    frame.classList.add('is-loaded');
+  };
+
+  shell.classList.remove('is-loaded');
+  frame.classList.remove('is-loaded');
+  frame.addEventListener('load', markLoaded, { once: true });
+}
+
 function updateGeneratorForm(lang) {
   const formWrapper = document.getElementById('form-wrapper');
   if (!formWrapper) return;
@@ -288,23 +368,367 @@ function updateGeneratorForm(lang) {
     if (lang === 'en') {
       iframeSrc = 'https://script.google.com/macros/s/AKfycbzvBpwA7FrE8x3qIXhOYZkr2yVofWs2TEbJDlwzr-KR3jC953L700uJO72xY5Qz5YUssQ/exec';
     }
-    formWrapper.innerHTML = `<iframe src="${iframeSrc}" style="width:100%;min-height:900px;height:900px;border:none;display:block;" frameborder="0"></iframe>`;
+    const currentTheme = getCachedTheme();
+    formWrapper.innerHTML = `
+      <div class="frame-loading-shell frame-loading-shell--circuit">
+        <div class="frame-loading-cover" aria-hidden="true"></div>
+        <iframe class="circuit-frame circuit-frame--server" data-base-src="${iframeSrc}" data-theme-cache="${currentTheme}" src="${buildCircuitServerSrc(iframeSrc, currentTheme)}" style="width:100%;min-height:900px;height:900px;border:none;display:block;" frameborder="0"></iframe>
+      </div>`;
+    bindCircuitFrameLoad(formWrapper.querySelector('.circuit-frame--server'));
   }
+  syncCircuitFrameTheme(getCachedTheme());
 }
 
 function renderLocalCircuit(lang) {
   const formWrapper = document.getElementById('form-wrapper');
   if (!formWrapper) return;
   const l = lang || getCurrentLanguage();
+  const theme = getCachedTheme();
   formWrapper.innerHTML = `
     <div style="width:100%;min-height:100vh;">
       <iframe
+        class="circuit-frame circuit-frame--local"
         id="circuit-frame"
-        srcdoc="${escapeForSrcdoc(getCircuitEditorHTML(l))}"
+        srcdoc="${escapeForSrcdoc(getCircuitEditorHTML(l, theme))}"
         style="width:100%;min-height:900px;height:900px;border:none;display:block;"
         sandbox="allow-scripts allow-forms allow-same-origin allow-modals allow-downloads"
       ></iframe>
     </div>`;
+  syncCircuitFrameTheme(getCachedTheme());
+}
+
+function syncCircuitFrameTheme(theme) {
+  const currentTheme = normalizeCircuitTheme(theme, getCachedTheme());
+  const isDark = currentTheme === 'dark';
+  const frameBg = isDark ? '#28292b' : '#f8f8f8';
+  const formWrapper = document.getElementById('form-wrapper');
+
+  if (formWrapper) {
+    formWrapper.style.backgroundColor = frameBg;
+  }
+
+  document.querySelectorAll('.circuit-frame').forEach((frame) => {
+    frame.style.setProperty('filter', 'none', 'important');
+    frame.style.backgroundColor = frameBg;
+
+    if (!frame.classList.contains('circuit-frame--server')) {
+      return;
+    }
+
+    const baseSrc = frame.dataset.baseSrc || frame.src;
+    const cachedTheme = frame.dataset.themeCache;
+
+    frame.dataset.baseSrc = baseSrc;
+
+    if (cachedTheme === currentTheme) {
+      return;
+    }
+
+    frame.dataset.themeCache = currentTheme;
+    const nextSrc = buildCircuitServerSrc(baseSrc, currentTheme);
+    if (frame.src !== nextSrc) {
+      bindCircuitFrameLoad(frame);
+      frame.src = nextSrc;
+    }
+  });
+}
+
+function escapeHTML(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function getLogicReferenceData(lang) {
+  const en = lang === 'en';
+
+  return {
+    eyebrow: en ? 'Block Reference' : 'Справочник блоков',
+    title: en ? 'How the logic blocks work' : 'Как работают логические блоки',
+    intro: en
+      ? 'This section describes the actual behaviour of the logic, memory and service blocks used in the circuit editor.'
+      : 'В разделе приведено фактическое поведение логических, триггерных и служебных блоков редактора.',
+    note: en
+      ? 'Only functional circuit blocks are included below. Buttons, levers, lamps and interface controls are intentionally excluded.'
+      : 'Ниже включены только функциональные блоки схемы. Кнопки, рычаги, лампы и элементы интерфейса намеренно исключены.',
+    columns: {
+      condition: en ? 'Condition' : 'Условие',
+      output: en ? 'Output' : 'Выход',
+      comment: en ? 'Comment' : 'Комментарий',
+      ports: en ? 'Ports' : 'Порты',
+    },
+    groups: [
+      {
+        title: en ? 'Logic gates' : 'Логические элементы',
+        intro: en
+          ? 'Basic boolean operations over input signals A and B. In all tables, 1 means an active signal and 0 means no signal.'
+          : 'Базовые булевы операции над входными сигналами A и B. Во всех таблицах 1 означает активный сигнал, 0 означает отсутствие сигнала.',
+        items: [
+          {
+            code: 'AND',
+            name: en ? 'AND gate' : 'Логическое И',
+            summary: en ? 'Produces 1 only when both inputs are active.' : 'Выдаёт 1 только при одновременной активности обоих входов.',
+            io: 'A, B -> Q',
+            rows: [
+              { condition: 'A=0, B=0', output: '0', comment: en ? 'Both inputs are inactive.' : 'Оба входа неактивны.' },
+              { condition: 'A=0, B=1', output: '0', comment: en ? 'Only B is active.' : 'Активен только вход B.' },
+              { condition: 'A=1, B=0', output: '0', comment: en ? 'Only A is active.' : 'Активен только вход A.' },
+              { condition: 'A=1, B=1', output: '1', comment: en ? 'Both inputs are active.' : 'Активны оба входа.' },
+            ],
+          },
+          {
+            code: 'NAND',
+            name: en ? 'NAND gate' : 'НЕ-И',
+            summary: en ? 'Returns the inverse of AND.' : 'Возвращает инвертированный результат элемента AND.',
+            io: 'A, B -> Q',
+            rows: [
+              { condition: 'A=0, B=0', output: '1', comment: en ? 'AND equals 0, inversion returns 1.' : 'AND даёт 0, инверсия возвращает 1.' },
+              { condition: 'A=0, B=1', output: '1', comment: en ? 'Not both inputs are active.' : 'Не все входы активны одновременно.' },
+              { condition: 'A=1, B=0', output: '1', comment: en ? 'Not both inputs are active.' : 'Не все входы активны одновременно.' },
+              { condition: 'A=1, B=1', output: '0', comment: en ? 'AND equals 1, inversion returns 0.' : 'AND даёт 1, инверсия возвращает 0.' },
+            ],
+          },
+          {
+            code: 'OR',
+            name: en ? 'OR gate' : 'Логическое ИЛИ',
+            summary: en ? 'Produces 1 when at least one input is active.' : 'Выдаёт 1, если активен хотя бы один вход.',
+            io: 'A, B -> Q',
+            rows: [
+              { condition: 'A=0, B=0', output: '0', comment: en ? 'No active inputs.' : 'Нет активных входов.' },
+              { condition: 'A=0, B=1', output: '1', comment: en ? 'B activates the output.' : 'Вход B активирует выход.' },
+              { condition: 'A=1, B=0', output: '1', comment: en ? 'A activates the output.' : 'Вход A активирует выход.' },
+              { condition: 'A=1, B=1', output: '1', comment: en ? 'Both inputs keep the output active.' : 'Оба входа поддерживают активный выход.' },
+            ],
+          },
+          {
+            code: 'NOR',
+            name: en ? 'NOR gate' : 'НЕ-ИЛИ',
+            summary: en ? 'Returns the inverse of OR.' : 'Возвращает инвертированный результат элемента OR.',
+            io: 'A, B -> Q',
+            rows: [
+              { condition: 'A=0, B=0', output: '1', comment: en ? 'OR equals 0, inversion returns 1.' : 'OR даёт 0, инверсия возвращает 1.' },
+              { condition: 'A=0, B=1', output: '0', comment: en ? 'At least one input is active.' : 'Активен как минимум один вход.' },
+              { condition: 'A=1, B=0', output: '0', comment: en ? 'At least one input is active.' : 'Активен как минимум один вход.' },
+              { condition: 'A=1, B=1', output: '0', comment: en ? 'OR equals 1, inversion returns 0.' : 'OR даёт 1, инверсия возвращает 0.' },
+            ],
+          },
+          {
+            code: 'XOR',
+            name: en ? 'XOR gate' : 'Исключающее ИЛИ',
+            summary: en ? 'Produces 1 only when the inputs differ.' : 'Выдаёт 1 только тогда, когда входы различаются.',
+            io: 'A, B -> Q',
+            rows: [
+              { condition: 'A=0, B=0', output: '0', comment: en ? 'The inputs are equal.' : 'Входы совпадают.' },
+              { condition: 'A=0, B=1', output: '1', comment: en ? 'The inputs differ.' : 'Входы различаются.' },
+              { condition: 'A=1, B=0', output: '1', comment: en ? 'The inputs differ.' : 'Входы различаются.' },
+              { condition: 'A=1, B=1', output: '0', comment: en ? 'The inputs are equal.' : 'Входы совпадают.' },
+            ],
+          },
+          {
+            code: 'XNOR',
+            name: en ? 'XNOR gate' : 'Эквивалентность',
+            summary: en ? 'Produces 1 only when the inputs match.' : 'Выдаёт 1 только тогда, когда входы совпадают.',
+            io: 'A, B -> Q',
+            rows: [
+              { condition: 'A=0, B=0', output: '1', comment: en ? 'The inputs are equal.' : 'Входы совпадают.' },
+              { condition: 'A=0, B=1', output: '0', comment: en ? 'The inputs differ.' : 'Входы различаются.' },
+              { condition: 'A=1, B=0', output: '0', comment: en ? 'The inputs differ.' : 'Входы различаются.' },
+              { condition: 'A=1, B=1', output: '1', comment: en ? 'The inputs are equal.' : 'Входы совпадают.' },
+            ],
+          },
+          {
+            code: 'NOT',
+            name: en ? 'NOT gate' : 'Инвертор',
+            summary: en ? 'Always returns the opposite state of the input.' : 'Всегда возвращает противоположное состояние входного сигнала.',
+            io: 'A -> Q',
+            rows: [
+              { condition: 'A=0', output: '1', comment: en ? 'Inactive input becomes active output.' : 'Неактивный вход превращается в активный выход.' },
+              { condition: 'A=1', output: '0', comment: en ? 'Active input becomes inactive output.' : 'Активный вход превращается в неактивный выход.' },
+            ],
+          },
+        ],
+      },
+      {
+        title: en ? 'Memory blocks' : 'Блоки памяти',
+        intro: en
+          ? 'These elements keep state between simulation ticks and depend not only on the current level but also on the previously stored output.'
+          : 'Эти элементы сохраняют состояние между тактами симуляции и зависят не только от текущего уровня сигнала, но и от ранее сохранённого выхода.',
+        items: [
+          {
+            code: 'SR LATCH',
+            name: en ? 'SR latch' : 'SR-защёлка',
+            summary: en ? 'Sets, resets or holds the output Q depending on the S and R combination.' : 'Устанавливает, сбрасывает или удерживает выход Q в зависимости от комбинации входов S и R.',
+            io: 'S, R -> Q',
+            rows: [
+              { condition: 'S=1, R=0', output: 'Q=1', comment: en ? 'Set command.' : 'Команда установки.' },
+              { condition: 'S=0, R=1', output: 'Q=0', comment: en ? 'Reset command.' : 'Команда сброса.' },
+              { condition: 'S=0, R=0', output: en ? 'Q keeps previous state' : 'Q сохраняет прошлое состояние', comment: en ? 'The state is held.' : 'Состояние удерживается.' },
+              { condition: 'S=1, R=1', output: en ? 'Q keeps previous state' : 'Q сохраняет прошлое состояние', comment: en ? 'This combination also keeps the previous state.' : 'Эта комбинация также сохраняет предыдущее состояние.' },
+            ],
+            footnote: en
+              ? 'There is no separate forbidden state here: for S=1 and R=1 the block keeps the previous Q value.'
+              : 'Отдельного запрещённого состояния здесь нет: при S=1 и R=1 блок сохраняет предыдущее значение Q.',
+          },
+          {
+            code: 'T LATCH',
+            name: en ? 'T latch' : 'T-триггер',
+            summary: en ? 'Inverts Q only on the rising edge of input T.' : 'Инвертирует Q только по нарастающему фронту входа T.',
+            io: 'T -> Q',
+            rows: [
+              { condition: 'T: 0 -> 1', output: en ? 'Q = inverse previous Q' : 'Q = инверсия прошлого Q', comment: en ? 'A rising edge toggles the stored state.' : 'Нарастающий фронт переключает сохранённое состояние.' },
+              { condition: 'T=1, no new edge', output: en ? 'Q keeps previous state' : 'Q сохраняет прошлое состояние', comment: en ? 'Holding the level high does not toggle repeatedly.' : 'Удержание высокого уровня не вызывает повторных переключений.' },
+              { condition: 'T: 1 -> 0', output: en ? 'Q keeps previous state' : 'Q сохраняет прошлое состояние', comment: en ? 'The falling edge is ignored.' : 'Спадающий фронт игнорируется.' },
+              { condition: 'T=0', output: en ? 'Q keeps previous state' : 'Q сохраняет прошлое состояние', comment: en ? 'The element waits for the next rising edge.' : 'Элемент ожидает следующий нарастающий фронт.' },
+            ],
+            footnote: en
+              ? 'Only the 0 -> 1 transition changes Q.'
+              : 'Q меняется только при переходе 0 -> 1.',
+          },
+        ],
+      },
+      {
+        title: en ? 'Service blocks' : 'Служебные блоки',
+        intro: en
+          ? 'These elements are responsible for timing, oscillation and schedule logic.'
+          : 'Эти элементы отвечают за синхронизацию, генерацию тактов и расписание.',
+        items: [
+          {
+            code: 'DELAY',
+            name: en ? 'Delay block' : 'Задержка',
+            summary: en ? 'Passes the input signal directly to the output without a real delay.' : 'Передаёт входной сигнал на выход без фактической задержки.',
+            io: 'In -> Out',
+            rows: [
+              { condition: 'In=0', output: '0', comment: en ? 'The output stays inactive.' : 'Выход остаётся неактивным.' },
+              { condition: 'In=1', output: '1', comment: en ? 'The output becomes active immediately.' : 'Выход активируется сразу.' },
+              { condition: en ? 'Delay parameter set' : 'Задан параметр Delay', output: en ? 'No change' : 'Без изменений', comment: en ? 'The configuration value is stored in the block, but it is not used in the output calculation.' : 'Значение конфигурации сохраняется в блоке, но не участвует в расчёте выхода.' },
+            ],
+            footnote: en
+              ? 'The delay field is available, but at the moment it does not affect the block result.'
+              : 'Поле задержки доступно, но сейчас не влияет на результат работы блока.',
+          },
+          {
+            code: 'SUSTAIN',
+            name: en ? 'Sustain block' : 'Удержание',
+            summary: en ? 'Does not stretch the pulse and simply repeats the input signal.' : 'Не растягивает импульс и просто повторяет входной сигнал.',
+            io: 'In -> Out',
+            rows: [
+              { condition: 'In=0', output: '0', comment: en ? 'No stored extension is applied.' : 'Дополнительное удержание не применяется.' },
+              { condition: 'In=1', output: '1', comment: en ? 'The active level is forwarded directly.' : 'Активный уровень передаётся напрямую.' },
+              { condition: en ? 'Duration parameter set' : 'Задан параметр Duration', output: en ? 'No change' : 'Без изменений', comment: en ? 'The duration field is saved in the block, but it is not used in the output calculation.' : 'Поле длительности сохраняется в блоке, но не участвует в расчёте выхода.' },
+            ],
+            footnote: en
+              ? 'At the moment this block behaves the same as Delay: the signal passes through directly.'
+              : 'Сейчас этот блок работает так же, как задержка: сигнал проходит напрямую.',
+          },
+          {
+            code: 'OSCILLATOR',
+            name: en ? 'Oscillator' : 'Осциллятор',
+            summary: en ? 'Toggles its output 0/1 on every editor tick, regardless of whether the simulation clock is paused.' : 'Переключает выход 0/1 на каждом тике редактора, независимо от того, стоит ли симуляция на паузе.',
+            io: en ? 'Internal tick -> Q' : 'Внутренний тик -> Q',
+            rows: [
+              { condition: en ? 'Each editor tick' : 'Каждый тик редактора', output: en ? 'Q toggles 0/1' : 'Q переключается 0/1', comment: en ? 'The signal switches automatically with a fixed tempo.' : 'Сигнал автоматически переключается с фиксированным темпом.' },
+              { condition: en ? 'Simulation paused' : 'Симуляция на паузе', output: en ? 'Oscillation continues' : 'Осцилляция продолжается', comment: en ? 'The pause does not stop the switching.' : 'Пауза не останавливает переключение.' },
+              { condition: en ? 'Period parameter set' : 'Задан параметр Period', output: en ? 'No change' : 'Без изменений', comment: en ? 'The period field is visible in the UI, but it is not used to control frequency.' : 'Поле периода видно в интерфейсе, но не используется для управления частотой.' },
+            ],
+            footnote: en
+              ? 'The period field is visible, but the signal currently works with a fixed switching tempo.'
+              : 'Поле периода отображается, но сам сигнал сейчас работает с фиксированным темпом переключения.',
+          },
+          {
+            code: 'CLOCK TRIGGER',
+            name: en ? 'Clock trigger' : 'Таймер',
+            summary: en ? 'Activates the output inside the configured in-game time window. The right boundary is excluded.' : 'Активирует выход внутри заданного игрового временного окна. Правая граница диапазона не включается.',
+            io: 'From, To -> Q',
+            rows: [
+              { condition: en ? 'From <= To and Current in [From, To)' : 'From <= To и Current в [From, To)', output: '1', comment: en ? 'Standard interval inside one day.' : 'Обычный интервал в пределах одних суток.' },
+              { condition: en ? 'From <= To and Current outside the range' : 'From <= To и Current вне диапазона', output: '0', comment: en ? 'The block stays inactive outside the window.' : 'Вне окна блок остаётся неактивным.' },
+              { condition: en ? 'From > To and (Current >= From or Current < To)' : 'From > To и (Current >= From или Current < To)', output: '1', comment: en ? 'The interval crosses midnight and remains active on both sides of 00:00.' : 'Интервал проходит через полночь и остаётся активным по обе стороны от 00:00.' },
+              { condition: en ? 'From > To and Current between To and From' : 'From > To и Current между To и From', output: '0', comment: en ? 'The daytime gap outside the overnight range.' : 'Дневной промежуток вне ночного диапазона.' },
+            ],
+            footnote: en
+              ? 'Example: a window from 22:00 to 06:00 is active from 22:00 until 05:59 and becomes inactive exactly at 06:00.'
+              : 'Пример: окно с 22:00 до 06:00 активно с 22:00 до 05:59 и выключается ровно в 06:00.',
+          },
+        ],
+      },
+    ],
+  };
+}
+
+function updateLogicReference(lang) {
+  const data = getLogicReferenceData(lang || getCurrentLanguage());
+  const eyebrow = document.getElementById('logic-reference-eyebrow');
+  const title = document.getElementById('logic-reference-title');
+  const intro = document.getElementById('logic-reference-intro');
+  const note = document.getElementById('logic-reference-note');
+  const groups = document.getElementById('logic-reference-groups');
+
+  if (!eyebrow || !title || !intro || !note || !groups) {
+    return;
+  }
+
+  eyebrow.textContent = data.eyebrow;
+  title.textContent = data.title;
+  intro.textContent = data.intro;
+  note.textContent = data.note;
+
+  groups.innerHTML = data.groups.map((group) => {
+    const itemsHTML = group.items.map((item) => {
+      const rowsHTML = item.rows.map((row) => `
+        <tr>
+          <td>${escapeHTML(row.condition)}</td>
+          <td>${escapeHTML(row.output)}</td>
+          <td>${escapeHTML(row.comment)}</td>
+        </tr>
+      `).join('');
+
+      const footnoteHTML = item.footnote
+        ? `<p class="logic-block-footnote">${escapeHTML(item.footnote)}</p>`
+        : '';
+
+      return `
+        <article class="logic-block-card">
+          <div class="logic-block-card-head">
+            <div class="logic-block-card-title">
+              <span class="logic-block-code">${escapeHTML(item.code)}</span>
+              <h4 class="logic-block-name">${escapeHTML(item.name)}</h4>
+              <p class="logic-block-summary">${escapeHTML(item.summary)}</p>
+            </div>
+            <div class="logic-block-meta">
+              <span class="logic-block-meta-label">${escapeHTML(data.columns.ports)}</span>
+              ${escapeHTML(item.io)}
+            </div>
+          </div>
+          <div class="logic-block-table-wrap">
+            <table class="logic-block-table">
+              <thead>
+                <tr>
+                  <th>${escapeHTML(data.columns.condition)}</th>
+                  <th>${escapeHTML(data.columns.output)}</th>
+                  <th>${escapeHTML(data.columns.comment)}</th>
+                </tr>
+              </thead>
+              <tbody>${rowsHTML}</tbody>
+            </table>
+          </div>
+          ${footnoteHTML}
+        </article>
+      `;
+    }).join('');
+
+    return `
+      <div class="logic-reference-group">
+        <div class="logic-reference-group-head">
+          <h3 class="logic-reference-group-title">${escapeHTML(group.title)}</h3>
+          <p class="logic-reference-group-intro">${escapeHTML(group.intro)}</p>
+        </div>
+        <div class="logic-reference-grid">${itemsHTML}</div>
+      </div>
+    `;
+  }).join('');
 }
 
 // ============================================
@@ -625,8 +1049,24 @@ if (document.readyState === 'loading') {
   init();
 }
 
-function getCircuitEditorHTML(lang) {
+function getCircuitEditorHTML(lang, theme) {
   const en = lang === 'en';
+  const dark = (theme || 'light') === 'dark';
+  const forcedThemeCSS = dark
+    ? `
+body{background:linear-gradient(135deg,#28292b,#313338)!important}
+.app-wrap{background:#28292b!important;border-color:#4a4f55!important;box-shadow:0 12px 50px rgba(0,0,0,.45)!important}
+.toolbar,#sim-bar,#zoom-bar,#props-panel,.modal-box,.gate-body{background:#313338!important}
+#canvas-wrap{background:#35383d!important}
+#canvas{background-color:#35383d!important;background-image:radial-gradient(circle,#4b5057 1px,transparent 1px)!important}
+`
+    : `
+body{background:linear-gradient(135deg,#eef2f7,#f8fafc)!important}
+.app-wrap{background:#ffffff!important;border-color:#d7dce5!important;box-shadow:0 10px 35px rgba(15,23,42,.12)!important}
+.toolbar,#sim-bar,#zoom-bar,#props-panel,.modal-box,.gate-body{background:#f8fafc!important}
+#canvas-wrap{background:#e5e7eb!important}
+#canvas{background-color:#e5e7eb!important;background-image:radial-gradient(circle,#cbd5e1 1px,transparent 1px)!important}
+`;
 
   const ui = {
     title:        en ? 'Logic Circuit Editor'    : 'Редактор логических схем',
@@ -855,6 +1295,7 @@ function getCircuitEditorHTML(lang) {
 <script src="https://cdn.tailwindcss.com"><\/script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"><\/script>
 <style>
+${forcedThemeCSS}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:linear-gradient(135deg,#0a0e1a,#0d1421);min-height:100vh;display:flex;
   justify-content:center;align-items:flex-start;padding:2rem 1rem;overflow-y:auto;
