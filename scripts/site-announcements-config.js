@@ -66,8 +66,8 @@ window.TRP_SITE_ANNOUNCEMENTS = [
     paths: "all",
     collapsible: true,
     startCollapsed: false,
-    startsAtUtc: "2026-03-26 16:50",
-    endsAtUtc: "2026-03-26 16:55",
+    startsAtUtc: "2026-03-26 17:12",
+    endsAtUtc: "2026-03-26 17:15",
     title: {
       ru: "Тест",
       en: "Test",
