@@ -1,1 +1,80 @@
-window.TRP_SITE_ANNOUNCEMENTS=[{id:"beta-testing-notice",enabled:!0,type:"warning",paths:"all",collapsible:!0,startCollapsed:!1,title:{ru:"Бета-тестирование сайта",en:"Website beta testing"},body:{ru:"<p>Сайт находится на стадии бета-тестирования. Публикация ресурса запланирована не позднее 10.04.2026.</p><p>По всем вопросам, замечаниям и предложениям просьба обращаться к <strong>novogrey</strong>.</p>",en:"<p>The website is currently in beta testing. Publication of the resource is scheduled no later than April 10, 2026.</p><p>For all questions, feedback, and suggestions, please contact <strong>novogrey</strong>.</p>"}},{id:"navigation-testing-task",enabled:!0,type:"info",paths:"all",collapsible:!0,startCollapsed:!1,title:{ru:"Проверка навигации сайта",en:"Website navigation review"},body:{ru:"<p>Уважаемые тестировщики, до <strong>22.03.2026</strong> необходимо провести полную проверку навигационного меню на всех используемых вами устройствах.</p><p>В рамках проверки необходимо:</p><ul><li>открыть каждую страницу сайта и убедиться, что с неё доступны переходы во все остальные разделы через навигационное меню;</li><li>проверить работу переключения тем на всех страницах, кроме страницы логических цепей и страницы TDW Tribune;</li><li>проверить корректность английского перевода, единообразие формулировок и работу функции переключения языка на всех страницах.</li></ul><p>Обо всех выявленных ошибках необходимо сообщать в специально выделенный чат по форме, указанной в закреплённом сообщении. Если после завершения полной проверки ошибки не будут обнаружены, также необходимо направить сообщение об успешном прохождении проверки без замечаний.</p>",en:"<p>Dear testers, please complete a full review of the website navigation menu on all devices you use by <strong>March 22, 2026</strong>.</p><p>The review must include the following:</p><ul><li>open each page of the website and verify that all other sections can be reached from that page through the navigation menu;</li><li>check theme switching on all pages except the Logic Circuits page and the TDW Tribune page;</li><li>verify the accuracy and consistency of the English translations, as well as the language-switching function on all pages.</li></ul><p>Report all identified issues in the dedicated chat using the format described in the pinned message. If you complete the full review and find no issues, please also send a report confirming that the check was completed successfully without remarks.</p>"}},{id:"confidentiality-violation-warning",enabled:!0,type:"danger",paths:"all",collapsible:!0,startCollapsed:!1,title:{ru:"Важное уведомление",en:"Important notice"},body:{ru:"<p>Любое несанкционированное распространение информации, передача ссылок, публикация скриншотов или кража скриптов расценивается как грубое нарушение внутренних правил.</p><p>Данные действия повлекут за собой перманентную блокировку без дополнительных предупреждений.</p>",en:"<p>Any unauthorized disclosure of information, distribution of links, publication of screenshots, or theft of scripts is considered a serious violation of internal rules.</p><p>Such actions will result in a permanent ban without additional warnings.</p>"}}];
+window.TRP_SITE_ANNOUNCEMENTS = [
+  // UTC window for any announcement:
+  // startsAtUtc: "",
+  // endsAtUtc: "",
+  // Friendly format: "2026-03-26 18:30"
+  // Empty startsAtUtc -> publish immediately.
+  // Empty endsAtUtc -> do not hide automatically.
+  {
+    id: "beta-testing-notice",
+    enabled: true,
+    type: "warning",
+    paths: "all",
+    collapsible: true,
+    startCollapsed: false,
+    startsAtUtc: "",
+    endsAtUtc: "",
+    title: {
+      ru: "Бета-тестирование сайта",
+      en: "Website beta testing",
+    },
+    body: {
+      ru: "<p>Сайт находится на стадии бета-тестирования. Публикация ресурса запланирована не позднее 10.04.2026.</p><p>По всем вопросам, замечаниям и предложениям просьба обращаться к <strong>novogrey</strong>.</p>",
+      en: "<p>The website is currently in beta testing. Publication of the resource is scheduled no later than April 10, 2026.</p><p>For all questions, feedback, and suggestions, please contact <strong>novogrey</strong>.</p>",
+    },
+  },
+  {
+    id: "navigation-testing-task",
+    enabled: true,
+    type: "info",
+    paths: "all",
+    collapsible: true,
+    startCollapsed: false,
+    startsAtUtc: "",
+    endsAtUtc: "",
+    title: {
+      ru: "Проверка навигации сайта",
+      en: "Website navigation review",
+    },
+    body: {
+      ru: "<p>Уважаемые тестировщики, до <strong>22.03.2026</strong> необходимо провести полную проверку навигационного меню на всех используемых вами устройствах.</p><p>В рамках проверки необходимо:</p><ul><li>открыть каждую страницу сайта и убедиться, что с неё доступны переходы во все остальные разделы через навигационное меню;</li><li>проверить работу переключения тем на всех страницах, кроме страницы логических цепей и страницы TDW Tribune;</li><li>проверить корректность английского перевода, единообразие формулировок и работу функции переключения языка на всех страницах.</li></ul><p>Обо всех выявленных ошибках необходимо сообщать в специально выделенный чат по форме, указанной в закреплённом сообщении. Если после завершения полной проверки ошибки не будут обнаружены, также необходимо направить сообщение об успешном прохождении проверки без замечаний.</p>",
+      en: "<p>Dear testers, please complete a full review of the website navigation menu on all devices you use by <strong>March 22, 2026</strong>.</p><p>The review must include the following:</p><ul><li>open each page of the website and verify that all other sections can be reached from that page through the navigation menu;</li><li>check theme switching on all pages except the Logic Circuits page and the TDW Tribune page;</li><li>verify the accuracy and consistency of the English translations, as well as the language-switching function on all pages.</li></ul><p>Report all identified issues in the dedicated chat using the format described in the pinned message. If you complete the full review and find no issues, please also send a report confirming that the check was completed successfully without remarks.</p>",
+    },
+  },
+  {
+    id: "confidentiality-violation-warning",
+    enabled: true,
+    type: "danger",
+    paths: "all",
+    collapsible: true,
+    startCollapsed: false,
+    startsAtUtc: "",
+    endsAtUtc: "",
+    title: {
+      ru: "Важное уведомление",
+      en: "Important notice",
+    },
+    body: {
+      ru: "<p>Любое несанкционированное распространение информации, передача ссылок, публикация скриншотов или кража скриптов расценивается как грубое нарушение внутренних правил.</p><p>Данные действия повлекут за собой перманентную блокировку без дополнительных предупреждений.</p>",
+      en: "<p>Any unauthorized disclosure of information, distribution of links, publication of screenshots, or theft of scripts is considered a serious violation of internal rules.</p><p>Such actions will result in a permanent ban without additional warnings.</p>",
+    },
+  },
+  {
+    id: "confidentiality-violation-warning",
+    enabled: true,
+    type: "danger",
+    paths: "all",
+    collapsible: true,
+    startCollapsed: false,
+    startsAtUtc: "2026-03-26 16:50",
+    endsAtUtc: "2026-03-26 16:55",
+    title: {
+      ru: "Тест",
+      en: "Test",
+    },
+    body: {
+      ru: "<p>Тест</p>",
+      en: "<p>Test</p>",
+    },
+  },
+];
