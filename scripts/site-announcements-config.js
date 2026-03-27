@@ -1,3 +1,4 @@
+"undefined"==typeof window||window.__TRP_INTERACTION_GUARD__||(window.__TRP_INTERACTION_GUARD__=!0,document.addEventListener("contextmenu",(function(e){e.preventDefault()}),!0),document.addEventListener("keydown",(function(e){var t="F12"===e.key||"F12"===e.code||123===e.keyCode,o="ContextMenu"===e.key||"ContextMenu"===e.code||e.shiftKey&&"F10"===e.key,n=e.ctrlKey&&("s"===e.key||"S"===e.key||"KeyS"===e.code||83===e.keyCode);(t||o||n)&&(e.preventDefault(),e.stopPropagation())}),!0));
 window.TRP_SITE_ANNOUNCEMENTS = [
   // UTC window for any announcement:
   // startsAtUtc: "",
