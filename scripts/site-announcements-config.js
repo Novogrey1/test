@@ -76,5 +76,5 @@ window.TRP_SITE_ANNOUNCEMENTS = [
       ru: "<p>Любое несанкционированное распространение информации, передача ссылок, публикация скриншотов или кража скриптов расценивается как грубое нарушение внутренних правил.</p><p>Данные действия повлекут за собой перманентную блокировку без дополнительных предупреждений.</p>",
       en: "<p>Any unauthorized disclosure of information, distribution of links, publication of screenshots, or theft of scripts is considered a serious violation of internal rules.</p><p>Such actions will result in a permanent ban without additional warnings.</p>",
     },
-  }
+  },
 ];
